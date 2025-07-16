@@ -7,35 +7,24 @@ title: Myles Ieong
 
 Hello! I'm Myles Ieong, and this is my personal website.
 
+## Products
+
+I've been working on several interesting products that showcase my skills and interests:
+
+[View all products →](/products)
+
 ## About Me
 
-I'm passionate about technology and innovation. This space serves as my digital home where I share my thoughts, projects, and experiences.
+I'm passionate about technology and innovation. This space serves as my digital home where I share my thoughts, products, and experiences.
 
 [Read more about me →](/about)
-
-## Featured Projects
-
-I've been working on several interesting projects that showcase my skills and interests:
-
-### Snooker Self-Trainer
-
-![Snooker Self-Trainer Logo](/assets/images/logo_snooker.png)
-
-A comprehensive snooker training assistant app built with Kotlin Multiplatform, featuring structured drills, personalized training plans, and detailed performance tracking.
-
-### Pool & Billiards Self-Trainer
-
-![Pool & Billiards Self-Trainer Logo](/assets/images/logo_pool&biiliards.png)
-
-A comprehensive pool and billiards training assistant app built with the same proven architecture, demonstrating strong software engineering principles and code reusability.
-
-[View all projects →](/projects)
 
 ## Contact
 
 Feel free to reach out to me:
 - GitHub: [@mylesieong](https://github.com/mylesieong)
+- Email: [myles.ieong@gmail.com]
 
 ---
 
-*Last updated: July 2024* 
+*Last updated: July 2025* 
