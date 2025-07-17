@@ -5,6 +5,8 @@ title: Snooker Self-Trainer - Myles Ieong
 
 # Snooker Self-Trainer
 
+![Snooker Self-Trainer Logo](/assets/images/logo_snooker.png)
+
 ## Overview
 
 A comprehensive snooker training assistant app designed to help players improve their skills through structured drills, personalized training plans, and detailed performance tracking. The app provides a rich library of drills covering all cue sport skills with set-based tracking similar to fitness apps.
@@ -20,19 +22,13 @@ A comprehensive snooker training assistant app designed to help players improve 
 
 ## App Screenshots
 
-![Snooker Self-Trainer App](/assets/images/snooker.jpg)
-![Snooker App - Dashboard](/assets/images/snooker-1.jpg)
-![Snooker App - Training Plan](/assets/images/snooker-2.jpg)
-![Snooker App - Drills](/assets/images/snooker-3.jpg)
-![Snooker App - Drill Details](/assets/images/snooker-4.jpg)
-![Snooker App - Performance Tracking](/assets/images/snooker-5.jpg)
+![Main](/assets/images/resized/snooker.jpg) ![Dashboard](/assets/images/resized/snooker-1.jpg) ![Training Plan](/assets/images/resized/snooker-2.jpg) ![Drills](/assets/images/resized/snooker-3.jpg) ![Drill Details](/assets/images/resized/snooker-4.jpg) ![Performance Tracking](/assets/images/resized/snooker-5.jpg)
 
 ## App Store Links
 
 - **Google Play**: [Snooker Self-Trainer on Google Play](https://play.google.com/store/apps/details?id=com.municornio.app.snookerselftrainer)
 - **App Store**: [Snooker Self-Trainer on App Store](https://apps.apple.com/us/app/snooker-self-trainer/id6747923097)
 
-
 ---
 
-[← Back to Products](/products) | [Home](/) 
+[← Back to Home](/)
