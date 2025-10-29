@@ -159,16 +159,102 @@ footer {
   border-top: 1px solid #ddd;
 }
 
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
 .product-card, .case-card { 
   border: 1px solid #ddd; 
-  padding: 15px; 
+  padding: 20px; 
   margin-bottom: 20px; 
-  border-radius: 5px; 
+  border-radius: 8px; 
   background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-grid .product-card, 
+.card-grid .case-card {
+  margin-bottom: 0;
+}
+
+.product-card:hover, .case-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .product-card h3, .case-card h3 {
   margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.product-card-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.product-card-horizontal .product-card-logo {
+  max-width: 100px;
+  height: auto;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+  flex-shrink: 0;
+}
+
+.product-card-content {
+  flex: 1;
+}
+
+.product-card-logo {
+  max-width: 80px;
+  height: auto;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0 auto 15px auto;
+  display: block;
+}
+
+.product-card p, .case-card p {
+  flex-grow: 1;
+  margin-bottom: 15px;
+}
+
+.product-card a, .case-card a {
+  margin-top: auto;
+}
+
+.product-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.product-header h1 {
+  margin-bottom: 15px;
+}
+
+main > h1:first-of-type {
+  text-align: center;
+}
+
+.product-logo {
+  max-width: 120px;
+  height: auto;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0 auto;
+  display: block;
 }
 
 .screenshot { 
@@ -184,6 +270,18 @@ footer {
 }
 
 @media (max-width: 600px) { 
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-card-horizontal {
+    flex-direction: column;
+  }
+  
+  .product-card-horizontal .product-card-logo {
+    margin: 0 auto 15px auto;
+  }
+  
   .screenshot img { 
     width: 100%; 
     display: block; 
