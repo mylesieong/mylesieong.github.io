@@ -14,7 +14,7 @@ This is my personal website hosted on GitHub Pages. The site is built using Jeky
 To run this site locally:
 
 1. Install Jekyll: `gem install jekyll bundler`
-2. Run: `jekyll serve`
+2. Run: `bundle exec jekyll serve` (check it PATH contains gem lib bin if cmd not found)
 3. Visit: `http://localhost:4000`
 
 ## Customization
