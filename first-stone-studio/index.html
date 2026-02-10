@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>First Stone Studio — MVP in 1–2 Weeks</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bg: #fafbfc;
+        --fg: #0f172a;
+        --fg-muted: #475569;
+        --accent: #0ea5e9;
+        --accent-deep: #0284c7;
+        --accent-light: #e0f2fe;
+        --surface: #ffffff;
+        --surface-alt: #f1f5f9;
+        --border: #e2e8f0;
+        --radius: 16px;
+        --radius-lg: 24px;
+        --shadow: 0 1px 3px rgba(0,0,0,0.06);
+        --shadow-lg: 0 25px 50px -12px rgba(0,0,0,0.1);
+        --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+        background: rgba(255,255,255,0.8); backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 24px;
+    }
+    nav .container { display: flex; justify-content: space-between; align-items: center; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    nav .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.125rem; color: var(--fg); letter-spacing: -0.02em; }
+    nav .logo img { height: 28px; width: auto; }
+    nav .nav-links { display: flex; gap: 32px; }
+    nav a { font-size: 0.9rem; font-weight: 500; color: var(--fg-muted); transition: color var(--transition); }
+    nav a:hover { color: var(--accent); }
+
+    /* Hero */
+    header {
+        min-height: 100vh; display: flex; align-items: center; justify-content: center;
+        text-align: center; padding: 140px 24px 100px;
+        background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 40%, #fafbfc 100%);
+        position: relative; overflow: hidden;
+    }
+    header::before {
+        content: ''; position: absolute; inset: 0;
+        background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(14,165,233,0.08) 0%, transparent 50%);
+        pointer-events: none;
+    }
+    header .container { position: relative; z-index: 1; }
+    header .badge {
+        display: inline-block; padding: 8px 16px; margin-bottom: 24px;
+        background: var(--accent-light); color: var(--accent-deep);
+        font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+        border-radius: 100px;
+    }
+    header h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.03em;
+        color: var(--fg); max-width: 800px; margin: 0 auto 24px;
+    }
+    header h1 span { color: var(--accent); }
+    header .subline {
+        font-size: 1.25rem; color: var(--fg-muted); max-width: 560px; margin: 0 auto 40px; line-height: 1.7;
+    }
+    .cta-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .cta-buttons a {
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 16px 28px; border-radius: var(--radius); font-weight: 600; font-size: 1rem;
+        transition: all var(--transition);
+    }
+    .cta-buttons a.primary {
+        background: var(--accent); color: white;
+        box-shadow: 0 4px 14px rgba(14,165,233,0.4);
+    }
+    .cta-buttons a.primary:hover { background: var(--accent-deep); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(14,165,233,0.35); }
+    .cta-buttons a.secondary {
+        background: var(--surface); color: var(--fg);
+        border: 2px solid var(--border);
+    }
+    .cta-buttons a.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Sections */
+    section { padding: 100px 0; }
+    section:nth-child(even) { background: var(--surface); }
+    section h2 {
+        font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 700; letter-spacing: -0.02em;
+        color: var(--fg); text-align: center; margin-bottom: 16px;
+    }
+    section .section-desc {
+        text-align: center; color: var(--fg-muted); max-width: 600px; margin: 0 auto 48px; font-size: 1.05rem;
+    }
+
+    /* Pain Points */
+    #pain-points { background: var(--surface-alt); }
+    .pain-points {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+    }
+    .pain-point {
+        background: var(--surface); padding: 28px; border-radius: var(--radius-lg);
+        border: 1px solid var(--border); transition: all var(--transition);
+    }
+    .pain-point:hover {
+        border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-4px);
+    }
+    .pain-point h3 { font-size: 1.1rem; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
+    .pain-point p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; }
+
+    /* Services */
+    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .service-card {
+        background: var(--surface); padding: 32px; border-radius: var(--radius-lg);
+        border: 1px solid var(--border); transition: all var(--transition);
+    }
+    .service-card:hover {
+        border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-4px);
+    }
+    .service-card.featured { border-color: var(--accent); background: linear-gradient(180deg, #f0f9ff 0%, white 100%); position: relative; }
+    .service-card.featured::before {
+        content: 'Popular'; position: absolute; top: 16px; right: 16px;
+        font-size: 0.7rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .service-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--fg); margin-bottom: 12px; }
+    .service-card p { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 8px; }
+    .service-card .price { font-size: 1.5rem; font-weight: 800; color: var(--accent); margin: 16px 0 8px; }
+    .service-card .outcome { font-size: 0.9rem; color: var(--fg); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+
+    /* Steps */
+    #how-it-works { background: var(--surface-alt); }
+    .steps { display: flex; flex-direction: column; gap: 16px; max-width: 720px; margin: 0 auto; }
+    .step {
+        display: flex; align-items: flex-start; gap: 24px;
+        background: var(--surface); padding: 28px 32px; border-radius: var(--radius-lg);
+        border: 1px solid var(--border); transition: all var(--transition);
+    }
+    .step:hover { border-color: var(--accent); }
+    .step-number {
+        width: 48px; height: 48px; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        background: var(--accent-light); color: var(--accent-deep);
+        font-size: 1.25rem; font-weight: 800; border-radius: 12px;
+    }
+    .step-content h4 { font-size: 1.1rem; font-weight: 700; color: var(--fg); margin-bottom: 6px; }
+    .step-content p { font-size: 0.95rem; color: var(--fg-muted); }
+
+    /* Credibility */
+    #credibility .container {
+        text-align: center; max-width: 640px;
+        padding: 48px; background: var(--surface-alt); border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+    }
+    #credibility h2 { margin-bottom: 16px; }
+    #credibility p { margin: 0; text-align: center; }
+
+    /* Final CTA */
+    .final-cta {
+        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        color: white; text-align: center; padding: 100px 24px;
+    }
+    .final-cta h2 { color: white; margin-bottom: 16px; }
+    .final-cta p { font-size: 1.2rem; opacity: 0.95; margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .final-cta a {
+        display: inline-flex; align-items: center; justify-content: center;
+        background: white; color: var(--accent-deep); padding: 18px 36px;
+        border-radius: var(--radius); font-weight: 700; font-size: 1rem;
+        transition: all var(--transition);
+    }
+    .final-cta a:hover { background: #f0f9ff; transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+    /* FAQ */
+    .faq-list { max-width: 640px; margin: 0 auto; }
+    .faq-item {
+        padding: 24px 0; border-bottom: 1px solid var(--border);
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h4 { font-size: 1.05rem; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
+    .faq-item p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.7; margin: 0; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        nav .nav-links { display: none; }
+        header { padding: 120px 20px 80px; }
+        section { padding: 64px 0; }
+        .cta-buttons { flex-direction: column; }
+        .cta-buttons a { width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="#" class="logo"><img src="../assets/images/first-stone-studio-logo.png" alt="">First Stone Studio</a>
+        <div class="nav-links">
+            <a href="#pain-points">Challenges</a>
+            <a href="#services">Services</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#faq">FAQ</a>
+        </div>
+    </div>
+</nav>
+
+<header>
+    <div class="container">
+        <span class="badge">MVP in 1–2 weeks</span>
+        <h1>Your first stone to a working <span>MVP</span> — fast, clear, and risk-free.</h1>
+        <p class="subline">We help non-technical founders turn brilliant ideas into tangible products in just 1–2 weeks. No fluff, no delays, just the first stone that moves your idea forward.</p>
+        <div class="cta-buttons">
+            <a href="#services" class="primary">Book Your $49 Consultation</a>
+            <a href="#how-it-works" class="secondary">Learn How It Works</a>
+        </div>
+    </div>
+</header>
+
+<section id="pain-points">
+    <div class="container">
+        <h2>We understand the struggles non-technical founders face</h2>
+        <p class="section-desc">You've got the vision, the connections, and the ideas — but turning them into a working product can feel overwhelming. Sound familiar?</p>
+        <div class="pain-points">
+            <div class="pain-point"><h3>Tech stack confusion</h3><p>Unsure which tech will scale, worry about costs, risk of technical debt.</p></div>
+            <div class="pain-point"><h3>Idea overload</h3><p>Too many ideas, hard to identify the most important feature.</p></div>
+            <div class="pain-point"><h3>AI-assisted coding gaps</h3><p>AI can write code, but you don't fully understand it. Hard to fix bugs or add new features.</p></div>
+            <div class="pain-point"><h3>Investor-proofing pressure</h3><p>Need a tangible MVP to gain investor confidence quickly.</p></div>
+            <div class="pain-point"><h3>Time pressure</h3><p>Want to move fast but lack technical execution, risking lost traction.</p></div>
+            <div class="pain-point"><h3>Lack of technical mentorship</h3><p>No one to guide decisions or review code, increasing risk of mistakes.</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <div class="container">
+        <h2>Pick the first stone that fits your journey</h2>
+        <p class="section-desc">Whether you need guidance, a working MVP, or ongoing support to reach beta, we provide flexible, fast solutions for non-technical founders.</p>
+        <div class="services">
+            <div class="service-card">
+                <h3>Strategy Consultation</h3>
+                <p>Step-by-step guidance for your MVP</p>
+                <p>Recommended tech stack</p>
+                <p>Prioritization of features</p>
+                <p class="price">$49</p>
+                <p class="outcome"><strong>Outcome:</strong> Clarity & confidence to place your first stone</p>
+            </div>
+            <div class="service-card featured">
+                <h3>MVP Build</h3>
+                <p>Hands-on MVP development delivered quickly</p>
+                <p>Fully functional, investor-ready prototype</p>
+                <p class="price">$499</p>
+                <p class="outcome"><strong>Outcome:</strong> Tangible product to show investors</p>
+            </div>
+            <div class="service-card">
+                <h3>Custom Beta Support</h3>
+                <p>Scale MVP to beta version</p>
+                <p>Ongoing mentorship, equity or cash options</p>
+                <p class="price">Flexible</p>
+                <p class="outcome"><strong>Outcome:</strong> Scalable, investor-ready beta product</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="how-it-works">
+    <div class="container">
+        <h2>From idea to first stone in 3 simple steps</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Strategy Consultation (First Stone)</h4>
+                    <p>Clear out noise, prioritize features, choose the right tech stack.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>MVP Build (Drop the Stone)</h4>
+                    <p>Hands-on MVP development delivered in 1–2 weeks.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Beta Support (Water Rises)</h4>
+                    <p>Iterate, scale, and add features safely with mentorship.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="credibility">
+    <div class="container">
+        <h2>We've been there, built that</h2>
+        <p>Our founder has built multiple products from ideation to production in just 3 weeks, achieving real organic growth. We know the struggles you face — and we know how to overcome them.</p>
+    </div>
+</section>
+
+<section class="final-cta">
+    <div class="container">
+        <h2>Ready to drop your first stone?</h2>
+        <p>Start building your MVP today. Fast. Affordable. Founder-first.</p>
+        <a href="#services">Book Your $49 Consultation</a>
+    </div>
+</section>
+
+<section id="faq">
+    <div class="container">
+        <h2>Got questions? We've got answers.</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <h4>Can non-technical founders work with you?</h4>
+                <p>Absolutely. We specialize in helping founders like you bring ideas to life without coding experience.</p>
+            </div>
+            <div class="faq-item">
+                <h4>How fast is the MVP built?</h4>
+                <p>Most MVPs are delivered in 1–2 weeks, sometimes in just one week.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Do you take equity?</h4>
+                <p>Yes, we're flexible — cash, equity, or a mix depending on your needs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
