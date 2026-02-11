@@ -131,6 +131,11 @@
     .service-card p { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 8px; }
     .service-card .price { font-size: 1.5rem; font-weight: 800; color: var(--accent); margin: 16px 0 8px; }
     .service-card .outcome { font-size: 0.9rem; color: var(--fg); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .service-card-upcoming { position: relative; opacity: 0.92; }
+    .service-card-upcoming::after {
+        content: 'Coming soon'; position: absolute; top: 16px; right: 16px;
+        font-size: 0.7rem; font-weight: 600; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.05em;
+    }
 
     /* Steps */
     #how-it-works { background: var(--surface-alt); }
@@ -213,7 +218,7 @@
         <h1>Your first stone to a working <span>MVP</span> — fast, clear, and risk-free.</h1>
         <p class="subline">We help non-technical founders turn brilliant ideas into tangible products in just 1–2 weeks. No fluff, no delays, just the first stone that moves your idea forward.</p>
         <div class="cta-buttons">
-            <a href="#services" class="primary">Book Your $49 Consultation</a>
+            <a href="#services" class="primary">Book MVP Onboarding ($49)</a>
             <a href="#how-it-works" class="secondary">Learn How It Works</a>
         </div>
     </div>
@@ -240,7 +245,7 @@
         <p class="section-desc">Whether you need guidance, a working MVP, or ongoing support to reach beta, we provide flexible, fast solutions for non-technical founders.</p>
         <div class="services">
             <div class="service-card">
-                <h3>Strategy Consultation</h3>
+                <h3>MVP Onboarding</h3>
                 <p>Step-by-step guidance for your MVP</p>
                 <p>Recommended tech stack</p>
                 <p>Prioritization of features</p>
@@ -255,11 +260,18 @@
                 <p class="outcome"><strong>Outcome:</strong> Tangible product to show investors</p>
             </div>
             <div class="service-card">
-                <h3>Custom Beta Support</h3>
-                <p>Scale MVP to beta version</p>
-                <p>Ongoing mentorship, equity or cash options</p>
+                <h3>MVP to Published app</h3>
+                <p>For iOS and Android version</p>
+                <p>Beta format support</p>
+                <p>App support for 30 days</p>
+                <p class="price">$499 onwards</p>
+                <p class="outcome"><strong>Outcome:</strong> Published app ready for users</p>
+            </div>
+            <div class="service-card service-card-upcoming">
+                <h3>Managed Agentic Technical Coder</h3>
+                <p>Flexible, managed AI coding partner</p>
                 <p class="price">Flexible</p>
-                <p class="outcome"><strong>Outcome:</strong> Scalable, investor-ready beta product</p>
+                <p class="outcome"><strong>Outcome:</strong> Ongoing technical execution with AI-augmented development</p>
             </div>
         </div>
     </div>
@@ -272,7 +284,7 @@
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h4>Strategy Consultation (First Stone)</h4>
+                    <h4>MVP Onboarding (First Stone)</h4>
                     <p>Clear out noise, prioritize features, choose the right tech stack.</p>
                 </div>
             </div>
@@ -286,8 +298,8 @@
             <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <h4>Beta Support (Water Rises)</h4>
-                    <p>Iterate, scale, and add features safely with mentorship.</p>
+                    <h4>MVP to Published (Water Rises)</h4>
+                    <p>Take your app to iOS and Android with beta support and 30-day app support.</p>
                 </div>
             </div>
         </div>
@@ -305,7 +317,7 @@
     <div class="container">
         <h2>Ready to drop your first stone?</h2>
         <p>Start building your MVP today. Fast. Affordable. Founder-first.</p>
-        <a href="#services">Book Your $49 Consultation</a>
+        <a href="#services">Book MVP Onboarding ($49)</a>
     </div>
 </section>
 
