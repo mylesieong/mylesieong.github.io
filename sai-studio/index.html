@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sai Studio — MVP in 1 week for non-technical founders. Fast, founder-aligned, equity-based. Book your onboarding.">
+<title>Sai Studio — MVP in 1 Week</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bg: #fafbfc;
+        --fg: #0f172a;
+        --fg-muted: #475569;
+        --accent: #0ea5e9;
+        --accent-deep: #0284c7;
+        --accent-light: #e0f2fe;
+        --surface: #ffffff;
+        --surface-alt: #f1f5f9;
+        --border: #e2e8f0;
+        --radius: 16px;
+        --radius-lg: 24px;
+        --shadow: 0 1px 3px rgba(0,0,0,0.06);
+        --shadow-lg: 0 25px 50px -12px rgba(0,0,0,0.1);
+        --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+        background: rgba(255,255,255,0.8); backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 24px;
+    }
+    nav .container { display: flex; justify-content: space-between; align-items: center; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    nav .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.125rem; color: var(--fg); letter-spacing: -0.02em; }
+    nav .logo img { height: 36px; width: 36px; border-radius: 50%; object-fit: cover; }
+    nav .nav-links { display: flex; align-items: center; gap: 32px; }
+    nav a { font-size: 0.9rem; font-weight: 500; color: var(--fg-muted); transition: color var(--transition); }
+    nav a:hover { color: var(--accent); }
+    nav a.nav-cta {
+        display: inline-flex; align-items: center;
+        background: var(--accent); color: white !important;
+        padding: 8px 16px; border-radius: 100px;
+        font-weight: 600; line-height: 1;
+    }
+    nav a.nav-cta:hover { background: var(--accent-deep); color: white !important; }
+
+    /* Hero */
+    header {
+        min-height: 90vh; display: flex; align-items: center; justify-content: center;
+        text-align: center; padding: 140px 24px 80px;
+        background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 40%, #fafbfc 100%);
+        position: relative; overflow: hidden;
+    }
+    header::before {
+        content: ''; position: absolute; inset: 0;
+        background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(14,165,233,0.08) 0%, transparent 50%);
+        pointer-events: none;
+    }
+    header .container { position: relative; z-index: 1; }
+    header .badge {
+        display: inline-block; padding: 8px 16px; margin-bottom: 24px;
+        background: var(--accent-light); color: var(--accent-deep);
+        font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+        border-radius: 100px;
+    }
+    header h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.03em;
+        color: var(--fg); max-width: 800px; margin: 0 auto 24px;
+    }
+    header h1 span { color: var(--accent); }
+    header .subline {
+        font-size: 1.2rem; color: var(--fg-muted); max-width: 560px; margin: 0 auto 32px; line-height: 1.6;
+    }
+    .cta-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .cta-buttons a {
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 16px 28px; border-radius: var(--radius); font-weight: 600; font-size: 1rem;
+        transition: all var(--transition);
+    }
+    .cta-buttons a.primary {
+        background: var(--accent); color: white;
+        box-shadow: 0 4px 14px rgba(14,165,233,0.4);
+    }
+    .cta-buttons a.primary:hover { background: var(--accent-deep); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(14,165,233,0.35); }
+
+    /* What You Get in 7 Days */
+    #what-you-get { background: var(--surface); }
+    .get-list { max-width: 560px; margin: 0 auto 20px; }
+    .get-list ul { list-style: none; padding: 0; margin: 0; }
+    .get-list li {
+        padding: 8px 0 8px 28px; position: relative;
+        font-size: 1rem; color: var(--fg); line-height: 1.5;
+    }
+    .get-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .get-power-line { text-align: center; font-size: 1.05rem; font-weight: 600; color: var(--fg); max-width: 480px; margin: 0 auto; }
+    .security-line { text-align: center; font-size: 0.95rem; color: var(--fg-muted); margin-top: 16px; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+    /* How It Works */
+    #how-it-works { background: var(--surface-alt); }
+    .steps { display: flex; flex-direction: column; gap: 16px; max-width: 560px; margin: 0 auto; }
+    .step {
+        display: flex; align-items: flex-start; gap: 24px;
+        background: var(--surface); padding: 24px 28px; border-radius: var(--radius-lg);
+        border: 1px solid var(--border); transition: all var(--transition);
+    }
+    .step:hover { border-color: var(--accent); }
+    .step-number {
+        width: 44px; height: 44px; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        background: var(--accent-light); color: var(--accent-deep);
+        font-size: 1.1rem; font-weight: 800; border-radius: 12px;
+    }
+    .step-content h4 { font-size: 1.05rem; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+    .step-content p { font-size: 0.95rem; color: var(--fg-muted); }
+
+    /* Pricing */
+    #pricing { background: var(--surface); }
+    .pricing-hero {
+        text-align: center; margin-bottom: 40px;
+    }
+    .pricing-main {
+        max-width: 480px; margin: 0 auto 32px;
+        background: linear-gradient(180deg, #f0f9ff 0%, white 100%);
+        border: 2px solid var(--accent);
+        border-radius: var(--radius-lg);
+        padding: 32px 40px;
+        text-align: center;
+    }
+    .pricing-main .price { font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
+    .pricing-main .price-note { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 20px; }
+    .pricing-bullets { list-style: none; padding: 0; margin: 0 auto 16px; text-align: left; max-width: 380px; }
+    .pricing-bullets li { padding: 6px 0 6px 24px; position: relative; font-size: 0.95rem; color: var(--fg-muted); }
+    .pricing-bullets li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .pricing-inline { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 16px; font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 16px; }
+    .pricing-inline .popup-trigger { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; color: var(--accent); font-weight: 600; }
+    .pricing-inline .popup-trigger:hover { color: var(--accent-deep); }
+    .why-equity-short { font-size: 0.95rem; color: var(--fg); margin: 16px 0; padding: 16px; background: var(--accent-light); border-radius: 12px; text-align: left; }
+    .refund-hook { font-size: 0.95rem; color: var(--accent-deep); font-weight: 600; margin-top: 12px; }
+    .pricing-secondary { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; max-width: 640px; margin: 32px auto 0; }
+    .pricing-card {
+        background: var(--surface-alt); padding: 20px; border-radius: var(--radius);
+        border: 1px solid var(--border); font-size: 0.9rem;
+    }
+    .pricing-card h4 { font-size: 1rem; margin-bottom: 8px; color: var(--fg); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .pricing-card p { color: var(--fg-muted); margin: 0; }
+    .pricing-card-premium {
+        background: linear-gradient(145deg, #f8f8fa 0%, #f0f1f3 50%, #fafafb 100%);
+        border: 1px solid #e4e4e7;
+    }
+    .pricing-card-premium h4 {
+        font-weight: 700;
+        background: linear-gradient(135deg, #64748b 0%, #94a3b8 40%, #cbd5e1 70%, #64748b 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+    }
+
+    /* Popup / Modal */
+    .popup-trigger {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 18px; height: 18px; border-radius: 50%;
+        border: 1px solid var(--border);
+        background: transparent; color: var(--fg-muted);
+        font-size: 0.65rem; font-weight: 700;
+        cursor: pointer; transition: all var(--transition);
+        margin-left: 2px; vertical-align: middle;
+    }
+    .popup-trigger:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+    .popup-overlay {
+        position: fixed; inset: 0; z-index: 100;
+        background: rgba(15,23,42,0.4); backdrop-filter: blur(4px);
+        display: none; align-items: center; justify-content: center;
+        padding: 24px;
+    }
+    .popup-overlay.active { display: flex; }
+    .popup-panel {
+        max-width: 420px; width: 100%;
+        background: white; border-radius: var(--radius-lg);
+        padding: 28px 32px; box-shadow: var(--shadow-lg);
+        position: relative;
+    }
+    .popup-panel h4 { font-size: 1.1rem; color: var(--fg); margin-bottom: 12px; }
+    .popup-panel p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; margin: 0; }
+    .popup-panel ul { margin: 12px 0 0; padding-left: 20px; font-size: 0.95rem; color: var(--fg-muted); line-height: 1.7; }
+    .popup-close {
+        position: absolute; top: 16px; right: 16px;
+        width: 32px; height: 32px; border: none; background: var(--surface-alt);
+        border-radius: 8px; cursor: pointer; font-size: 1.2rem; color: var(--fg-muted);
+        display: flex; align-items: center; justify-content: center;
+    }
+    .popup-close:hover { background: var(--border); color: var(--fg); }
+
+    /* Bio - compressed */
+    #credibility { background: var(--surface-alt); }
+    #credibility .container { max-width: 560px; padding: 32px 40px; background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border); }
+    .bio-section { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .bio-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .bio-content { flex: 1; min-width: 260px; }
+    #credibility h2 { font-size: 1.2rem; margin-bottom: 8px; text-align: left; }
+    #credibility .bio-content p { margin: 0; font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; text-align: left; }
+
+    /* Final CTA */
+    section.final-cta {
+        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%) !important;
+        color: white; text-align: center; padding: 80px 24px;
+    }
+    .final-cta h2 { color: #ffffff; margin-bottom: 12px; font-size: 1.75rem; }
+    .final-cta p { color: #ffffff; font-size: 1.1rem; opacity: 0.95; margin-bottom: 24px; }
+    .final-cta .cta-buttons a.primary {
+        background: white; color: #0f172a !important;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+    .final-cta .cta-buttons a.primary:hover { background: #f0f9ff; transform: translateY(-2px); }
+
+    /* FAQ */
+    #faq { background: var(--surface); }
+    .faq-categories { max-width: 720px; margin: 0 auto; }
+    .faq-category { margin-bottom: 40px; }
+    .faq-category:last-child { margin-bottom: 0; }
+    .faq-category-title {
+        font-size: 1.1rem; font-weight: 700; color: var(--accent);
+        margin-bottom: 16px; padding-bottom: 8px;
+        border-bottom: 2px solid var(--accent-light);
+    }
+    .faq-list { max-width: 640px; margin: 0 auto; }
+    .faq-item { padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h4 { font-size: 1rem; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
+    .faq-item p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.7; margin: 0; }
+
+    /* Footer */
+    footer { padding: 32px 24px; background: var(--fg); color: rgba(255,255,255,0.7); text-align: center; }
+    .footer-credibility { font-size: 0.9rem; margin: 0; line-height: 1.6; max-width: 600px; margin: 0 auto; }
+
+    /* Sections */
+    section { padding: 72px 0; }
+    section h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.02em; color: var(--fg); text-align: center; margin-bottom: 24px; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        nav .nav-links { display: none; }
+        header { padding: 120px 20px 60px; min-height: auto; }
+        section { padding: 48px 0; }
+        .cta-buttons { flex-direction: column; }
+        .cta-buttons a { width: 100%; }
+        .pricing-main { padding: 24px 20px; }
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="#" class="logo"><img src="../assets/images/sai-headshot.png" alt="Sai Studio">Sai Studio</a>
+        <div class="nav-links">
+            <a href="#what-you-get">What You Get</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+            <a href="https://calendar.app.google/NVJ4iEDU8QTFpYfq7" target="_blank" rel="noopener" class="nav-cta">Book 1:1 Chat</a>
+        </div>
+    </div>
+</nav>
+
+<header>
+    <div class="container">
+        <span class="badge">MVP in 1 week</span>
+        <h1>MVP in 1 Week.<br>Built with You. Aligned with Equity.</h1>
+        <p class="subline">Turn ideas into working products in 7 days — $499 + 5% equity, capped. Performance-based refund.</p>
+        <div class="cta-buttons">
+            <a href="https://calendar.app.google/NVJ4iEDU8QTFpYfq7" target="_blank" rel="noopener" class="primary">Book 1:1 Chat</a>
+        </div>
+    </div>
+</header>
+
+<section id="what-you-get">
+    <div class="container">
+        <h2>In 7 Days You Get</h2>
+        <div class="get-list">
+            <ul>
+                <li>Secure authentication or landing page</li>
+                <li>3–5 core feature screens</li>
+                <li>Backend + database</li>
+                <li>App Store / Play Store ready (submission-ready build)</li>
+                <li>GitHub repo + full source code <button type="button" class="popup-trigger" data-popup="github" aria-label="Learn more">i</button></li>
+                <li>Acceptance test run before you sign off</li>
+                <li>Production-grade architecture</li>
+            </ul>
+        </div>
+        <p class="get-power-line">A real, usable product — not a prototype.</p>
+        <p class="security-line">Native architecture that supports AI integration without the fragility of simple wrappers. <button type="button" class="popup-trigger" data-popup="tech" aria-label="Tech stack details">i</button></p>
+    </div>
+</section>
+
+<section id="how-it-works">
+    <div class="container">
+        <h2>From idea to MVP in 3 steps</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>1:1 Call (under 30 min)</h4>
+                    <p>Quick call to understand if this service is right for you.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>MVP Onboarding (90 min)</h4>
+                    <p>Define scope, audience, and priorities.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>MVP Build</h4>
+                    <p>Hands-on development delivered in 7 days.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="pricing">
+    <div class="container">
+        <h2>Pricing</h2>
+        <div class="pricing-hero">
+            <div class="pricing-main">
+                <p class="price">$499 + 5% Equity</p>
+                <p class="price-note">MVP Build — delivered in 7 days</p>
+                <div class="pricing-inline">
+                    <ul class="pricing-bullets">
+                    <li>Equity via <a href="https://fi.co/ease" target="_blank" rel="noopener">EASE</a> <button type="button" class="popup-trigger" data-popup="ease" aria-label="What is EASE?">i</button></li>
+                    <li>20× ARR refund — founder-friendly <button type="button" class="popup-trigger" data-popup="refund" aria-label="Refund details">i</button></li>
+                    <li>No extra equity — ever <button type="button" class="popup-trigger" data-popup="pivot" aria-label="Pivot policy">i</button></li>
+                </ul>
+                </div>
+                <div class="why-equity-short">
+                    <strong>Why 5%?</strong> Most studios take 10–15%. I cap it at 5% to stay aligned without hurting your cap table.
+                </div>
+                <p class="refund-hook">Hit 20× ARR in 12 months → get your cash back. Equity unchanged.</p>
+            </div>
+            <div class="pricing-secondary">
+                <div class="pricing-card">
+                    <h4>MVP Onboarding — $49 <button type="button" class="popup-trigger" data-popup="onboarding" aria-label="What's included">i</button></h4>
+                    <p>Blueprint, tech stack, priority list — no code. Credited toward MVP Build if you proceed.</p>
+                </div>
+                <div class="pricing-card pricing-card-premium">
+                    <h4>MVP to Published — $499+</h4>
+                    <p>Curated key UI design, comprehensive feature set, and guaranteed through App Store / Play Store review. iOS, Android, web. Equity capped at 5%. Maintenance negotiable.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="credibility">
+    <div class="container">
+        <div class="bio-section">
+            <img src="../assets/images/sai-headshot.png" alt="Sai — founder of Sai Studio" class="bio-photo">
+            <div class="bio-content">
+                <h2>Sai — technical expert & founder</h2>
+                <p>10+ years in software. Published apps, grew one organically in 21 days. I ship fast and speak your language.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="final-cta">
+    <div class="container">
+        <h2>Ready to build your MVP?</h2>
+        <p>Fast. Affordable. Founder-first.</p>
+        <div class="cta-buttons">
+            <a href="https://calendar.app.google/NVJ4iEDU8QTFpYfq7" target="_blank" rel="noopener" class="primary">Book 1:1 Chat</a>
+        </div>
+    </div>
+</section>
+
+<section id="faq">
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-categories">
+            <div class="faq-category">
+                <h3 class="faq-category-title">Strategic / Legal</h3>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h4>Can I buy back the 5% later?</h4>
+                        <p>Yes. I offer a Buyback Clause (Repurchase Option) for future funding rounds. Your company can reclaim the equity under specific conditions — I’ll share details in our 1:1 chat.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Who owns the Intellectual Property (IP)?</h4>
+                        <p>You do. Per the EASE framework, all IP developed during the service period is assigned to your company.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What happens during fundraising?</h4>
+                        <p>Clean Cap Table: You own the IP and maintain control. The EASE agreement is a Founder Institute standard recognized by VCs.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What if I bring in a technical co-founder?</h4>
+                        <p>No conflict. You own the code. Any developer can continue work — the repo is yours. My equity stays in place unless you exercise the buyback option.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What if we exit before 12 months?</h4>
+                        <p>The refund guarantee applies to ARR within 12 months. If you exit (acquisition, etc.) before then, terms depend on the deal structure — we’ll cover this in the 1:1.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Is the 5% equity negotiable?</h4>
+                        <p>The standard is 5% via EASE. Larger builds may adjust scope; the equity percentage stays fixed to keep alignment clear.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-category">
+                <h3 class="faq-category-title">Delivery & Scope</h3>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h4>What defines the scope of MVP?</h4>
+                        <p>Core user journeys plus an essential support feature that fits your needs. I use Material 3 for UI. For Beta, I add a full design phase and curated feature set.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What if my idea is complex?</h4>
+                        <p>I ship the smallest viable version in 1 week to get you to market. Scope is not carried on after MVP unless you choose to move up to the next package. Then I expand in phases based on real user feedback.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What's not included in 7 days?</h4>
+                        <p>Beyond core features: heavy custom design, third-party integrations, complex backend logic. I phase these post-launch.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Is there a maintenance period?</h4>
+                        <p>MVP Build has no maintenance period — it includes an Acceptance Test Run for you to sign off before acceptance. MVP to Published has a negotiable maintenance period. After that, I offer ongoing development at transparent market rates.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>How are new features priced?</h4>
+                        <p>I estimate complexity and quote per feature. Rates are transparent and at market level — you keep building with someone who already knows your codebase.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-category">
+                <h3 class="faq-category-title">Financial</h3>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h4>What counts as ARR?</h4>
+                        <p>Recurring contract value or subscriptions — including annual B2B contracts paid upfront (prorated to ARR). Stripe, revenue dashboards, or similar. One-time grants or non-recurring sales don’t count toward the 20× trigger.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What if revenue is disputed?</h4>
+                        <p>We verify via Stripe or your revenue dashboard. I’ll share the exact verification process in our 1:1.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What if we pivot before generating revenue?</h4>
+                        <p>Pivot-friendly. Extending the product = phased build. New product from scratch = new MVP package (cash only). Total equity always capped at 5%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p class="footer-credibility">Equity via Founder Institute EASE framework. Partnership-based. Founder-aligned.</p>
+    </div>
+</footer>
+
+<!-- Popup Modals -->
+<div id="popup-ease" class="popup-overlay" role="dialog" aria-labelledby="popup-ease-title">
+    <div class="popup-panel">
+        <button type="button" class="popup-close" aria-label="Close">&times;</button>
+        <h4 id="popup-ease-title">EASE Framework</h4>
+        <p>Standardized early-stage equity agreement used by thousands of startups. Avoids expensive legal drafting. Protects both founder and partner.</p>
+    </div>
+</div>
+<div id="popup-tech" class="popup-overlay" role="dialog" aria-labelledby="popup-tech-title">
+    <div class="popup-panel">
+        <button type="button" class="popup-close" aria-label="Close">&times;</button>
+        <h4 id="popup-tech-title">Tech Stack</h4>
+        <p><strong>Example Mobile Stack:</strong></p>
+        <ul>
+            <li>Kotlin Multiplatform</li>
+            <li>Material 3</li>
+            <li>Ktor backend</li>
+            <li>Docker</li>
+        </ul>
+        <p style="margin-top:12px">Fully portable. Any developer can continue development.</p>
+    </div>
+</div>
+<div id="popup-refund" class="popup-overlay" role="dialog" aria-labelledby="popup-refund-title">
+    <div class="popup-panel">
+        <button type="button" class="popup-close" aria-label="Close">&times;</button>
+        <h4 id="popup-refund-title">20× ARR Refund</h4>
+        <p>Verified via Stripe / revenue dashboards. 12-month window. Equity unaffected. Hit 20× your cash payment in ARR → full cash refund.</p>
+    </div>
+</div>
+<div id="popup-github" class="popup-overlay" role="dialog" aria-labelledby="popup-github-title">
+    <div class="popup-panel">
+        <button type="button" class="popup-close" aria-label="Close">&times;</button>
+        <h4 id="popup-github-title">You Own the Code</h4>
+        <p>Full GitHub repo ownership. Source code access. No vendor lock-in. Any developer can continue work.</p>
+    </div>
+</div>
+<div id="popup-onboarding" class="popup-overlay" role="dialog" aria-labelledby="popup-onboarding-title">
+    <div class="popup-panel">
+        <button type="button" class="popup-close" aria-label="Close">&times;</button>
+        <h4 id="popup-onboarding-title">MVP Onboarding — Blueprint Only</h4>
+        <p>You receive a detailed blueprint: tech stack, priority list, and scope definition. No code is delivered in this phase. If you move on to the Build phase, the $49 is credited toward the MVP Build.</p>
+    </div>
+</div>
+<div id="popup-pivot" class="popup-overlay" role="dialog" aria-labelledby="popup-pivot-title">
+    <div class="popup-panel">
+        <button type="button" class="popup-close" aria-label="Close">&times;</button>
+        <h4 id="popup-pivot-title">Pivot Policy</h4>
+        <p><strong>Extending existing product</strong> → phased build, no extra equity.</p>
+        <p><strong>New product from scratch</strong> → new MVP package (cash only).</p>
+        <p>Total equity always capped at 5%.</p>
+    </div>
+</div>
+
+<script>
+(function() {
+    var triggers = document.querySelectorAll('[data-popup]');
+    var overlays = document.querySelectorAll('.popup-overlay');
+
+    triggers.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var id = 'popup-' + btn.getAttribute('data-popup');
+            var popup = document.getElementById(id);
+            if (popup) {
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    overlays.forEach(function(overlay) {
+        overlay.querySelector('.popup-close').addEventListener('click', function() {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            overlays.forEach(function(o) {
+                o.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+    });
+})();
+</script>
+
+</body>
+</html>
