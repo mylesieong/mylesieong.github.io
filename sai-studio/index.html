@@ -33,9 +33,12 @@
     /* Nav */
     nav {
         position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-        background: rgba(255,255,255,0.8); backdrop-filter: blur(12px);
+        background: rgba(255,255,255,0.95);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border);
         padding: 16px 24px;
+        padding-top: max(16px, env(safe-area-inset-top));
     }
     nav .container { display: flex; justify-content: space-between; align-items: center; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
     nav .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.125rem; color: var(--fg); letter-spacing: -0.02em; }
@@ -104,21 +107,56 @@
 
     /* How It Works */
     #how-it-works { background: var(--surface-alt); }
-    .steps { display: flex; flex-direction: column; gap: 16px; max-width: 560px; margin: 0 auto; }
+    .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
     .step {
-        display: flex; align-items: flex-start; gap: 24px;
-        background: var(--surface); padding: 24px 28px; border-radius: var(--radius-lg);
-        border: 1px solid var(--border); transition: all var(--transition);
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+        background: var(--surface);
+        padding: 28px 32px;
+        border-radius: var(--radius-lg);
+        border-left: 4px solid var(--accent);
+        border-top: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        transition: all var(--transition);
     }
-    .step:hover { border-color: var(--accent); }
+    .step:hover {
+        border-left-color: var(--accent-deep);
+        box-shadow: 0 4px 20px rgba(14,165,233,0.12);
+    }
     .step-number {
-        width: 44px; height: 44px; flex-shrink: 0;
-        display: flex; align-items: center; justify-content: center;
-        background: var(--accent-light); color: var(--accent-deep);
-        font-size: 1.1rem; font-weight: 800; border-radius: 12px;
+        width: 48px;
+        height: 48px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--accent-light) 0%, #bae6fd 100%);
+        color: var(--accent-deep);
+        font-size: 1.2rem;
+        font-weight: 800;
+        border-radius: 12px;
     }
-    .step-content h4 { font-size: 1.05rem; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
-    .step-content p { font-size: 0.95rem; color: var(--fg-muted); }
+    .step-content h4 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--fg);
+        margin-bottom: 6px;
+        letter-spacing: -0.01em;
+    }
+    .step-content p {
+        font-size: 0.95rem;
+        color: var(--fg-muted);
+        line-height: 1.5;
+    }
 
     /* Pricing */
     #pricing { background: var(--surface); }
@@ -151,16 +189,16 @@
     .pricing-card h4 { font-size: 1rem; margin-bottom: 8px; color: var(--fg); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
     .pricing-card p { color: var(--fg-muted); margin: 0; }
     .pricing-card-premium {
-        background: linear-gradient(145deg, #f8f8fa 0%, #f0f1f3 50%, #fafafb 100%);
-        border: 1px solid #e4e4e7;
+        background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+        border: 1px solid rgba(14,165,233,0.4);
     }
     .pricing-card-premium h4 {
         font-weight: 700;
-        background: linear-gradient(135deg, #64748b 0%, #94a3b8 40%, #cbd5e1 70%, #64748b 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
+        color: var(--accent-deep);
+    }
+    .pricing-card-premium p {
+        color: var(--fg);
+        opacity: 0.9;
     }
 
     /* Popup / Modal */
@@ -198,14 +236,46 @@
     }
     .popup-close:hover { background: var(--border); color: var(--fg); }
 
-    /* Bio - compressed */
+    /* Bio */
     #credibility { background: var(--surface-alt); }
-    #credibility .container { max-width: 560px; padding: 32px 40px; background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border); }
-    .bio-section { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-    .bio-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    #credibility .container {
+        max-width: 640px;
+        padding: 40px 40px;
+        background: linear-gradient(135deg, var(--surface) 0%, #f8fcff 100%);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+    }
+    .bio-section {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        flex-wrap: wrap;
+    }
+    .bio-photo {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 3px solid var(--accent-light);
+        box-shadow: 0 4px 12px rgba(14,165,233,0.15);
+    }
     .bio-content { flex: 1; min-width: 260px; }
-    #credibility h2 { font-size: 1.2rem; margin-bottom: 8px; text-align: left; }
-    #credibility .bio-content p { margin: 0; font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; text-align: left; }
+    #credibility h2 {
+        font-size: 1.25rem;
+        margin-bottom: 8px;
+        text-align: left;
+        color: var(--fg);
+        font-weight: 700;
+    }
+    #credibility .bio-content p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: var(--fg-muted);
+        line-height: 1.65;
+        text-align: left;
+    }
 
     /* Final CTA */
     section.final-cta {
@@ -244,14 +314,90 @@
     section { padding: 72px 0; }
     section h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.02em; color: var(--fg); text-align: center; margin-bottom: 24px; }
 
+    /* Mobile hamburger */
+    .nav-toggle {
+        display: none;
+        width: 44px; height: 44px;
+        padding: 0; border: none; background: transparent;
+        cursor: pointer; flex-shrink: 0;
+        align-items: center; justify-content: center;
+        border-radius: 8px;
+    }
+    .nav-toggle:hover { background: var(--surface-alt); }
+    .nav-toggle-inner {
+        width: 22px; height: 16px;
+        position: relative;
+    }
+    .nav-toggle-inner::before,
+    .nav-toggle-inner::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        height: 2px; background: var(--fg); border-radius: 1px;
+        transition: transform var(--transition);
+    }
+    .nav-toggle-inner::before { top: 0; }
+    .nav-toggle-inner span {
+        position: absolute; left: 0; right: 0; top: 50%;
+        height: 2px; background: var(--fg); border-radius: 1px;
+        margin-top: -1px;
+        transition: opacity var(--transition);
+    }
+    .nav-toggle-inner::after { bottom: 0; }
+    nav.open .nav-toggle-inner::before {
+        transform: translateY(7px) rotate(45deg);
+    }
+    nav.open .nav-toggle-inner::after {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+    nav.open .nav-toggle-inner span {
+        opacity: 0;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
-        nav .nav-links { display: none; }
+        .nav-toggle { display: flex; }
+        nav .nav-links {
+            display: none;
+            position: absolute; top: 100%; left: 0; right: 0;
+            background: rgba(255,255,255,0.98); backdrop-filter: blur(12px);
+            flex-direction: column; align-items: stretch; gap: 0;
+            padding: 16px; border-bottom: 1px solid var(--border);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        nav.open .nav-links {
+            display: flex;
+        }
+        nav .nav-links a {
+            padding: 14px 0; border-bottom: 1px solid var(--border);
+            font-size: 1rem;
+        }
+        nav .nav-links a:last-child { border-bottom: none; }
+        nav .nav-links a.nav-cta {
+            justify-content: center; text-align: center;
+            padding: 16px 24px; margin-top: 8px;
+            border-radius: 100px;
+        }
+        nav .container { position: relative; }
         header { padding: 120px 20px 60px; min-height: auto; }
         section { padding: 48px 0; }
+        #credibility { padding-left: 20px; padding-right: 20px; }
+        #credibility .container { padding: 24px 20px; }
         .cta-buttons { flex-direction: column; }
         .cta-buttons a { width: 100%; }
         .pricing-main { padding: 24px 20px; }
+    }
+
+    /* Desktop: steps side by side (when full nav is visible) */
+    @media (min-width: 769px) {
+        .steps {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            max-width: 100%;
+            gap: 16px;
+        }
+        .step {
+            flex: 1;
+            min-width: 0;
+        }
     }
 </style>
 </head>
@@ -260,6 +406,9 @@
 <nav>
     <div class="container">
         <a href="#" class="logo"><img src="../assets/images/sai-headshot.png" alt="Sai Studio">Sai Studio</a>
+        <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span class="nav-toggle-inner"><span></span></span>
+        </button>
         <div class="nav-links">
             <a href="#what-you-get">What You Get</a>
             <a href="#how-it-works">How It Works</a>
@@ -523,6 +672,22 @@
 </div>
 
 <script>
+(function() {
+    var navToggle = document.querySelector('.nav-toggle');
+    var nav = document.querySelector('nav');
+    if (navToggle && nav) {
+        navToggle.addEventListener('click', function() {
+            nav.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', nav.classList.contains('open'));
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                nav.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+})();
 (function() {
     var triggers = document.querySelectorAll('[data-popup]');
     var overlays = document.querySelectorAll('.popup-overlay');
