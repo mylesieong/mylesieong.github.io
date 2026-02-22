@@ -160,45 +160,120 @@
 
     /* Pricing */
     #pricing { background: var(--surface); }
-    .pricing-hero {
-        text-align: center; margin-bottom: 40px;
+    .pricing-hero { text-align: center; margin-bottom: 40px; }
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        max-width: 1100px;
+        margin: 0 auto;
+        align-items: stretch;
     }
-    .pricing-main {
-        max-width: 480px; margin: 0 auto 32px;
-        background: linear-gradient(180deg, #f0f9ff 0%, white 100%);
-        border: 2px solid var(--accent);
+    .pricing-card {
+        display: flex;
+        flex-direction: column;
+        background: var(--surface);
         border-radius: var(--radius-lg);
-        padding: 32px 40px;
-        text-align: center;
+        padding: 28px 24px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        transition: all var(--transition);
+        position: relative;
     }
-    .pricing-main .price { font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
-    .pricing-main .price-note { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 20px; }
-    .pricing-bullets { list-style: none; padding: 0; margin: 0 auto 16px; text-align: left; max-width: 380px; }
-    .pricing-bullets li { padding: 6px 0 6px 24px; position: relative; font-size: 0.95rem; color: var(--fg-muted); }
-    .pricing-bullets li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
-    .pricing-inline { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 16px; font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 16px; }
+    .pricing-card:hover {
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+    .pricing-card h4 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--fg);
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    .pricing-card .price {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--fg);
+        margin-bottom: 12px;
+    }
+    .pricing-card p { color: var(--fg-muted); margin: 0; font-size: 0.9rem; line-height: 1.55; }
+    .pricing-card ul {
+        margin: 12px 0 0;
+        padding-left: 20px;
+        font-size: 0.9rem;
+        color: var(--fg-muted);
+        line-height: 1.6;
+    }
+    /* MVP Build — recommended (center) */
+    .pricing-card-recommended {
+        background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
+        border: 2px solid var(--accent);
+        box-shadow: 0 8px 30px rgba(14,165,233,0.15);
+        padding: 32px 28px;
+    }
+    .pricing-card-recommended::before {
+        content: 'Most popular';
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--accent);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 4px 12px;
+        border-radius: 100px;
+    }
+    .pricing-card-recommended .price { color: var(--accent); font-size: 1.75rem; }
+    .pricing-card-recommended .pricing-bullets { list-style: none; padding: 0; margin: 12px 0 0; }
+    .pricing-card-recommended .pricing-bullets li {
+        padding: 6px 0 6px 24px;
+        position: relative;
+        font-size: 0.9rem;
+        color: var(--fg-muted);
+    }
+    .pricing-card-recommended .pricing-bullets li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-weight: 700;
+    }
     .pricing-inline .popup-trigger { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; color: var(--accent); font-weight: 600; }
     .pricing-inline .popup-trigger:hover { color: var(--accent-deep); }
-    .why-equity-short { font-size: 0.95rem; color: var(--fg); margin: 16px 0; padding: 16px; background: var(--accent-light); border-radius: 12px; text-align: left; }
-    .refund-hook { font-size: 0.95rem; color: var(--accent-deep); font-weight: 600; margin-top: 12px; }
-    .pricing-secondary { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; max-width: 640px; margin: 32px auto 0; }
-    .pricing-card {
-        background: var(--surface-alt); padding: 20px; border-radius: var(--radius);
-        border: 1px solid var(--border); font-size: 0.9rem;
+    .why-equity-short { font-size: 0.9rem; color: var(--fg); margin: 16px 0; padding: 14px; background: var(--accent-light); border-radius: 12px; text-align: left; }
+    .refund-hook { font-size: 0.9rem; color: var(--accent-deep); font-weight: 600; margin-top: 12px; }
+    /* Side cards — simple outline */
+    .pricing-card-side {
+        background: var(--surface);
+        border: 1px solid var(--border);
     }
-    .pricing-card h4 { font-size: 1rem; margin-bottom: 8px; color: var(--fg); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-    .pricing-card p { color: var(--fg-muted); margin: 0; }
-    .pricing-card-premium {
-        background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
-        border: 1px solid rgba(14,165,233,0.4);
+    .pricing-card-side:hover {
+        border-color: var(--border);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     }
-    .pricing-card-premium h4 {
+    .pricing-card-side .price { color: var(--accent-deep); font-size: 1.35rem; }
+    .pricing-card-side h4 { font-weight: 600; }
+    .pricing-card .price-note { font-size: 0.9rem; color: var(--fg-muted); margin-bottom: 8px; }
+    /* Gray checkmarks for side cards (differentiate from MVP Build) */
+    .pricing-bullets-gray { list-style: none; padding: 0; margin: 12px 0 0; }
+    .pricing-bullets-gray li {
+        padding: 6px 0 6px 24px;
+        position: relative;
+        font-size: 0.9rem;
+        color: var(--fg-muted);
+    }
+    .pricing-bullets-gray li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #94a3b8;
         font-weight: 700;
-        color: var(--accent-deep);
-    }
-    .pricing-card-premium p {
-        color: var(--fg);
-        opacity: 0.9;
     }
 
     /* Popup / Modal */
@@ -383,7 +458,11 @@
         #credibility .container { padding: 24px 20px; }
         .cta-buttons { flex-direction: column; }
         .cta-buttons a { width: 100%; }
-        .pricing-main { padding: 24px 20px; }
+        .pricing-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .pricing-card-recommended::before { font-size: 0.65rem; padding: 3px 10px; }
     }
 
     /* Desktop: steps side by side (when full nav is visible) */
@@ -451,27 +530,20 @@
 
 <section id="how-it-works">
     <div class="container">
-        <h2>From idea to MVP in 3 steps</h2>
+        <h2>From Idea to MVP in 2 Clear Steps</h2>
         <div class="steps">
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h4>1:1 Call (under 30 min)</h4>
-                    <p>Quick call to understand if this service is right for you.</p>
+                    <h4>MVP Blueprint Session (90 minutes)</h4>
+                    <p>Define scope, core user journey, priorities, and technical direction. You leave with a clean, actionable product blueprint.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h4>MVP Onboarding (90 min)</h4>
-                    <p>Define scope, audience, and priorities.</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h4>MVP Build</h4>
-                    <p>Hands-on development delivered in 7 days.</p>
+                    <h4>MVP Build (7 days)</h4>
+                    <p>Hands-on development. Production-ready architecture. Delivered with full source code and acceptance test sign-off.</p>
                 </div>
             </div>
         </div>
@@ -482,28 +554,36 @@
     <div class="container">
         <h2>Pricing</h2>
         <div class="pricing-hero">
-            <div class="pricing-main">
-                <p class="price">$499 + 5% Equity</p>
-                <p class="price-note">MVP Build — delivered in 7 days</p>
-                <div class="pricing-inline">
+            <div class="pricing-grid">
+                <div class="pricing-card pricing-card-side">
+                    <h4>MVP Blueprint Session <button type="button" class="popup-trigger" data-popup="onboarding" aria-label="What's included">i</button></h4>
+                    <p class="price">$49</p>
+                    <p>A focused 90-minute strategy session.</p>
+                    <ul class="pricing-bullets-gray">
+                        <li>Defined core user journey</li>
+                        <li>Prioritized feature scope</li>
+                        <li>Technical architecture direction</li>
+                        <li>Clear build roadmap</li>
+                    </ul>
+                    <p style="margin-top:12px">Standalone deliverable. Use it with me, another developer, or build it yourself. $49 credited toward MVP Build if you proceed.</p>
+                </div>
+                <div class="pricing-card pricing-card-recommended">
+                    <h4>MVP Build</h4>
+                    <p class="price">$499 + 5% Equity</p>
+                    <p class="price-note">Delivered in 7 days</p>
                     <ul class="pricing-bullets">
-                    <li>Equity via <a href="https://fi.co/ease" target="_blank" rel="noopener">EASE</a> <button type="button" class="popup-trigger" data-popup="ease" aria-label="What is EASE?">i</button></li>
-                    <li>20× ARR refund — founder-friendly <button type="button" class="popup-trigger" data-popup="refund" aria-label="Refund details">i</button></li>
-                    <li>No extra equity — ever <button type="button" class="popup-trigger" data-popup="pivot" aria-label="Pivot policy">i</button></li>
-                </ul>
+                        <li>Equity via <a href="https://fi.co/ease" target="_blank" rel="noopener">EASE</a> <button type="button" class="popup-trigger" data-popup="ease" aria-label="What is EASE?">i</button></li>
+                        <li>20× ARR refund — founder-friendly <button type="button" class="popup-trigger" data-popup="refund" aria-label="Refund details">i</button></li>
+                        <li>No extra equity — ever <button type="button" class="popup-trigger" data-popup="pivot" aria-label="Pivot policy">i</button></li>
+                    </ul>
+                    <div class="why-equity-short">
+                        <strong>Why 5%?</strong> Most studios take 10–15%. I cap it at 5% to stay aligned without hurting your cap table.
+                    </div>
+                    <p class="refund-hook">Hit 20× ARR in 12 months → get your cash back. Equity unchanged.</p>
                 </div>
-                <div class="why-equity-short">
-                    <strong>Why 5%?</strong> Most studios take 10–15%. I cap it at 5% to stay aligned without hurting your cap table.
-                </div>
-                <p class="refund-hook">Hit 20× ARR in 12 months → get your cash back. Equity unchanged.</p>
-            </div>
-            <div class="pricing-secondary">
-                <div class="pricing-card">
-                    <h4>MVP Onboarding — $49 <button type="button" class="popup-trigger" data-popup="onboarding" aria-label="What's included">i</button></h4>
-                    <p>Blueprint, tech stack, priority list — no code. Credited toward MVP Build if you proceed.</p>
-                </div>
-                <div class="pricing-card pricing-card-premium">
-                    <h4>MVP to Published — $499+</h4>
+                <div class="pricing-card pricing-card-side">
+                    <h4>MVP to Published</h4>
+                    <p class="price">$499+</p>
                     <p>Curated key UI design, comprehensive feature set, and guaranteed through App Store / Play Store review. iOS, Android, web. Equity capped at 5%. Maintenance negotiable.</p>
                 </div>
             </div>
@@ -569,6 +649,10 @@
             <div class="faq-category">
                 <h3 class="faq-category-title">Delivery & Scope</h3>
                 <div class="faq-list">
+                    <div class="faq-item">
+                        <h4>Can I take just the Blueprint session without MVP Build?</h4>
+                        <p>Yes. The Blueprint session is fully standalone. You can use it with me, another developer, or build it yourself. Even taking just the Blueprint helps you clarify your scope and bring clarity to your product direction — no commitment to MVP Build required.</p>
+                    </div>
                     <div class="faq-item">
                         <h4>What defines the scope of MVP?</h4>
                         <p>Core user journeys plus an essential support feature that fits your needs. I use Material 3 for UI. For Beta, I add a full design phase and curated feature set.</p>
@@ -657,8 +741,8 @@
 <div id="popup-onboarding" class="popup-overlay" role="dialog" aria-labelledby="popup-onboarding-title">
     <div class="popup-panel">
         <button type="button" class="popup-close" aria-label="Close">&times;</button>
-        <h4 id="popup-onboarding-title">MVP Onboarding — Blueprint Only</h4>
-        <p>You receive a detailed blueprint: tech stack, priority list, and scope definition. No code is delivered in this phase. If you move on to the Build phase, the $49 is credited toward the MVP Build.</p>
+        <h4 id="popup-onboarding-title">MVP Blueprint Session</h4>
+        <p>90-minute strategic session resulting in a clear, actionable product blueprint (scope, priorities, technical direction). Fully standalone. $49 credited toward MVP Build if you proceed.</p>
     </div>
 </div>
 <div id="popup-pivot" class="popup-overlay" role="dialog" aria-labelledby="popup-pivot-title">
