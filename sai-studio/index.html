@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Sai Studio — MVP in 1 week for non-technical founders. Fast, founder-aligned, equity-based. Book your onboarding.">
-<title>Sai Studio — MVP in 1 Week</title>
+<meta name="description" content="Sai Studio — Your Day Zero Technical Partner. CTO-level strategy and 7-day build for $499. No equity. 100% IP ownership. Book your free call.">
+<title>Sai Studio — Day Zero Technical Partner</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
     :root {
@@ -29,6 +29,7 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .key { font-weight: 600; color: var(--accent); }
 
     /* Nav */
     nav {
@@ -79,7 +80,10 @@
     }
     header h1 span { color: var(--accent); }
     header .subline {
-        font-size: 1.2rem; color: var(--fg-muted); max-width: 560px; margin: 0 auto 32px; line-height: 1.6;
+        font-size: 1.2rem; color: var(--fg-muted); max-width: 640px; margin: 0 auto 24px; line-height: 1.6;
+    }
+    header .hero-micro {
+        font-size: 0.9rem; color: var(--fg-muted); margin-bottom: 32px; font-weight: 500;
     }
     .cta-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
     .cta-buttons a {
@@ -92,6 +96,37 @@
         box-shadow: 0 4px 14px rgba(14,165,233,0.4);
     }
     .cta-buttons a.primary:hover { background: var(--accent-deep); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(14,165,233,0.35); }
+
+    /* The Problem */
+    #the-problem { background: var(--surface-alt); }
+    .pain-points-list { max-width: 640px; margin: 0 auto; }
+    .pain-points-item {
+        display: flex; align-items: flex-start; gap: 16px;
+        padding: 20px 24px; margin-bottom: 12px;
+        background: var(--surface); border-radius: var(--radius);
+        border-left: 4px solid var(--accent);
+        box-shadow: var(--shadow);
+    }
+    .pain-points-item:last-child { margin-bottom: 0; }
+    .pain-points-item .icon { font-size: 1.5rem; flex-shrink: 0; }
+    .pain-points-item h4 { font-size: 1rem; font-weight: 600; color: var(--fg); margin-bottom: 4px; }
+    .pain-points-item p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; margin: 0; }
+
+    /* Growth Phase */
+    #growth-phase { background: var(--surface); }
+    .growth-phase-body { text-align: center; font-size: 1.1rem; color: var(--fg-muted); max-width: 560px; margin: 0 auto 24px; line-height: 1.6; }
+    .growth-phase-list { max-width: 640px; margin: 0 auto; }
+    .growth-phase-item {
+        display: flex; align-items: flex-start; gap: 16px;
+        padding: 20px 24px; margin-bottom: 12px;
+        background: var(--surface-alt); border-radius: var(--radius);
+        border-left: 4px solid var(--accent);
+        box-shadow: var(--shadow);
+    }
+    .growth-phase-item:last-child { margin-bottom: 0; }
+    .growth-phase-item .icon { font-size: 1.5rem; flex-shrink: 0; }
+    .growth-phase-item h4 { font-size: 1rem; font-weight: 600; color: var(--fg); margin-bottom: 4px; }
+    .growth-phase-item p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; margin: 0; }
 
     /* What You Get in 7 Days */
     #what-you-get { background: var(--surface); }
@@ -106,7 +141,8 @@
     .security-line { text-align: center; font-size: 0.95rem; color: var(--fg-muted); margin-top: 16px; max-width: 520px; margin-left: auto; margin-right: auto; }
 
     /* How It Works */
-    #how-it-works { background: var(--surface-alt); }
+    #day-zero-roadmap { background: var(--surface-alt); }
+    .roadmap-intro { text-align: center; font-size: 1rem; color: var(--fg-muted); max-width: 560px; margin: 0 auto 24px; line-height: 1.6; }
     .steps {
         display: flex;
         flex-direction: column;
@@ -215,7 +251,7 @@
         padding: 32px 28px;
     }
     .pricing-card-recommended::before {
-        content: 'Most popular';
+        content: 'Max Value';
         position: absolute;
         top: -10px;
         left: 50%;
@@ -384,6 +420,7 @@
     /* Footer */
     footer { padding: 32px 24px; background: var(--fg); color: rgba(255,255,255,0.7); text-align: center; }
     .footer-credibility { font-size: 0.9rem; margin: 0; line-height: 1.6; max-width: 600px; margin: 0 auto; }
+    .footer-copyright { font-size: 0.85rem; margin: 12px 0 0; opacity: 0.8; }
 
     /* Sections */
     section { padding: 72px 0; }
@@ -489,102 +526,114 @@
             <span class="nav-toggle-inner"><span></span></span>
         </button>
         <div class="nav-links">
-            <a href="#what-you-get">What You Get</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#pricing">Pricing</a>
+            <a href="#the-problem">The Problem</a>
+            <a href="#day-zero-roadmap">Pricing</a>
+            <a href="#growth-phase">Beyond Day Zero</a>
             <a href="#faq">FAQ</a>
-            <a href="https://calendar.app.google/NVJ4iEDU8QTFpYfq7" target="_blank" rel="noopener" class="nav-cta">Book 1:1 Chat</a>
+            <a href="https://calendar.app.google/NVJ4iEDU8QTFpYfq7" target="_blank" rel="noopener" class="nav-cta">Book free call</a>
         </div>
     </div>
 </nav>
 
 <header>
     <div class="container">
-        <span class="badge">MVP in 1 week</span>
-        <h1>MVP in 1 Week.<br>Built with You. Aligned with Equity.</h1>
-        <p class="subline">Turn ideas into working products in 7 days — $499 + 5% equity, capped. Performance-based refund.</p>
+        <span class="badge">Your Day Zero Technical Partner</span>
+        <h1>Don't give away 40% equity just to build your first version.</h1>
+        <p class="subline">I provide the CTO-level strategy and the 7-day build you need to validate your idea—for <span class="key">$499</span>. Keep your cap table clean. Own your code. Ship in one week.</p>
+        <p class="hero-micro"><span class="key">No equity taken</span>. 100% IP ownership yours.</p>
         <div class="cta-buttons">
-            <a href="https://calendar.app.google/NVJ4iEDU8QTFpYfq7" target="_blank" rel="noopener" class="primary">Book 1:1 Chat</a>
+            <a href="https://calendar.app.google/NVJ4iEDU8QTFpYfq7" target="_blank" rel="noopener" class="primary">Book free call</a>
         </div>
     </div>
 </header>
 
-<section id="what-you-get">
+<section id="the-problem">
     <div class="container">
-        <h2>In 7 Days You Get</h2>
-        <div class="get-list">
-            <ul>
-                <li>Secure authentication or landing page</li>
-                <li>3–5 core feature screens</li>
-                <li>Backend + database</li>
-                <li>App Store / Play Store ready (submission-ready build)</li>
-                <li>GitHub repo + full source code <button type="button" class="popup-trigger" data-popup="github" aria-label="Learn more">i</button></li>
-                <li>Acceptance test run before you sign off</li>
-                <li>Production-grade architecture</li>
-            </ul>
+        <h2>The Problem</h2>
+        <div class="pain-points-list">
+            <div class="pain-points-item">
+                <span class="icon">📉</span>
+                <div>
+                    <h4>Equity is too expensive for an MVP</h4>
+                    <p>Founders often recruit a co-founder too early, losing <span class="key">half their company</span> before they even have users.</p>
+                </div>
+            </div>
+            <div class="pain-points-item">
+                <span class="icon">🏢</span>
+                <div>
+                    <h4>Agencies love "Bloat"</h4>
+                    <p>Typical shops quote <span class="key">$10k–$50k</span> because they profit from complexity. I profit from your speed.</p>
+                </div>
+            </div>
+            <div class="pain-points-item">
+                <span class="icon">⚡</span>
+                <div>
+                    <h4>Execution without Strategy fails</h4>
+                    <p>You don't just need "someone who codes"; you need someone who understands market validation and investor timelines.</p>
+                </div>
+            </div>
         </div>
-        <p class="get-power-line">A real, usable product — not a prototype.</p>
-        <p class="security-line">Native architecture that supports AI integration without the fragility of simple wrappers. <button type="button" class="popup-trigger" data-popup="tech" aria-label="Tech stack details">i</button></p>
     </div>
 </section>
 
-<section id="how-it-works">
+<section id="day-zero-roadmap">
     <div class="container">
-        <h2>From Idea to MVP in 2 Clear Steps</h2>
-        <div class="steps">
-            <div class="step">
+        <h2>The Day Zero Roadmap</h2>
+        <p class="roadmap-intro">Day Zero is the moment before you have a product—when you have an idea, a problem to solve, and a market to validate. This roadmap gets you from that moment to a working <span class="key">MVP in 7 days</span>, so you can test demand before investing in scale.</p>
+        <div class="steps roadmap-steps">
+            <div class="step roadmap-step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h4>MVP Blueprint Session (90 minutes)</h4>
-                    <p>Define scope, core user journey, priorities, and technical direction. You leave with a clean, actionable product blueprint.</p>
+                    <h4>The Blueprint Session — $49 <button type="button" class="popup-trigger" data-popup="blueprint-deliverable" aria-label="The Blueprint Deliverable">i</button></h4>
+                    <p>90-minute strategic deep dive.</p>
+                    <ul class="pricing-bullets-gray" style="margin-top:12px">
+                        <li>Define the "Single Core Value Loop."</li>
+                        <li>Aggressive de-scoping to ensure a 7-day launch.</li>
+                        <li>Deliverable: A technical roadmap and blueprint you can use with me, another dev, or build yourself.</li>
+                    </ul>
+                    <p style="margin-top:12px; font-size:0.9rem; color:var(--fg-muted)">$49 is credited toward your build if you proceed.</p>
                 </div>
             </div>
-            <div class="step">
+            <div class="step roadmap-step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h4>MVP Build (7 days)</h4>
-                    <p>Hands-on development. Production-ready architecture. Delivered with full source code and acceptance test sign-off.</p>
+                    <h4>The Validation Build — $499 <button type="button" class="popup-trigger" data-popup="why-stack" aria-label="Why this stack?">i</button></h4>
+                    <p>7-day high-velocity execution.</p>
+                    <ul class="pricing-bullets-gray" style="margin-top:12px">
+                        <li>Native-grade architecture — I recommend the best-fitting stack for your domain (e.g. Kotlin Multiplatform for mobile, React/Next.js for web).</li>
+                        <li>Includes: Secure auth, 3–5 core screens or pages, backend/database, and a <span class="key">production-ready build</span> (app stores, web deployment, or API).</li>
+                        <li>Deliverable: Full GitHub repo ownership + source code.</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="pricing">
+<section id="growth-phase">
     <div class="container">
-        <h2>Pricing</h2>
-        <div class="pricing-hero">
-            <div class="pricing-grid">
-                <div class="pricing-card pricing-card-side">
-                    <h4>MVP Blueprint Session <button type="button" class="popup-trigger" data-popup="onboarding" aria-label="What's included">i</button></h4>
-                    <p class="price">$49</p>
-                    <p>A focused 90-minute strategy session.</p>
-                    <ul class="pricing-bullets-gray">
-                        <li>Defined core user journey</li>
-                        <li>Prioritized feature scope</li>
-                        <li>Technical architecture direction</li>
-                        <li>Clear build roadmap</li>
-                    </ul>
-                    <p style="margin-top:12px">Standalone deliverable. Use it with me, another developer, or build it yourself. $49 credited toward MVP Build if you proceed.</p>
+        <h2>Scale with a partner, not a vendor.</h2>
+        <p class="growth-phase-body">I don't disappear after <span class="key">Day 7</span>. Once you have data, you choose your path:</p>
+        <div class="growth-phase-list">
+            <div class="growth-phase-item">
+                <span class="icon">🔄</span>
+                <div>
+                    <h4>Phase 2 Iteration</h4>
+                    <p>Adding features based on real user feedback.</p>
                 </div>
-                <div class="pricing-card pricing-card-recommended">
-                    <h4>MVP Build</h4>
-                    <p class="price">$499 + 5% Equity</p>
-                    <p class="price-note">Delivered in 7 days</p>
-                    <ul class="pricing-bullets">
-                        <li>Equity via <a href="https://fi.co/ease" target="_blank" rel="noopener">EASE</a> <button type="button" class="popup-trigger" data-popup="ease" aria-label="What is EASE?">i</button></li>
-                        <li>20× ARR refund — founder-friendly <button type="button" class="popup-trigger" data-popup="refund" aria-label="Refund details">i</button></li>
-                        <li>No extra equity — ever <button type="button" class="popup-trigger" data-popup="pivot" aria-label="Pivot policy">i</button></li>
-                    </ul>
-                    <div class="why-equity-short">
-                        <strong>Why 5%?</strong> Most studios take 10–15%. I cap it at 5% to stay aligned without hurting your cap table.
-                    </div>
-                    <p class="refund-hook">Hit 20× ARR in 12 months → get your cash back. Equity unchanged.</p>
+            </div>
+            <div class="growth-phase-item">
+                <span class="icon">🚀</span>
+                <div>
+                    <h4>Launch Support</h4>
+                    <p>App Store, Play Store, web deployment, and backend management.</p>
                 </div>
-                <div class="pricing-card pricing-card-side">
-                    <h4>MVP to Published</h4>
-                    <p class="price">$499+</p>
-                    <p>Curated key UI design, comprehensive feature set, and guaranteed through App Store / Play Store review. iOS, Android, web. Equity capped at 5%. Maintenance negotiable.</p>
+            </div>
+            <div class="growth-phase-item">
+                <span class="icon">📊</span>
+                <div>
+                    <h4>CTO Retainer</h4>
+                    <p>Ongoing technical advisory as you prepare for fundraising.</p>
                 </div>
             </div>
         </div>
@@ -596,8 +645,8 @@
         <div class="bio-section">
             <img src="../assets/images/sai-headshot.png" alt="Sai — founder of Sai Studio" class="bio-photo">
             <div class="bio-content">
-                <h2>Sai — technical expert & founder</h2>
-                <p>10+ years in software. Published apps, grew one organically in 21 days. I ship fast and speak your language.</p>
+                <h2>Sai — Technical Expert & Day Zero Partner</h2>
+                <p>10+ years in software. I've published apps, scaled products in weeks, and served as <span class="key">technical advisor for two</span> early-stage startups. I've seen founders burn capital on overbuilt MVPs and others stall waiting for the "perfect" technical co-founder. I started Sai Studio because Day Zero shouldn't require giving away equity or betting $50k on an unvalidated idea. I don't just "build features"—I build businesses.</p>
             </div>
         </div>
     </div>
@@ -608,7 +657,7 @@
         <h2>Ready to build your MVP?</h2>
         <p>Fast. Affordable. Founder-first.</p>
         <div class="cta-buttons">
-            <a href="https://calendar.app.google/NVJ4iEDU8QTFpYfq7" target="_blank" rel="noopener" class="primary">Book 1:1 Chat</a>
+            <a href="https://calendar.app.google/NVJ4iEDU8QTFpYfq7" target="_blank" rel="noopener" class="primary">Book free call</a>
         </div>
     </div>
 </section>
@@ -618,77 +667,32 @@
         <h2>Frequently Asked Questions</h2>
         <div class="faq-categories">
             <div class="faq-category">
-                <h3 class="faq-category-title">Strategic / Legal</h3>
+                <h3 class="faq-category-title">Strategic & Risk Management</h3>
                 <div class="faq-list">
                     <div class="faq-item">
-                        <h4>Can I buy back the 5% later?</h4>
-                        <p>Yes. I offer a Buyback Clause (Repurchase Option) for future funding rounds. Your company can reclaim the equity under specific conditions — I’ll share details in our 1:1 chat.</p>
+                        <h4>Is $499 realistic for a complex build like a mortgage or medical tool?</h4>
+                        <p>At $499, I'm not building a finished enterprise platform; I'm building your Single Core Value Loop. For a mortgage tool, that might be a secure borrower document vault or a validated qualification engine. I strip away the "noise" (compliance heavy-lifting, deep lender APIs) to prove your users actually want the solution. This de-risks your idea before you spend $50k on a full-scale build.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>Who owns the Intellectual Property (IP)?</h4>
-                        <p>You do. Per the EASE framework, all IP developed during the service period is assigned to your company.</p>
+                        <h4>Do you have "Skin in the Game" if there is no equity involved?</h4>
+                        <p>My incentive is your traction. If my 7-day build helps you land your first 100 users or an angel check, I become your primary candidate for a Fractional CTO retainer or a long-term partnership. I profit from your success because a successful "Day Seven" leads to a "Year One" partnership. My business model relies on turning $499 validations into long-term strategic roles.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>What happens during fundraising?</h4>
-                        <p>Clean Cap Table: You own the IP and maintain control. The EASE agreement is a Founder Institute standard recognized by VCs.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>What if I bring in a technical co-founder?</h4>
-                        <p>No conflict. You own the code. Any developer can continue work — the repo is yours. My equity stays in place unless you exercise the buyback option.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>What if we exit before 12 months?</h4>
-                        <p>The refund guarantee applies to ARR within 12 months. If you exit (acquisition, etc.) before then, terms depend on the deal structure — we’ll cover this in the 1:1.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Is the 5% equity negotiable?</h4>
-                        <p>The standard is 5% via EASE. Larger builds may adjust scope; the equity percentage stays fixed to keep alignment clear.</p>
+                        <h4>Am I on my own after Day 7? What about bugs?</h4>
+                        <p>I don't "ship and dip." Every build includes a 30-day Stability Warranty. If a user finds a bug in your core workflow on Day 10, I fix it for free.</p>
                     </div>
                 </div>
             </div>
             <div class="faq-category">
-                <h3 class="faq-category-title">Delivery & Scope</h3>
+                <h3 class="faq-category-title">Technical & Future-Proofing</h3>
                 <div class="faq-list">
                     <div class="faq-item">
-                        <h4>Can I take just the Blueprint session without MVP Build?</h4>
-                        <p>Yes. The Blueprint session is fully standalone. You can use it with me, another developer, or build it yourself. Even taking just the Blueprint helps you clarify your scope and bring clarity to your product direction — no commitment to MVP Build required.</p>
+                        <h4>Will a future Co-Founder or CTO have to scrap your "7-day rush job"?</h4>
+                        <p>I build "Investor-Grade Scaffolding." With 10+ years of experience, I don't write "disposable" code. I use industry-standard architecture and Clean Architecture principles. When your future CTO joins, they won't find a mess—they'll find a production-ready foundation that is easy to audit and scale.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>What defines the scope of MVP?</h4>
-                        <p>Core user journeys plus an essential support feature that fits your needs. I use Material 3 for UI. For Beta, I add a full design phase and curated feature set.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>What if my idea is complex?</h4>
-                        <p>I ship the smallest viable version in 1 week to get you to market. Scope is not carried on after MVP unless you choose to move up to the next package. Then I expand in phases based on real user feedback.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>What's not included in 7 days?</h4>
-                        <p>Beyond core features: heavy custom design, third-party integrations, complex backend logic. I phase these post-launch.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Is there a maintenance period?</h4>
-                        <p>MVP Build has no maintenance period — it includes an Acceptance Test Run for you to sign off before acceptance. MVP to Published has a negotiable maintenance period. After that, I offer ongoing development at transparent market rates.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>How are new features priced?</h4>
-                        <p>I estimate complexity and quote per feature. Rates are transparent and at market level — you keep building with someone who already knows your codebase.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="faq-category">
-                <h3 class="faq-category-title">Financial</h3>
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <h4>What counts as ARR?</h4>
-                        <p>Recurring contract value or subscriptions — including annual B2B contracts paid upfront (prorated to ARR). Stripe, revenue dashboards, or similar. One-time grants or non-recurring sales don’t count toward the 20× trigger.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>What if revenue is disputed?</h4>
-                        <p>We verify via Stripe or your revenue dashboard. I’ll share the exact verification process in our 1:1.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>What if we pivot before generating revenue?</h4>
-                        <p>Pivot-friendly. Extending the product = phased build. New product from scratch = new MVP package (cash only). Total equity always capped at 5%.</p>
+                        <h4>What if the MVP feels "too thin" without heavy integrations?</h4>
+                        <p>A "thin" product that solves a real pain point is a Startup. A "thick" product with 50 features and no users is a Failure. I use the Blueprint Session to ensure the 3–5 screens I build are the most impactful ones. If you need a heavy integration (like a Plaid or Encompass API) to prove your concept, I can scope that as a separate, high-priority milestone post-launch.</p>
                     </div>
                 </div>
             </div>
@@ -698,60 +702,29 @@
 
 <footer>
     <div class="container">
-        <p class="footer-credibility">Equity via Founder Institute EASE framework. Partnership-based. Founder-aligned.</p>
+        <p class="footer-credibility"><span class="key">Cash-only</span>. Equity-free. Founder-aligned.</p>
+        <p class="footer-copyright">© 2026 SAI Studio. Built for Day Zero.</p>
     </div>
 </footer>
 
 <!-- Popup Modals -->
-<div id="popup-ease" class="popup-overlay" role="dialog" aria-labelledby="popup-ease-title">
+<div id="popup-blueprint-deliverable" class="popup-overlay" role="dialog" aria-labelledby="popup-blueprint-deliverable-title">
     <div class="popup-panel">
         <button type="button" class="popup-close" aria-label="Close">&times;</button>
-        <h4 id="popup-ease-title">EASE Framework</h4>
-        <p>Standardized early-stage equity agreement used by thousands of startups. Avoids expensive legal drafting. Protects both founder and partner.</p>
-    </div>
-</div>
-<div id="popup-tech" class="popup-overlay" role="dialog" aria-labelledby="popup-tech-title">
-    <div class="popup-panel">
-        <button type="button" class="popup-close" aria-label="Close">&times;</button>
-        <h4 id="popup-tech-title">Tech Stack</h4>
-        <p><strong>Example Mobile Stack:</strong></p>
+        <h4 id="popup-blueprint-deliverable-title">The Blueprint Deliverable</h4>
+        <p>You receive a clear, actionable document including:</p>
         <ul>
-            <li>Kotlin Multiplatform</li>
-            <li>Material 3</li>
-            <li>Ktor backend</li>
-            <li>Docker</li>
+            <li><strong>Prioritized Feature Map</strong> — What to build first, second, and what to cut for Day Zero.</li>
+            <li><strong>Tech Architecture Diagram</strong> — Stack choices, data flow, and integration points.</li>
         </ul>
-        <p style="margin-top:12px">Fully portable. Any developer can continue development.</p>
+        <p style="margin-top:12px">Use it with me, another developer, or build it yourself. Fully standalone.</p>
     </div>
 </div>
-<div id="popup-refund" class="popup-overlay" role="dialog" aria-labelledby="popup-refund-title">
+<div id="popup-why-stack" class="popup-overlay" role="dialog" aria-labelledby="popup-why-stack-title">
     <div class="popup-panel">
         <button type="button" class="popup-close" aria-label="Close">&times;</button>
-        <h4 id="popup-refund-title">20× ARR Refund</h4>
-        <p>Verified via Stripe / revenue dashboards. 12-month window. Equity unaffected. Hit 20× your cash payment in ARR → full cash refund.</p>
-    </div>
-</div>
-<div id="popup-github" class="popup-overlay" role="dialog" aria-labelledby="popup-github-title">
-    <div class="popup-panel">
-        <button type="button" class="popup-close" aria-label="Close">&times;</button>
-        <h4 id="popup-github-title">You Own the Code</h4>
-        <p>Full GitHub repo ownership. Source code access. No vendor lock-in. Any developer can continue work.</p>
-    </div>
-</div>
-<div id="popup-onboarding" class="popup-overlay" role="dialog" aria-labelledby="popup-onboarding-title">
-    <div class="popup-panel">
-        <button type="button" class="popup-close" aria-label="Close">&times;</button>
-        <h4 id="popup-onboarding-title">MVP Blueprint Session</h4>
-        <p>90-minute strategic session resulting in a clear, actionable product blueprint (scope, priorities, technical direction). Fully standalone. $49 credited toward MVP Build if you proceed.</p>
-    </div>
-</div>
-<div id="popup-pivot" class="popup-overlay" role="dialog" aria-labelledby="popup-pivot-title">
-    <div class="popup-panel">
-        <button type="button" class="popup-close" aria-label="Close">&times;</button>
-        <h4 id="popup-pivot-title">Pivot Policy</h4>
-        <p><strong>Extending existing product</strong> → phased build, no extra equity.</p>
-        <p><strong>New product from scratch</strong> → new MVP package (cash only).</p>
-        <p>Total equity always capped at 5%.</p>
+        <h4 id="popup-why-stack-title">Why This Stack?</h4>
+        <p>I don't mandate a single stack — I recommend the best-fitting solutions for your domain. Your code is fully portable. When you hire a full team later, they won't need to rewrite it. Native-grade architecture that scales with you.</p>
     </div>
 </div>
 
