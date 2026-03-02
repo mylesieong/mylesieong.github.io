@@ -365,3 +365,19 @@ Code Highlighting (from theme)
 .highlight .w { color: #bbbbbb; }
 .highlight { background-color: #f8f8f8; }
 
+/* Store links with badge images */
+.app-store-link,
+.store-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.store-badge {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+.store-link img.store-badge {
+  flex-shrink: 0;
+}
+

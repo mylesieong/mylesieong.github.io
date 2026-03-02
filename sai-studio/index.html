@@ -478,6 +478,9 @@
     .popup-panel-content li { margin-bottom: 6px; }
     .popup-panel-content a { color: var(--accent); font-weight: 500; }
     .popup-panel-content a:hover { color: var(--accent-deep); }
+    .app-store-link, .store-link { display: inline-flex; align-items: center; gap: 8px; }
+    .store-badge { height: 40px; width: auto; display: block; flex-shrink: 0; }
+    .app-store-link .globe-icon, .store-link .globe-icon { flex-shrink: 0; vertical-align: middle; }
     .popup-panel-content .popup-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
     .popup-panel-content .popup-header img { width: 64px; height: 64px; border-radius: 12px; object-fit: contain; }
     .popup-panel-content .screenshot-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
@@ -821,19 +824,11 @@
         <h2>What I've Built</h2>
         <p class="portfolio-intro">See what I've shipped—from AI-powered apps to training tools.</p>
         <div class="portfolio-grid">
-            <div class="portfolio-card" data-popup="product-snooker" role="button" tabindex="0">
-                <img src="assets/images/logo_snooker.png" alt="Snooker Self-Trainer" class="portfolio-card-logo">
+            <div class="portfolio-card" data-popup="product-flexi" role="button" tabindex="0">
+                <img src="assets/images/flexi_logo.png" alt="Flexi: Stretching, Flexibility" class="portfolio-card-logo">
                 <div class="portfolio-card-content">
-                    <h4>Snooker Self-Trainer</h4>
-                    <p>A comprehensive snooker training assistant app designed to help players improve their skills through structured drills and personalized plans.</p>
-                    <span class="portfolio-link-text">View details →</span>
-                </div>
-            </div>
-            <div class="portfolio-card" data-popup="product-pool" role="button" tabindex="0">
-                <img src="assets/images/logo_pool%26biiliards.png" alt="Pool & Billiards Self-Trainer" class="portfolio-card-logo">
-                <div class="portfolio-card-content">
-                    <h4>Pool & Billiards Self-Trainer</h4>
-                    <p>A comprehensive pool and billiards training assistant app built on proven architecture.</p>
+                    <h4>Flexi: Stretching, Flexibility</h4>
+                    <p>Flexibility at your fingertips. Tailored stretching plans for every stage of your wellness journey—whether at home, at work, or on the go.</p>
                     <span class="portfolio-link-text">View details →</span>
                 </div>
             </div>
@@ -850,6 +845,14 @@
                 <div class="portfolio-card-content">
                     <h4>Calmly News</h4>
                     <p>A calmer way to know the world. Stay informed without the addiction—AI-powered news app designed to help you get off your phone.</p>
+                    <span class="portfolio-link-text">View details →</span>
+                </div>
+            </div>
+            <div class="portfolio-card" data-popup="product-pool" role="button" tabindex="0">
+                <img src="assets/images/logo_pool%26biiliards.png" alt="Pool & Billiards Self-Trainer" class="portfolio-card-logo">
+                <div class="portfolio-card-content">
+                    <h4>Pool & Billiards Self-Trainer</h4>
+                    <p>A comprehensive pool and billiards training assistant app built on proven architecture.</p>
                     <span class="portfolio-link-text">View details →</span>
                 </div>
             </div>
@@ -1022,58 +1025,6 @@
 </div>
 
 <!-- Product popups -->
-<div id="popup-product-snooker" class="popup-overlay" role="dialog" aria-labelledby="popup-product-snooker-title">
-    <div class="popup-panel popup-panel-content">
-        <div class="popup-header-bar">
-            <button type="button" class="popup-close" aria-label="Close">&times;</button>
-        </div>
-        <div class="popup-scrollable">
-            <div class="popup-header">
-                <img src="assets/images/logo_snooker.png" alt="Snooker Self-Trainer">
-                <h2 id="popup-product-snooker-title">Snooker Self-Trainer</h2>
-            </div>
-            <div class="popup-screenshot-strip">
-                <img src="assets/images/resized/snooker.jpg" alt="Snooker Self-Trainer Main">
-                <img src="assets/images/resized/snooker-1.jpg" alt="Dashboard">
-                <img src="assets/images/resized/snooker-2.jpg" alt="Training Plan">
-                <img src="assets/images/resized/snooker-3.jpg" alt="Drills">
-                <img src="assets/images/resized/snooker-4.jpg" alt="Drill Details">
-                <img src="assets/images/resized/snooker-5.jpg" alt="Performance Tracking">
-            </div>
-            <h3>Overview</h3>
-            <p>Snooker Self-Trainer is your all-in-one snooker practice assistant. Whether you're a beginner or seasoned player, this app helps you build skills, stay consistent, and track real progress—just like a fitness tracker, but for snooker.</p>
-            <p><strong>Who's It For?</strong></p>
-            <ul>
-                <li>Beginners seeking a guided path into snooker</li>
-                <li>Intermediate players wanting structure and consistency</li>
-                <li>Advanced players tracking performance over time</li>
-                <li>Coaches and serious hobbyists aiming for measurable improvement</li>
-            </ul>
-            <p><strong>Why Snooker Self-Trainer?</strong></p>
-            <ul>
-                <li>Purpose-built for cue sport training</li>
-                <li>Simple, intuitive UI with no clutter</li>
-                <li>Works offline — train anywhere</li>
-                <li>No ads or distractions, just pure practice</li>
-            </ul>
-            <h3>Key Features</h3>
-            <ul>
-                <li><strong>Structured Drill Training</strong>: Choose from a rich library of drills tailored to every aspect of your game—potting, cue control, safety play, break building, and more.</li>
-                <li><strong>Personalized Training Plans</strong>: Build your own weekly schedule or follow auto-generated plans based on your skill level and focus areas.</li>
-                <li><strong>Self-Assessment Exams</strong>: Test your skills with customizable snooker exams. Record results shot by shot and get detailed breakdowns.</li>
-                <li><strong>Dashboard & Stats</strong>: Weekly reports, plan adherence tracking, pot time, and personalized drill recommendations.</li>
-                <li><strong>Interactive Snooker Handbook</strong>: Learn everything from basics to advanced strategy. A built-in AI coach is coming soon!</li>
-                <li><strong>Track Your Games</strong>: Log competitive or casual games, record scores, and monitor trends.</li>
-            </ul>
-            <h3>App Store Links</h3>
-            <ul>
-                <li><strong>Google Play</strong>: <a href="https://play.google.com/store/apps/details?id=com.municornio.app.snookerselftrainer" target="_blank" rel="noopener">Snooker Self-Trainer</a></li>
-                <li><strong>App Store</strong>: <a href="https://apps.apple.com/us/app/snooker-self-trainer/id6747923097" target="_blank" rel="noopener">Snooker Self-Trainer</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
 <div id="popup-product-pool" class="popup-overlay" role="dialog" aria-labelledby="popup-product-pool-title">
     <div class="popup-panel popup-panel-content">
         <div class="popup-header-bar">
@@ -1117,8 +1068,8 @@
             </ul>
             <h3>App Store Links</h3>
             <ul>
-                <li><strong>Google Play</strong>: <a href="https://play.google.com/store/apps/details?id=com.municornio.app.poolandbilliardsselftrainer" target="_blank" rel="noopener">Pool & Billiards Self-Trainer</a></li>
-                <li><strong>App Store</strong>: <a href="https://apps.apple.com/us/app/pool-billiards-self-trainer/id6748546651" target="_blank" rel="noopener">Pool & Billiards Self-Trainer</a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.municornio.app.poolandbilliardsselftrainer" target="_blank" rel="noopener" class="store-link"><img src="assets/images/google-play-badge.png" alt="Get it on Google Play" class="store-badge"></a></li>
+                <li><a href="https://apps.apple.com/us/app/pool-billiards-self-trainer/id6748546651" target="_blank" rel="noopener" class="store-link"><img src="assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge"></a></li>
             </ul>
         </div>
     </div>
@@ -1162,9 +1113,58 @@
             </ul>
             <h3>App Store Links</h3>
             <ul>
-                <li><strong>Google Play</strong>: <a href="https://play.google.com/store/apps/details?id=com.municornio.biblereader" target="_blank" rel="noopener">Bible Project: Guided by AI</a></li>
-                <li><strong>App Store</strong>: <a href="https://apps.apple.com/us/app/bible-project-guided-by-ai/id6480479278" target="_blank" rel="noopener">Bible Project: Guided by AI</a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.municornio.biblereader" target="_blank" rel="noopener" class="store-link"><img src="assets/images/google-play-badge.png" alt="Get it on Google Play" class="store-badge"></a></li>
+                <li><a href="https://apps.apple.com/us/app/bible-project-guided-by-ai/id6480479278" target="_blank" rel="noopener" class="store-link"><img src="assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge"></a></li>
             </ul>
+        </div>
+    </div>
+</div>
+
+<div id="popup-product-flexi" class="popup-overlay" role="dialog" aria-labelledby="popup-product-flexi-title">
+    <div class="popup-panel popup-panel-content">
+        <div class="popup-header-bar">
+            <button type="button" class="popup-close" aria-label="Close">&times;</button>
+        </div>
+        <div class="popup-scrollable">
+            <div class="popup-header">
+                <img src="assets/images/flexi_logo.png" alt="Flexi: Stretching, Flexibility">
+                <h2 id="popup-product-flexi-title">Flexi: Stretching, Flexibility</h2>
+            </div>
+            <div class="popup-screenshot-strip">
+                <img src="assets/images/flexi_0.png" alt="Flexi - Keep Moving Forward With Love And Resilience">
+                <img src="assets/images/flexi_1.png" alt="Flexi Tailored Stretching Plans">
+                <img src="assets/images/flexi_2.png" alt="Flexi Guided Stretching">
+                <img src="assets/images/flexi_3.png" alt="Flexi Progress Tracking">
+                <img src="assets/images/flexi_4.png" alt="Flexi Exercise Library">
+                <img src="assets/images/flexi_5.png" alt="Flexi Goals and Motivation">
+            </div>
+            <h3>Flexibility at Your Fingertips with Flexi</h3>
+            <p>Whether you're a dynamic professional juggling work or a dedicated mom at home, Flexi is here to support every stage of your wellness journey. Our app seamlessly integrates into your lifestyle with targeted stretching plans that cater to your unique needs.</p>
+            <h3>Unlock Numerous Perks for Optimal Flexibility</h3>
+            <p>Flexi is more than just a stretching app; it's your partner in fostering long-term health and vitality. Dedicate just 10 minutes a day to experience transformative benefits:</p>
+            <ul>
+                <li>Boost flexibility and mobility across muscles and joints</li>
+                <li>Alleviate and prevent pain in key areas like your lower back, neck, and hips</li>
+                <li>Minimize injury risks during sports and active pursuits</li>
+                <li>Enhance sleep quality and daily energy</li>
+                <li>Improve posture and core strength</li>
+                <li>Decrease stress and anxiety levels</li>
+                <li>Elevate athletic performance</li>
+                <li>Promote better circulation and blood flow</li>
+                <li>Accelerate muscle recovery and improve balance</li>
+                <li>Strengthen coordination</li>
+            </ul>
+            <h3>Designed for Daily Flexibility Enhancement</h3>
+            <ul>
+                <li><strong>Ever-Growing Exercise Library:</strong> Over 50 unique stretches, tailored to body parts and difficulty levels.</li>
+                <li><strong>Tailored Stretching Plans:</strong> Perfect whether you're at home, outside, taking a quick office break, traveling, or at the gym.</li>
+                <li><strong>Stretching with Purpose:</strong> Routines crafted for toning, athletic performance, or postpartum recovery.</li>
+                <li><strong>Focus on Specific Areas:</strong> Target lower back, neck, or shoulders with specialized routines.</li>
+                <li><strong>Easy-to-Follow Instructions:</strong> Clear illustrations and timers guide you through each stretch.</li>
+                <li><strong>Journey Tracking & Daily Reminders:</strong> Detailed dashboard and reminders to maintain your routine.</li>
+            </ul>
+            <h3>App Store</h3>
+            <p><a href="https://apps.apple.com/us/app/flexi-stretching-flexibility/id6532588635" target="_blank" rel="noopener" class="app-store-link"><img src="assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge"></a></p>
         </div>
     </div>
 </div>
@@ -1205,9 +1205,9 @@
             </ul>
             <h3>App Store Links</h3>
             <ul>
-                <li><strong>Website</strong>: <a href="https://calmly.news/" target="_blank" rel="noopener">Calmly News</a></li>
-                <li><strong>Google Play</strong>: <a href="https://play.google.com/store/apps/details?id=com.municornio.app.specialnewsapp" target="_blank" rel="noopener">Calmly News</a></li>
-                <li><strong>App Store</strong>: <a href="https://apps.apple.com/us/app/calmly-news/id6756495260" target="_blank" rel="noopener">Calmly News</a></li>
+                <li><a href="https://calmly.news/" target="_blank" rel="noopener" class="store-link"><svg class="globe-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg> Visit Website</a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.municornio.app.specialnewsapp" target="_blank" rel="noopener" class="store-link"><img src="assets/images/google-play-badge.png" alt="Get it on Google Play" class="store-badge"></a></li>
+                <li><a href="https://apps.apple.com/us/app/calmly-news/id6756495260" target="_blank" rel="noopener" class="store-link"><img src="assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge"></a></li>
             </ul>
         </div>
     </div>
