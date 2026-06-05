@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Founder's Note: notes, tasks, calendar, and advisor agents in one workspace for first-time founders.">
-  <title>Founder's Note | Multi AI Agent Workspace</title>
+  <meta name="description" content="Founder's Note: a workspace where every note, document, task, and milestone feeds one context-aware AI agent — your meeting companion, outreach writer, and report builder.">
+  <title>Founder's Note | Context-First Founder Workspace</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700&display=swap" rel="stylesheet">
@@ -18,13 +18,13 @@
     <a href="#" class="logo">
       <span class="logo-lockup">
         <span class="logo-brand">Founder's Note</span>
-        <span class="logo-tagline">Multi AI Agent Workspace</span>
+        <span class="logo-tagline">Startup context · company memory</span>
       </span>
     </a>
     <nav class="header-nav" aria-label="Primary">
       <a href="#workspace">Workspace</a>
+      <a href="#capabilities">Capabilities</a>
       <a href="#features">Features</a>
-      <a href="#advisors">Agents</a>
       <a href="#privacy">Privacy</a>
       <a href="#beta">Beta</a>
       <a href="#" class="btn btn-sm btn-primary join-beta">Join the Beta</a>
@@ -35,10 +35,10 @@
     <section class="hero" id="top">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Multi AI Agent Workspace</p>
-          <h1>Think sharper.</h1>
+          <p class="eyebrow">Startup context · company memory</p>
+          <h1>In every meeting. With your whole company in memory.</h1>
           <p class="hero-sub">
-            Keep your notes, tasks, and calendar together, and work with advisors that can see what you’re already building.
+            Founder's Note is the workspace where your notes, documents, tasks, and progress feed one agent — in the room for calls, in your corner for outreach, and on your side when decks and reports need to match reality.
           </p>
           <div class="hero-ctas">
             <a href="#" class="btn btn-lg btn-primary join-beta">Join the Beta</a>
@@ -79,7 +79,7 @@
                     <li class="nav-branch open calendar-branch">
                       <span class="nav-branch-label"><span class="nav-icon">📅</span> Calendar</span>
                       <ul class="mock-sublist">
-                        <li class="sub-item event">Today · Advisor sync</li>
+                        <li class="sub-item event active">Today · Investor call</li>
                         <li class="sub-item event">Thu · User interview #4</li>
                         <li class="sub-item event">Fri · MVP demo review</li>
                       </ul>
@@ -87,29 +87,12 @@
                   </ul>
                 </nav>
 
-                <nav class="mock-nav-group mock-nav-agents" aria-label="Advisor agents">
-                  <p class="mock-nav-heading">Advisor Agents</p>
+                <nav class="mock-nav-group mock-nav-agent" aria-label="Context agent">
+                  <p class="mock-nav-heading">Context Agent</p>
                   <ul class="mock-agent-list">
-                    <li class="agent-item">
-                      <span class="agent-dot general"></span>
-                      <span>General Advisor</span>
-                    </li>
-                    <li class="agent-item">
-                      <span class="agent-dot technical"></span>
-                      <span>Technical Advisor</span>
-                    </li>
                     <li class="agent-item active">
-                      <span class="agent-dot marketing"></span>
-                      <span>Marketing Advisor</span>
-                    </li>
-                    <li class="agent-item">
-                      <span class="agent-dot fundraising"></span>
-                      <span>Fundraising Advisor</span>
-                    </li>
-                    <li class="agent-item agent-legend">
-                      <span class="agent-dot legend"></span>
-                      <span>Legend Coach</span>
-                      <span class="tag-premium">Premium</span>
+                      <span class="agent-dot context"></span>
+                      <span>Company memory</span>
                     </li>
                   </ul>
                 </nav>
@@ -117,35 +100,35 @@
 
               <div class="mock-main">
                 <div class="mock-main-tabs">
-                  <span class="mock-tab active">MVP Priorities: Week 3</span>
-                  <span class="mock-tab">Marketing Advisor</span>
+                  <span class="mock-tab active">Investor call · Live</span>
+                  <span class="mock-tab">MVP Priorities: Week 3</span>
                 </div>
-                <article class="mock-note-body">
-                  <h3 class="mock-note-title">MVP Priorities: Week 3</h3>
-                  <p class="mock-note-line"><strong>Goal:</strong> Validate core workflow in 14 days.</p>
-                  <p class="mock-note-line">• Ship onboarding + single “aha” flow</p>
-                  <p class="mock-note-line">• Run 5 founder interviews (see Discovery Log)</p>
-                  <p class="mock-note-line">• Defer payments until retention signal</p>
-                </article>
+                <div class="mock-context-pills">
+                  <span class="mock-context-pill">Last decision: defer payments until retention signal</span>
+                  <span class="mock-context-pill risk">Open risk: 2 of 5 interviews remaining</span>
+                </div>
                 <div class="mock-chat-divider">
-                  <span>Marketing Advisor</span>
+                  <span>Context Agent</span>
                 </div>
                 <div class="mock-chat-header">
-                  <span class="agent-avatar marketing">M</span>
+                  <span class="agent-avatar context">C</span>
                   <div>
-                    <strong>Marketing Advisor</strong>
-                    <span class="mock-status">Responding…</span>
+                    <strong>Context Agent</strong>
+                    <span class="mock-status">In meeting…</span>
                   </div>
                 </div>
                 <div class="mock-chat">
-                  <div class="mock-msg user">How should I prioritize my MVP features?</div>
                   <div class="mock-msg ai">
                     <span class="typing-indicator"><span></span><span></span><span></span></span>
-                    <span class="ai-text">Lead with the workflow that proves your core hypothesis. I linked this to your Week 3 note and added three milestones in Tasks.</span>
+                    <span class="ai-text">Last call you committed to 5 interviews by Friday — 3 done. Suggested question: "What would make you switch from your current workflow?"</span>
                   </div>
                 </div>
+                <div class="mock-suggestion">
+                  <span class="mock-suggestion-label">Suggested follow-up</span>
+                  <p>Capture retention metric baseline before next investor update.</p>
+                </div>
                 <div class="mock-input">
-                  <span>Ask your advisor agents…</span>
+                  <span>Ask your context agent…</span>
                   <kbd>↵</kbd>
                 </div>
               </div>
@@ -158,9 +141,9 @@
     <section class="proof-strip" aria-label="Context">
       <div class="container proof-inner">
         <ul class="proof-pills">
-          <li>Built for first-time founders</li>
-          <li>For early-stage teams</li>
-          <li>Idea to launch, one place</li>
+          <li>Built for solo &amp; first-time founders</li>
+          <li>Stop re-explaining your company</li>
+          <li>Build context once. Use it everywhere.</li>
         </ul>
         <p class="proof-logos">Testing with founders from indie hackers and startup communities</p>
       </div>
@@ -170,25 +153,25 @@
       <div class="container problem-inner">
         <header class="problem-header">
           <span class="section-label">The problem</span>
-          <p class="problem-close-lead">The hardest part of building a startup isn’t motivation.</p>
-          <p class="problem-close">It’s knowing what to focus on next.</p>
+          <p class="problem-close-lead">The hardest part isn't ambition.</p>
+          <p class="problem-close">It's re-explaining your company every time.</p>
         </header>
 
         <div class="problem-grid">
           <article class="pain-card">
-            <span class="pain-emoji" aria-hidden="true">💡</span>
-            <h3>Too many ideas. No clear direction.</h3>
-            <p>Founders spend endless hours researching, brainstorming, and second-guessing instead of building.</p>
+            <span class="pain-emoji" aria-hidden="true">📋</span>
+            <h3>Strategy lives in scattered notes and threads</h3>
+            <p>Strategy, customer learnings, and product progress never stay in one place.</p>
           </article>
           <article class="pain-card">
-            <span class="pain-emoji" aria-hidden="true">⚡</span>
-            <h3>Energy gets drained on the wrong things.</h3>
-            <p>Constant switching between planning, notes, tasks, and tools kills momentum fast.</p>
+            <span class="pain-emoji" aria-hidden="true">📞</span>
+            <h3>Meetings happen without memory in the room</h3>
+            <p>Important calls start cold — nothing remembers what you already decided.</p>
           </article>
           <article class="pain-card">
-            <span class="pain-emoji" aria-hidden="true">🧭</span>
-            <h3>No experienced guidance when it matters.</h3>
-            <p>Important calls often happen alone, with no one who knows your full story in the room.</p>
+            <span class="pain-emoji" aria-hidden="true">✉️</span>
+            <h3>Outreach and decks are rebuilt from scratch</h3>
+            <p>Generic AI is smart but amnesiac; your full story doesn't travel with you.</p>
           </article>
         </div>
       </div>
@@ -197,20 +180,20 @@
     <section class="solution workspace-section" id="workspace">
       <div class="container">
         <div class="section-intro">
-          <span class="section-label">The workspace</span>
-          <h2>Notes, tasks, calendar, then your agents.</h2>
-          <p class="section-lead">The same context shows up everywhere. What you write, schedule, and track is what your advisors work from.</p>
+          <span class="section-label">The mechanism</span>
+          <h2>Build context once. Use it everywhere.</h2>
+          <p class="section-lead">Notes, documents, tasks, and calendar feed one context-aware agent — not a menu of generic coaches.</p>
         </div>
 
-        <div class="workspace-layout" aria-label="Workspace flows into advisor agents">
+        <div class="workspace-layout" aria-label="Workspace feeds one context agent">
           <div class="workspace-flow">
             <div class="workspace-bundle">
               <p class="workspace-bundle-title">Your workspace</p>
               <div class="workspace-bundle-grid">
                 <div class="workspace-module">
                   <span class="module-icon">📄</span>
-                  <h3>Notes</h3>
-                  <p>Strategy memos, discovery logs, and drafts, tied to the rest of your workspace.</p>
+                  <h3>Notes &amp; documents</h3>
+                  <p>Strategy memos, discovery logs, financials, and decks — Markdown and uploads the agent indexes.</p>
                   <ul class="module-examples">
                     <li>MVP Priorities</li>
                     <li>Pitch drafts</li>
@@ -218,8 +201,8 @@
                 </div>
                 <div class="workspace-module">
                   <span class="module-icon">✓</span>
-                  <h3>Tasks</h3>
-                  <p>The work list your agents can read and help you reorder.</p>
+                  <h3>Tasks &amp; milestones</h3>
+                  <p>Work and progress signals across product, GTM, fundraising, and ops.</p>
                   <ul class="module-examples">
                     <li>Interview sprint</li>
                     <li>Launch checklist</li>
@@ -228,9 +211,9 @@
                 <div class="workspace-module">
                   <span class="module-icon">📅</span>
                   <h3>Calendar</h3>
-                  <p>Meetings, reviews, and deadlines in the same timeline as your build plan.</p>
+                  <p>Meetings and deadlines tied to live context and follow-ups.</p>
                   <ul class="module-examples">
-                    <li>Advisor syncs</li>
+                    <li>Investor calls</li>
                     <li>Demo day prep</li>
                   </ul>
                 </div>
@@ -248,16 +231,101 @@
               <span class="flow-dot flow-dot-3"></span>
             </div>
 
-            <div class="workspace-module workspace-agents-card">
+            <div class="workspace-module workspace-agent-card">
               <span class="module-icon">◇</span>
-              <h3>Advisor Agents</h3>
-              <p>General, technical, marketing, fundraising, and Legend Coach when you want a premium layer.</p>
-              <div class="module-agent-tags">
-                <span>General</span>
-                <span>Technical</span>
-                <span>Marketing</span>
-                <span>Fundraising</span>
-                <span class="tag-premium-inline">Legend Coach · Premium</span>
+              <h3>Context Agent</h3>
+              <p>One agent with full workspace memory. Meeting companion, outreach writer, report builder.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities-intro" id="capabilities">
+      <div class="container section-intro">
+        <span class="section-label">Capabilities</span>
+        <h2>Load-bearing memory, not outside advice.</h2>
+        <p class="section-lead">You're the only one holding the full story. Founder's Note extends what you've already documented — in the moments that matter.</p>
+      </div>
+    </section>
+
+    <section class="capability-demo" id="meetings">
+      <div class="container capability-demo-grid">
+        <div class="capability-copy">
+          <span class="section-label">Meeting companion</span>
+          <h2>Never walk in cold; never leave without capture.</h2>
+          <p class="capability-lead">Prep, join, and follow up from the same memory. Your agent reads your notes and prior calls before you enter the room — then structures what happened before context fades.</p>
+          <ul class="capability-details">
+            <li>Transcribe and structure meeting notes automatically</li>
+            <li>Suggested questions and answer prompts from your docs</li>
+            <li>Surface metrics, commitments, and open risks since last call</li>
+            <li>Follow-ups and action items linked to tasks and calendar</li>
+          </ul>
+        </div>
+
+        <div class="capability-visual">
+          <div class="mock-window mock-window-static">
+            <div class="mock-chrome">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="mock-chrome-title">Founder's Note</span>
+            </div>
+            <div class="mock-app">
+              <aside class="mock-sidebar">
+                <div class="mock-logo-sm">Founder's Note</div>
+                <nav class="mock-nav-group" aria-label="Workspace">
+                  <p class="mock-nav-heading">Workspace</p>
+                  <ul class="mock-nav-tree">
+                    <li class="nav-branch open calendar-branch">
+                      <span class="nav-branch-label active"><span class="nav-icon">📅</span> Calendar</span>
+                      <ul class="mock-sublist">
+                        <li class="sub-item event active">Today · Investor call</li>
+                        <li class="sub-item event">Thu · User interview #4</li>
+                      </ul>
+                    </li>
+                    <li class="nav-branch open notes-branch">
+                      <span class="nav-branch-label"><span class="nav-icon">📄</span> Notes</span>
+                      <ul class="mock-sublist">
+                        <li class="sub-item">MVP Priorities: Week 3</li>
+                        <li class="sub-item">Customer Discovery Log</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+                <nav class="mock-nav-group mock-nav-agent" aria-label="Context agent">
+                  <p class="mock-nav-heading">Context Agent</p>
+                  <ul class="mock-agent-list">
+                    <li class="agent-item active">
+                      <span class="agent-dot context"></span>
+                      <span>Meeting companion</span>
+                    </li>
+                  </ul>
+                </nav>
+              </aside>
+              <div class="mock-main">
+                <div class="mock-main-tabs">
+                  <span class="mock-tab active">Investor call · Live</span>
+                  <span class="mock-tab">Prior call notes</span>
+                </div>
+                <div class="mock-context-pills">
+                  <span class="mock-context-pill">Since last call: 3 interviews completed</span>
+                  <span class="mock-context-pill risk">Open: retention baseline not set</span>
+                </div>
+                <div class="mock-chat-divider"><span>Context Agent</span></div>
+                <div class="mock-chat">
+                  <div class="mock-msg ai">
+                    <span class="ai-text">Suggested question: "What would make you switch from your current workflow?" — grounded in your Discovery Log.</span>
+                  </div>
+                </div>
+                <div class="mock-meeting-notes">
+                  <span class="mock-suggestion-label">Structured capture</span>
+                  <p class="mock-note-line"><strong>Decisions:</strong> Defer payments until retention signal</p>
+                  <p class="mock-note-line"><strong>Action:</strong> Send updated one-pager by Friday</p>
+                  <p class="mock-note-line"><strong>Risk flagged:</strong> Interview pace behind plan</p>
+                </div>
+                <div class="mock-input">
+                  <span>Ask your context agent…</span>
+                  <kbd>↵</kbd>
+                </div>
               </div>
             </div>
           </div>
@@ -265,40 +333,174 @@
       </div>
     </section>
 
-    <section class="use-cases" id="use-cases">
-      <div class="container">
-        <span class="section-label">Use cases</span>
-        <h2>How founders use it</h2>
-        <ol class="steps-flow">
-          <li class="step-item">
-            <span class="step-num">1</span>
-            <div class="step-body">
-              <h3>Idea Development</h3>
-              <p>Capture ideas in notes and shape them into a plan you can act on.</p>
+    <section class="capability-demo capability-demo-alt capability-demo-reverse" id="outreach">
+      <div class="container capability-demo-grid">
+        <div class="capability-copy">
+          <span class="section-label">Outreach &amp; marketing</span>
+          <h2>Say it once in the workspace; say it right to each person.</h2>
+          <p class="capability-lead">Your positioning, ICP, and traction live in one place — so every cold email, LinkedIn message, and launch post pulls from what you've actually built, not a blank prompt.</p>
+          <ul class="capability-details">
+            <li>Tailor copy to a specific person, segment, or channel</li>
+            <li>Align tone and proof points with your positioning and latest traction</li>
+            <li>Adapt messaging for campaigns, launches, and partnership asks</li>
+            <li>One context layer — no re-explaining the company per message</li>
+          </ul>
+        </div>
+
+        <div class="capability-visual">
+          <div class="mock-window mock-window-static">
+            <div class="mock-chrome">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="mock-chrome-title">Founder's Note</span>
             </div>
-          </li>
-          <li class="step-item">
-            <span class="step-num">2</span>
-            <div class="step-body">
-              <h3>Planning &amp; Execution</h3>
-              <p>Turn the plan into tasks and milestones, and keep them current.</p>
+            <div class="mock-app">
+              <aside class="mock-sidebar">
+                <div class="mock-logo-sm">Founder's Note</div>
+                <nav class="mock-nav-group" aria-label="Workspace">
+                  <p class="mock-nav-heading">Workspace</p>
+                  <ul class="mock-nav-tree">
+                    <li class="nav-branch open notes-branch">
+                      <span class="nav-branch-label active"><span class="nav-icon">📄</span> Notes</span>
+                      <ul class="mock-sublist">
+                        <li class="sub-item active">Pitch Narrative Draft</li>
+                        <li class="sub-item">ICP: Series A ops leads</li>
+                        <li class="sub-item">Customer Discovery Log</li>
+                      </ul>
+                    </li>
+                    <li class="nav-branch open tasks-branch">
+                      <span class="nav-branch-label"><span class="nav-icon">✓</span> Tasks</span>
+                      <ul class="mock-sublist">
+                        <li class="sub-item done">Run 5 founder interviews</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+                <nav class="mock-nav-group mock-nav-agent" aria-label="Context agent">
+                  <p class="mock-nav-heading">Context Agent</p>
+                  <ul class="mock-agent-list">
+                    <li class="agent-item active">
+                      <span class="agent-dot context"></span>
+                      <span>Outreach writer</span>
+                    </li>
+                  </ul>
+                </nav>
+              </aside>
+              <div class="mock-main">
+                <div class="mock-main-tabs">
+                  <span class="mock-tab active">Outreach · Cold email</span>
+                  <span class="mock-tab">Pitch Narrative Draft</span>
+                </div>
+                <div class="mock-context-pills">
+                  <span class="mock-context-pill">To: Sarah Chen · VP Ops @ Acme</span>
+                  <span class="mock-context-pill">Proof: 3 interviews, onboarding shipped</span>
+                </div>
+                <div class="mock-email-draft">
+                  <p class="mock-email-subject"><strong>Subject:</strong> Quick question on founder workflow tools</p>
+                  <p class="mock-email-body">Hi Sarah — saw your post on ops bottlenecks at early-stage teams. We're validating a context-first workspace for founders (3 customer interviews done, core onboarding live). Would a 15-min chat next week be useful?</p>
+                </div>
+                <div class="mock-suggestion">
+                  <span class="mock-suggestion-label">Aligned with</span>
+                  <p>Pitch Narrative Draft · ICP: Series A ops leads · Discovery Log</p>
+                </div>
+                <div class="mock-input">
+                  <span>Refine outreach for LinkedIn or email…</span>
+                  <kbd>↵</kbd>
+                </div>
+              </div>
             </div>
-          </li>
-          <li class="step-item">
-            <span class="step-num">3</span>
-            <div class="step-body">
-              <h3>Decision Support</h3>
-              <p>Talk through tradeoffs with advisors that already know your notes and timeline.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="capability-demo" id="reports">
+      <div class="container capability-demo-grid">
+        <div class="capability-copy">
+          <span class="section-label">Reports, decks &amp; KPIs</span>
+          <h2>Numbers and story from the same memory.</h2>
+          <p class="capability-lead">When your financials, progress, and narrative are in the workspace, the agent drafts reports, deck slices, and board updates that stay consistent — fast drafts you review, not black-box advice.</p>
+          <ul class="capability-details">
+            <li>Internal reports and KPI dashboards from tracked progress</li>
+            <li>Pitch deck narrative and data slices from source documents</li>
+            <li>Financial summaries and scenario views from your models</li>
+            <li>Board updates and diligence packets structured from material you trust</li>
+          </ul>
+        </div>
+
+        <div class="capability-visual">
+          <div class="mock-window mock-window-static">
+            <div class="mock-chrome">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="mock-chrome-title">Founder's Note</span>
             </div>
-          </li>
-          <li class="step-item">
-            <span class="step-num">4</span>
-            <div class="step-body">
-              <h3>Fundraising Prep</h3>
-              <p>Work on story, deck, and outreach from the same workspace.</p>
+            <div class="mock-app">
+              <aside class="mock-sidebar">
+                <div class="mock-logo-sm">Founder's Note</div>
+                <nav class="mock-nav-group" aria-label="Workspace">
+                  <p class="mock-nav-heading">Workspace</p>
+                  <ul class="mock-nav-tree">
+                    <li class="nav-branch open notes-branch">
+                      <span class="nav-branch-label active"><span class="nav-icon">📄</span> Notes</span>
+                      <ul class="mock-sublist">
+                        <li class="sub-item active">Financial Model Q1</li>
+                        <li class="sub-item">Pitch Narrative Draft</li>
+                        <li class="sub-item">Board Update Template</li>
+                      </ul>
+                    </li>
+                    <li class="nav-branch open tasks-branch">
+                      <span class="nav-branch-label"><span class="nav-icon">✓</span> Tasks</span>
+                      <ul class="mock-sublist">
+                        <li class="sub-item done">Ship onboarding flow</li>
+                        <li class="sub-item">Run 5 founder interviews</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+                <nav class="mock-nav-group mock-nav-agent" aria-label="Context agent">
+                  <p class="mock-nav-heading">Context Agent</p>
+                  <ul class="mock-agent-list">
+                    <li class="agent-item active">
+                      <span class="agent-dot context"></span>
+                      <span>Report builder</span>
+                    </li>
+                  </ul>
+                </nav>
+              </aside>
+              <div class="mock-main">
+                <div class="mock-main-tabs">
+                  <span class="mock-tab active">Board update · Draft</span>
+                  <span class="mock-tab">Financial Model Q1</span>
+                </div>
+                <div class="mock-metrics">
+                  <div class="mock-metric">
+                    <span class="mock-metric-label">Interviews</span>
+                    <span class="mock-metric-value">3 / 5</span>
+                  </div>
+                  <div class="mock-metric">
+                    <span class="mock-metric-label">Onboarding</span>
+                    <span class="mock-metric-value">Shipped</span>
+                  </div>
+                  <div class="mock-metric">
+                    <span class="mock-metric-label">Retention baseline</span>
+                    <span class="mock-metric-value warn">Pending</span>
+                  </div>
+                </div>
+                <div class="mock-deck-draft">
+                  <span class="mock-suggestion-label">Deck narrative · slide 4</span>
+                  <p>Validated core workflow with 3 founder interviews; onboarding live. Next: retention signal before monetization — consistent with Financial Model Q1 scenario B.</p>
+                </div>
+                <div class="mock-suggestion">
+                  <span class="mock-suggestion-label">Sources</span>
+                  <p>Financial Model Q1 · Pitch Narrative Draft · Tasks (GTM)</p>
+                </div>
+                <div class="mock-input">
+                  <span>Generate KPI dashboard or investor appendix…</span>
+                  <kbd>↵</kbd>
+                </div>
+              </div>
             </div>
-          </li>
-        </ol>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -306,14 +508,15 @@
       <div class="container features-grid">
         <div class="features-copy">
           <span class="section-label">Features</span>
-          <h2>What’s in the workspace</h2>
+          <h2>What's in the workspace</h2>
           <ul class="features-list">
-            <li>Advisor agents you can switch between</li>
-            <li>Notes with Markdown</li>
-            <li>Tasks and milestones</li>
-            <li>Calendar</li>
-            <li>Meeting scheduling</li>
-            <li>Context that carries across sessions</li>
+            <li>Context-aware agent with full workspace memory</li>
+            <li>Markdown notes and document ingestion</li>
+            <li>Tasks, milestones, and progress by area</li>
+            <li>Calendar and meeting scheduling</li>
+            <li>Meeting transcription and companion suggestions</li>
+            <li>Outreach and content drafting from context</li>
+            <li>Report / dashboard / deck draft generation from your sources</li>
           </ul>
         </div>
         <div class="features-mock" aria-hidden="true">
@@ -332,131 +535,17 @@
             </div>
             <div class="mock-panel mock-cal">
               <span class="panel-label">Calendar</span>
-              <p class="cal-event">Thu · User interview</p>
-              <p class="cal-event active">Fri · MVP demo review</p>
+              <p class="cal-event active">Today · Investor call</p>
+              <p class="cal-event">Fri · MVP demo review</p>
             </div>
-            <div class="mock-panel mock-mini-chat">
-              <span class="panel-label">Advisor Agents</span>
-              <p class="mini-agent">General Advisor</p>
-              <p class="mini-agent">Technical Advisor</p>
-              <p class="mini-agent active">Marketing Advisor</p>
-              <p class="mini-agent">Legend Coach <span class="tag-premium">Premium</span></p>
+            <div class="mock-panel mock-context-agent">
+              <span class="panel-label">Context Agent</span>
+              <p class="context-chip">Meeting</p>
+              <p class="context-chip">Outreach</p>
+              <p class="context-chip active">Reports</p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="advisors" id="advisors">
-      <div class="container">
-        <span class="section-label">Advisor agents</span>
-        <h2>Advisors for the stage you’re in</h2>
-        <p class="section-sub">Each one reads your notes, tasks, and calendar before it replies.</p>
-
-        <div class="legend-advisor">
-          <div class="legend-advisor-photo">
-            <div class="legend-avatar-wrap">
-              <img
-                src="images/legend-coach.jpg"
-                alt="Sze Wong, Legend Coach: Sze AI"
-                class="legend-photo"
-                width="220"
-                height="220"
-              >
-              <span class="ai-corner-badge ai-corner-badge-lg" aria-label="AI agent">AI</span>
-            </div>
-          </div>
-          <div class="legend-advisor-content">
-            <span class="legend-badge">Premium</span>
-            <h3>Legend Coach: Sze AI</h3>
-            <p class="legend-byline">Sze Wong · Entrepreneur, educator &amp; inventor</p>
-            <p><strong>Sze AI</strong> is built from Sze Wong’s writing and coaching: <em>Craft Your World</em>, a bootstrap-first approach, and his <strong>1分鐘教練</strong> (1-Minute Coach) work with founders.</p>
-            <p>Use him when you want advice from someone who’s built and coached founders, with your notes, tasks, and calendar already in view.</p>
-          </div>
-        </div>
-
-        <div class="cards-grid cards-advisors advisor-cards">
-          <article class="advisor-card">
-            <div class="advisor-card-head">
-              <div class="advisor-avatar-wrap">
-                <div class="advisor-avatar advisor-avatar-general" aria-hidden="true">
-                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="24" cy="22" r="10" fill="#e8e6e3"/>
-                    <path d="M12 38c2-6 7-10 12-10s10 4 12 10" fill="#e8e6e3"/>
-                    <ellipse cx="24" cy="14" rx="14" ry="5" fill="#787774"/>
-                  </svg>
-                </div>
-                <span class="ai-corner-badge" aria-label="AI agent">AI</span>
-              </div>
-              <div>
-                <div class="advisor-type generic">General</div>
-                <h3>General Advisor</h3>
-              </div>
-            </div>
-            <p>For early questions when you’re still figuring out the next move.</p>
-          </article>
-          <article class="advisor-card">
-            <div class="advisor-card-head">
-              <div class="advisor-avatar-wrap">
-                <div class="advisor-avatar advisor-avatar-technical" aria-hidden="true">
-                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="24" cy="24" r="10" fill="#e8e6e3"/>
-                    <path d="M12 40c2-6 7-10 12-10s10 4 12 10" fill="#e8e6e3"/>
-                    <path d="M10 20h28l-4 8H14l-4-8z" fill="#9065b0"/>
-                    <rect x="22" y="10" width="4" height="6" rx="1" fill="#9065b0"/>
-                  </svg>
-                </div>
-                <span class="ai-corner-badge" aria-label="AI agent">AI</span>
-              </div>
-              <div>
-                <div class="advisor-type technical">Technical</div>
-                <h3>Technical Advisor</h3>
-              </div>
-            </div>
-            <p>Stack choices, architecture, and what to build vs. buy.</p>
-          </article>
-          <article class="advisor-card">
-            <div class="advisor-card-head">
-              <div class="advisor-avatar-wrap">
-                <div class="advisor-avatar advisor-avatar-marketing" aria-hidden="true">
-                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="24" cy="24" r="10" fill="#e8e6e3"/>
-                    <path d="M12 40c2-6 7-10 12-10s10 4 12 10" fill="#e8e6e3"/>
-                    <path d="M14 18c0-6 4-10 10-10s10 4 10 10v2H14v-2z" fill="#d9730d"/>
-                    <ellipse cx="24" cy="12" rx="10" ry="3" fill="#d9730d"/>
-                  </svg>
-                </div>
-                <span class="ai-corner-badge" aria-label="AI agent">AI</span>
-              </div>
-              <div>
-                <div class="advisor-type marketing">Marketing</div>
-                <h3>Marketing Advisor</h3>
-              </div>
-            </div>
-            <p>Positioning, channels, and what to try first on GTM.</p>
-          </article>
-          <article class="advisor-card">
-            <div class="advisor-card-head">
-              <div class="advisor-avatar-wrap">
-                <div class="advisor-avatar advisor-avatar-fundraising" aria-hidden="true">
-                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="24" cy="24" r="10" fill="#e8e6e3"/>
-                    <path d="M12 40c2-6 7-10 12-10s10 4 12 10" fill="#e8e6e3"/>
-                    <path d="M16 14h16v4c0 4-3 8-8 8s-8-4-8-8v-4z" fill="#448361"/>
-                    <rect x="14" y="10" width="20" height="5" rx="1" fill="#448361"/>
-                  </svg>
-                </div>
-                <span class="ai-corner-badge" aria-label="AI agent">AI</span>
-              </div>
-              <div>
-                <div class="advisor-type fundraising">Fundraising</div>
-                <h3>Fundraising Advisor</h3>
-              </div>
-            </div>
-            <p>Story, deck, and how to approach investors.</p>
-          </article>
-        </div>
-        <p class="advisors-emphasis">Swap or add advisors as the company changes.</p>
       </div>
     </section>
 
@@ -472,12 +561,12 @@
         <div class="privacy-copy">
           <span class="section-label">Privacy &amp; security</span>
           <h2>Encrypted by default. Readable by you.</h2>
-          <p class="privacy-lead">In the beta, your notes, tasks, calendar, and agent threads are encrypted in transit and at rest. We can’t read your workspace content. Other users can’t either.</p>
+          <p class="privacy-lead">Your workspace stays yours — encrypted in transit and at rest, not used to train on your private notes unless you opt in. We can't read your workspace content. Other users can't either.</p>
           <ul class="privacy-list">
             <li>Encryption in transit and at rest</li>
             <li>Keys handled so decryption stays on your side where we can</li>
-            <li>We don’t train on your private notes unless you opt in</li>
-            <li>We’ll publish more detail on security as the beta grows</li>
+            <li>We don't train on your private notes unless you opt in</li>
+            <li>We'll publish more detail on security as the beta grows</li>
           </ul>
         </div>
       </div>
@@ -493,6 +582,7 @@
           <li>Talk directly with the team</li>
         </ul>
         <a href="#" class="btn btn-lg btn-primary join-beta">Join the Beta</a>
+        <p class="beta-subcta">Build your company memory</p>
       </div>
     </section>
   </main>
@@ -501,8 +591,8 @@
     <div class="container footer-inner">
       <nav class="footer-nav" aria-label="Footer">
         <a href="#workspace">Workspace</a>
+        <a href="#capabilities">Capabilities</a>
         <a href="#features">Features</a>
-        <a href="#advisors">Agents</a>
         <a href="#privacy">Privacy</a>
         <a href="#beta">Beta</a>
       </nav>

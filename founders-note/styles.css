@@ -23,7 +23,6 @@
   --technical: #9065b0;
   --marketing: #d9730d;
   --fundraising: #448361;
-  --legend: #cb912f;
   --border: rgba(55, 53, 47, 0.09);
   --border-strong: rgba(55, 53, 47, 0.16);
   --border-light: rgba(55, 53, 47, 0.09);
@@ -458,28 +457,7 @@ p {
   display: block;
 }
 
-.tag-premium {
-  margin-left: auto;
-  font-size: 0.5625rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #8b6914;
-  background: rgba(203, 145, 47, 0.22);
-  padding: 0.1rem 0.35rem;
-  border-radius: 3px;
-  flex-shrink: 0;
-}
-
-.agent-item.agent-legend {
-  flex-wrap: wrap;
-}
-
-.agent-dot.legend {
-  background: var(--legend);
-}
-
-.mock-nav-agents {
+.mock-nav-agent {
   margin-top: auto;
   padding-top: 0.5rem;
   border-top: 1px solid var(--border);
@@ -514,10 +492,7 @@ p {
   flex-shrink: 0;
 }
 
-.agent-dot.technical { background: var(--technical); }
-.agent-dot.marketing { background: var(--marketing); }
-.agent-dot.fundraising { background: var(--fundraising); }
-.agent-dot.general { background: var(--text-subtle); }
+.agent-dot.context { background: var(--accent); }
 
 .mock-main {
   flex: 1;
@@ -591,7 +566,7 @@ p {
   width: 8px;
   height: 8px;
   border-radius: 2px;
-  background: var(--marketing);
+  background: var(--accent);
 }
 
 .mock-chat-header {
@@ -613,9 +588,7 @@ p {
   justify-content: center;
 }
 
-.agent-avatar.marketing { background: var(--marketing); }
-.agent-avatar.technical { background: var(--technical); }
-.agent-avatar.fundraising { background: var(--fundraising); }
+.agent-avatar.context { background: var(--accent); }
 
 .mock-chat-header strong {
   display: block;
@@ -625,7 +598,55 @@ p {
 
 .mock-status {
   font-size: 0.625rem;
+  color: var(--accent);
+}
+
+.mock-context-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.mock-context-pill {
+  font-size: 0.625rem;
+  line-height: 1.4;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.mock-context-pill.risk {
+  background: rgba(217, 115, 13, 0.08);
+  border-color: rgba(217, 115, 13, 0.2);
   color: var(--marketing);
+}
+
+.mock-suggestion {
+  margin-bottom: 0.5rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: var(--radius);
+  background: var(--accent-dim);
+  border: 1px solid rgba(35, 131, 226, 0.15);
+}
+
+.mock-suggestion-label {
+  display: block;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 0.2rem;
+}
+
+.mock-suggestion p {
+  font-size: 0.625rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin: 0;
 }
 
 .mock-chat {
@@ -985,14 +1006,14 @@ p {
   box-shadow: 0 1px 2px rgba(15, 15, 15, 0.03);
 }
 
-.workspace-agents-card {
+.workspace-agent-card {
   padding: 1.5rem 1.5rem;
   border-color: rgba(35, 131, 226, 0.25);
   box-shadow: var(--shadow-md);
-  animation: agentsReceive 2.4s ease-in-out infinite;
+  animation: agentReceive 2.4s ease-in-out infinite;
 }
 
-@keyframes agentsReceive {
+@keyframes agentReceive {
   0%, 100% {
     border-color: rgba(35, 131, 226, 0.2);
     box-shadow: var(--shadow-md);
@@ -1037,37 +1058,171 @@ p {
   color: var(--text-subtle);
 }
 
-.workspace-agents-card .module-agent-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-top: 0.5rem;
-}
-
-.module-agent-tags span {
-  font-size: 0.6875rem;
-  padding: 0.2rem 0.5rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  color: var(--text-muted);
-}
-
-.tag-premium-inline {
-  background: rgba(203, 145, 47, 0.15) !important;
-  border-color: rgba(203, 145, 47, 0.35) !important;
-  color: #8b6914 !important;
-  font-weight: 600;
-}
-
-/* Use cases */
-.use-cases {
-  padding: var(--section-pad) 0;
+/* Capabilities */
+.capabilities-intro {
+  padding: var(--section-pad) 0 2.5rem;
   background: var(--bg);
 }
 
-.use-cases .section-label,
-.advisors .section-label,
+.capabilities-intro .section-intro {
+  margin-bottom: 0;
+}
+
+.capability-demo {
+  padding: 3.5rem 0;
+  background: var(--bg);
+}
+
+.capability-demo-alt {
+  background: var(--bg-secondary);
+}
+
+.capability-demo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.capability-demo-reverse .capability-copy {
+  order: 2;
+}
+
+.capability-demo-reverse .capability-visual {
+  order: 1;
+}
+
+.capability-copy .section-label {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.capability-copy h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  margin-bottom: 0.75rem;
+}
+
+.capability-lead {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+}
+
+.capability-details {
+  margin: 0;
+  padding: 0;
+}
+
+.capability-details li {
+  position: relative;
+  padding-left: 1.35rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.capability-details li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  background: var(--accent);
+}
+
+.capability-visual {
+  perspective: 1000px;
+}
+
+.mock-window-static {
+  animation: none;
+}
+
+.mock-meeting-notes {
+  margin-bottom: 0.5rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: var(--radius);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+}
+
+.mock-email-draft {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--radius);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+}
+
+.mock-email-subject {
+  font-size: 0.625rem;
+  color: var(--text);
+  margin: 0 0 0.4rem;
+}
+
+.mock-email-body {
+  font-size: 0.625rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.mock-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.mock-metric {
+  padding: 0.4rem 0.45rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.mock-metric-label {
+  display: block;
+  font-size: 0.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-subtle);
+  margin-bottom: 0.15rem;
+}
+
+.mock-metric-value {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.mock-metric-value.warn {
+  color: var(--marketing);
+}
+
+.mock-deck-draft {
+  margin-bottom: 0.5rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: var(--radius);
+  background: var(--accent-dim);
+  border: 1px solid rgba(35, 131, 226, 0.15);
+}
+
+.mock-deck-draft p {
+  font-size: 0.625rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0.2rem 0 0;
+}
+
+.capabilities-intro .section-label,
 .beta .section-label,
 .workspace-section .section-label {
   display: block;
@@ -1081,150 +1236,10 @@ p {
   margin-bottom: 0.75rem;
 }
 
-.use-cases h2,
-.advisors h2,
+.capabilities-intro h2,
 .problem-header .problem-close-lead,
 .problem-header .problem-close {
   text-align: center;
-}
-
-.use-cases h2,
-.advisors h2 {
-  margin-bottom: 2.5rem;
-}
-
-/* Use case steps */
-.steps-flow {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-width: 640px;
-  margin-inline: auto;
-  counter-reset: step;
-}
-
-.step-item {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 1.25rem;
-  padding: 0 0 2rem 0;
-  position: relative;
-}
-
-.step-item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  left: 23px;
-  top: 48px;
-  bottom: 0;
-  width: 2px;
-  background: var(--border);
-}
-
-.step-num {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-strong);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text);
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1;
-}
-
-.step-body h3 {
-  font-size: 1.0625rem;
-  margin-bottom: 0.35rem;
-}
-
-.step-body p {
-  font-size: 0.9375rem;
-  color: var(--text-muted);
-  margin: 0;
-  line-height: 1.55;
-}
-
-.cards-grid {
-  display: grid;
-  gap: 0.875rem;
-}
-
-.cards-advisors {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.advisor-card {
-  padding: 1.5rem 1.35rem;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.advisor-card:hover {
-  border-color: var(--border-strong);
-  box-shadow: 0 10px 28px rgba(15, 15, 15, 0.07);
-}
-
-.advisor-card-head {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 0.85rem;
-}
-
-.advisor-avatar-wrap {
-  position: relative;
-  flex-shrink: 0;
-  width: 52px;
-  height: 52px;
-}
-
-.advisor-avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.advisor-avatar-wrap .ai-corner-badge {
-  bottom: -2px;
-  right: -4px;
-  min-width: 1.35rem;
-  padding: 0.2rem 0.35rem;
-  font-size: 0.5625rem;
-  border-width: 1.5px;
-}
-
-.advisor-avatar svg {
-  width: 40px;
-  height: 40px;
-}
-
-.advisor-card-head h3 {
-  margin-bottom: 0.15rem;
-}
-
-.advisor-card-head .advisor-type {
-  margin-bottom: 0;
-}
-
-.advisor-card > p {
-  font-size: 0.8125rem;
-  color: var(--text-muted);
-  margin: 0;
-  line-height: 1.55;
 }
 
 /* Features */
@@ -1364,185 +1379,19 @@ p {
   font-size: 0.5rem;
 }
 
-.mini-agent {
+.context-chip {
   font-size: 0.625rem;
   padding: 0.2rem 0.35rem;
   margin: 0 0 0.2rem;
   border-radius: var(--radius-sm);
   color: var(--text-muted);
-}
-
-.mini-agent.active {
-  background: rgba(217, 115, 13, 0.12);
-  color: var(--marketing);
-  font-weight: 500;
-}
-
-/* Advisors */
-.advisors {
-  padding: var(--section-pad) 0;
-  background: var(--bg);
-}
-
-.section-sub {
-  text-align: center;
-  color: var(--text-muted);
-  max-width: 40ch;
-  margin: 0 auto 2.5rem;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-}
-
-/* Legend Coach — premium advisor */
-.legend-advisor {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2rem;
-  align-items: center;
-  margin-bottom: 2.5rem;
-  padding: 1.75rem 2rem;
-  background: linear-gradient(135deg, #fffdf8 0%, var(--bg) 55%);
-  border: 1px solid rgba(203, 145, 47, 0.45);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 12px 40px rgba(203, 145, 47, 0.1);
-}
-
-.legend-advisor-photo {
-  flex-shrink: 0;
-}
-
-.legend-avatar-wrap {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: var(--bg-secondary);
-  padding: 6px;
-  border: 2px solid rgba(203, 145, 47, 0.4);
-  box-shadow: var(--shadow-md);
-}
-
-.legend-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  display: block;
-}
-
-.ai-corner-badge {
-  position: absolute;
-  bottom: 6px;
-  right: 2px;
-  min-width: 2rem;
-  padding: 0.3rem 0.5rem;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-align: center;
-  color: #fff;
-  background: linear-gradient(135deg, #2383e2 0%, #1a6fc9 100%);
-  border: 2px solid var(--bg);
-  border-radius: 999px;
-  box-shadow: 0 2px 8px rgba(35, 131, 226, 0.35);
-  line-height: 1;
-  z-index: 1;
-}
-
-.ai-corner-badge-lg {
-  bottom: 10px;
-  right: 4px;
-  min-width: 2.35rem;
-  padding: 0.4rem 0.6rem;
-  font-size: 0.75rem;
-}
-
-.legend-badge {
   display: inline-block;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #8b6914;
-  background: rgba(203, 145, 47, 0.2);
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-sm);
-  margin-bottom: 0.75rem;
 }
 
-.legend-advisor-content h3 {
-  font-size: 1.375rem;
-  font-weight: 700;
-  margin-bottom: 0.35rem;
-  line-height: 1.3;
-  color: var(--text);
-}
-
-.legend-byline {
-  font-size: 0.875rem;
+.context-chip.active {
+  background: rgba(35, 131, 226, 0.12);
+  color: var(--accent);
   font-weight: 500;
-  color: var(--text-muted);
-  margin: 0 0 0.75rem !important;
-}
-
-.legend-advisor-content > p {
-  font-size: 0.9375rem;
-  color: var(--text-muted);
-  line-height: 1.55;
-  margin-bottom: 0.65rem;
-}
-
-.legend-advisor-content > p:last-of-type {
-  margin-bottom: 0;
-}
-
-.legend-advisor-content em {
-  font-style: italic;
-  color: var(--text);
-}
-
-.legend-advisor-content strong {
-  color: var(--text);
-}
-
-.legend-list {
-  margin: 0 0 1.25rem;
-  padding: 0;
-}
-
-.legend-list li {
-  position: relative;
-  padding-left: 1.25rem;
-  margin-bottom: 0.45rem;
-  font-size: 0.875rem;
-  color: var(--text-muted);
-}
-
-.legend-list li::before {
-  content: "★";
-  position: absolute;
-  left: 0;
-  color: var(--legend);
-  font-size: 0.75rem;
-}
-
-.advisor-type {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  margin-bottom: 0.35rem;
-}
-
-.advisor-type.technical { color: var(--technical); }
-.advisor-type.marketing { color: var(--marketing); }
-.advisor-type.fundraising { color: var(--fundraising); }
-.advisor-type.generic { color: var(--text-muted); }
-
-.advisors-emphasis {
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  margin: 2rem 0 0;
 }
 
 /* Privacy */
@@ -1679,6 +1528,12 @@ p {
   max-width: 280px;
 }
 
+.beta-subcta {
+  margin: 1rem 0 0;
+  font-size: 0.875rem;
+  color: var(--text-subtle);
+}
+
 /* Footer */
 .site-footer {
   padding: 2.5rem 0 2.75rem;
@@ -1737,27 +1592,22 @@ p {
 @media (max-width: 960px) {
   .hero-grid,
   .features-grid,
-  .legend-advisor {
+  .capability-demo-grid {
     grid-template-columns: 1fr;
   }
 
-  .hero-visual {
+  .hero-visual,
+  .capability-visual {
     order: -1;
   }
 
-  .cards-advisors,
+  .capability-demo-reverse .capability-copy,
+  .capability-demo-reverse .capability-visual {
+    order: unset;
+  }
+
   .workspace-bundle-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .legend-advisor {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .legend-advisor-photo {
-    display: flex;
-    justify-content: center;
   }
 
   .privacy-block {
@@ -1787,10 +1637,6 @@ p {
 }
 
 @media (max-width: 600px) {
-  .cards-advisors {
-    grid-template-columns: 1fr;
-  }
-
   .workspace-bundle-grid {
     grid-template-columns: 1fr;
   }
@@ -1830,7 +1676,7 @@ p {
 
   .vein-path,
   .flow-dot,
-  .workspace-agents-card {
+  .workspace-agent-card {
     animation: none;
   }
 
