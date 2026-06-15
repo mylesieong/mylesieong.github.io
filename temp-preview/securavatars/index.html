@@ -1,0 +1,1626 @@
+<!doctype html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta
+      content="strict-origin-when-cross-origin"
+      name="referrer"
+    />
+    <title>SecurAvatars | Authentication for digital avatars</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "prism-black": "#020617",
+              "prism-slate": "#0f172a",
+              primary: "#3b82f6",
+              secondary: "#a855f7",
+              accent: "#f43f5e",
+              surface: "#020617",
+              "surface-variant": "#1e293b",
+              "on-surface": "#f1f5f9",
+              "on-surface-variant": "#94a3b8",
+            },
+            fontFamily: {
+              headline: ["Space Grotesk", "sans-serif"],
+              body: ["Inter", "sans-serif"],
+              label: ["Space Grotesk", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "1rem",
+              full: "9999px",
+            },
+            backgroundImage: {
+              "prism-gradient":
+                "linear-gradient(to right, #8b5cf6, #3b82f6, #10b981, #facc15, #f97316, #ef4444)",
+            },
+            animation: {
+              "prism-pulse":
+                "prism-pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              scan: "scan 3s linear infinite",
+            },
+            keyframes: {
+              "prism-pulse": {
+                "0%, 100%": { opacity: "0.4", transform: "scale(1)" },
+                "50%": { opacity: "0.15", transform: "scale(1.05)" },
+              },
+              scan: {
+                "0%": { top: "0%" },
+                "100%": { top: "100%" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #020617;
+        color: #f1f5f9;
+      }
+      .glass-panel {
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .prism-text {
+        background: linear-gradient(
+          to right,
+          #8b5cf6,
+          #3b82f6,
+          #10b981,
+          #facc15,
+          #f97316,
+          #ef4444
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .prism-border {
+        position: relative;
+      }
+      .prism-border::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        background: linear-gradient(
+          to right,
+          #8b5cf6,
+          #3b82f6,
+          #10b981,
+          #facc15,
+          #f97316,
+          #ef4444
+        );
+        z-index: -1;
+        border-radius: inherit;
+        opacity: 0.3;
+      }
+      .prism-glow {
+        box-shadow: 0 0 30px -5px rgba(59, 130, 246, 0.2);
+      }
+      .proof-of-human-mark {
+        font-weight: 800;
+        color: #22d3ee;
+        letter-spacing: 0.02em;
+        background-color: rgba(34, 211, 238, 0.15);
+        padding: 0.1em 0.35em;
+        border-radius: 0.25rem;
+      }
+      /* Use-case previews: grayscale until the card is hovered */
+      #users .use-case-grid .use-case-preview {
+        filter: grayscale(1);
+      }
+      #users .use-case-grid .group:hover .use-case-preview {
+        filter: none;
+      }
+      .device-dialog::backdrop,
+      .video-info-dialog::backdrop {
+        background: rgba(2, 6, 23, 0.85);
+        backdrop-filter: blur(6px);
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #020617;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1e293b;
+        border-radius: 10px;
+      }
+      .nav-link {
+        border-bottom: 2px solid transparent;
+        padding-bottom: 0.25rem;
+        color: #94a3b8;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .nav-link:hover {
+        color: #e2e8f0;
+      }
+      .nav-link.is-active {
+        color: #22d3ee;
+        border-bottom-color: #22d3ee;
+      }
+      @media (max-width: 767px) {
+        .nav-mobile-panel .nav-link {
+          display: block;
+          border-bottom: none;
+          padding: 0.75rem 0.75rem;
+          border-radius: 0.5rem;
+        }
+        .nav-mobile-panel .nav-link.is-active {
+          border-bottom-color: transparent;
+          background: rgba(15, 23, 42, 0.85);
+          border-left: 2px solid #22d3ee;
+          padding-left: calc(0.75rem - 2px);
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="antialiased font-body text-slate-200 selection:bg-purple-500/30"
+  >
+    <!-- TopNavBar -->
+    <nav
+      id="site-nav"
+      class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(0,244,254,0.06)] transition-all duration-300 ease-in-out"
+    >
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex justify-between items-center gap-3 py-3.5 md:py-4">
+          <a
+            href="#"
+            class="flex items-center gap-2 sm:gap-3 min-w-0 shrink"
+            aria-label="SecurAvatars home"
+          >
+            <img
+              alt=""
+              class="h-9 w-9 sm:h-10 sm:w-10 shrink-0 rounded-2xl object-cover ring-1 ring-white/10"
+              src="assets/sa_logo_round.png"
+              width="40"
+              height="40"
+            />
+            <span
+              class="text-lg sm:text-2xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent font-headline truncate"
+              >SecurAvatars</span
+            >
+          </a>
+          <div
+            class="hidden md:flex items-center gap-6 lg:gap-8 font-headline tracking-wide text-sm font-medium uppercase"
+          >
+            <a
+              class="nav-link whitespace-nowrap"
+              href="#problem-solution"
+              data-nav-target="solution"
+              >The solution</a
+            >
+            <a
+              class="nav-link whitespace-nowrap"
+              href="#features"
+              data-nav-target="features"
+              >Key features</a
+            >
+            <a
+              class="nav-link whitespace-nowrap"
+              href="#users"
+              data-nav-target="users"
+              >Who we need</a
+            >
+            <a
+              class="nav-link whitespace-nowrap"
+              href="#download"
+              data-nav-target="download"
+              >Download</a
+            >
+          </div>
+          <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+            <a
+              class="hidden sm:inline-flex p-[2px] rounded-lg bg-prism-gradient hover:scale-105 active:scale-95 transition-all"
+              href="#download"
+            >
+              <span
+                class="block px-6 py-2 rounded-[6px] bg-slate-950 text-white font-bold text-sm uppercase tracking-widest"
+                >Download app</span
+              >
+            </a>
+            <button
+              type="button"
+              id="nav-menu-toggle"
+              class="md:hidden flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-slate-900/80 text-slate-200 hover:bg-slate-800 hover:border-white/25 transition-colors"
+              aria-controls="nav-mobile-panel"
+              aria-expanded="false"
+              aria-label="Open menu"
+            >
+              <span
+                class="material-symbols-outlined text-2xl nav-icon-open"
+                data-icon="menu"
+                aria-hidden="true"
+                >menu</span
+              >
+              <span
+                class="material-symbols-outlined text-2xl nav-icon-close hidden"
+                data-icon="close"
+                aria-hidden="true"
+                >close</span
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          id="nav-mobile-panel"
+          class="nav-mobile-panel md:hidden hidden border-t border-white/10 pb-4 pt-1 -mx-4 sm:-mx-6 px-4 sm:px-6 bg-slate-950/95 font-headline tracking-wide text-sm font-medium uppercase"
+        >
+          <a
+            class="nav-link"
+            href="#problem-solution"
+            data-nav-target="solution"
+            >The solution</a
+          >
+          <a class="nav-link" href="#features" data-nav-target="features"
+            >Key features</a
+          >
+          <a class="nav-link" href="#users" data-nav-target="users"
+            >Who we need</a
+          >
+          <a class="nav-link" href="#download" data-nav-target="download"
+            >Download</a
+          >
+          <a
+            class="mt-3 flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-slate-900 py-3.5 text-white text-sm font-black tracking-widest hover:bg-slate-800 transition-colors"
+            href="#download"
+          >
+            <span
+              class="material-symbols-outlined text-lg text-prism-text"
+              data-icon="download"
+              aria-hidden="true"
+              >download</span
+            >
+            Download app
+          </a>
+        </div>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <section
+      class="relative flex min-h-screen items-center overflow-hidden bg-slate-950 pt-20 pb-12 sm:pb-14 lg:pb-16"
+    >
+      <div class="absolute inset-0 z-0 pointer-events-none">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950"
+        ></div>
+        <div
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] animate-prism-pulse"
+        ></div>
+      </div>
+      <div class="container mx-auto px-8 relative z-10">
+        <div
+          class="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center w-full max-w-7xl mx-auto"
+        >
+          <div class="max-w-2xl lg:max-w-none pt-4 lg:pt-0">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-8"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-prism-gradient animate-pulse"
+              ></span>
+              <span
+                class="font-label text-xs uppercase tracking-[0.22em] font-semibold text-slate-400"
+                >Commercial product · You stay in control</span
+              >
+            </div>
+            <h1
+              class="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-normal text-white leading-[1.22] md:leading-[1.2] tracking-[-0.01em] max-w-2xl lg:max-w-3xl mb-12 text-balance"
+            >
+              <span class="font-medium text-white">Hi! Welcome to</span>
+              <span class="prism-text font-semibold"> SecurAvatars™</span>,<span
+                class="font-body font-light text-slate-400 text-[1.05rem] sm:text-[1.2rem] md:text-[1.35rem] lg:text-[1.45rem] leading-[1.55] block mt-2 md:mt-3"
+              >
+                the world’s first authentication solution for digital avatars
+                that lets users keep control!
+              </span>
+            </h1>
+            <div class="flex flex-wrap gap-6">
+              <a
+                class="group relative inline-flex p-[2px] rounded-xl bg-prism-gradient hover:shadow-[0_0_40px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+                href="#download"
+              >
+                <span
+                  class="block px-10 py-5 rounded-[14px] bg-slate-950 font-black text-white uppercase tracking-widest text-sm"
+                  >Download the app</span
+                >
+              </a>
+              <a
+                class="flex items-center gap-4 px-10 py-5 bg-white/5 border border-white/10 rounded-xl font-bold hover:bg-white/10 transition-all text-sm uppercase tracking-widest"
+                href="#features"
+              >
+                <span
+                  class="material-symbols-outlined text-prism-text"
+                  data-icon="play_circle"
+                  >play_circle</span
+                >
+                Key features
+              </a>
+            </div>
+          </div>
+          <div
+            class="relative w-full max-w-xl mx-auto lg:max-w-none lg:justify-self-end"
+          >
+            <p
+              class="font-label text-sm uppercase tracking-[0.28em] text-slate-500 font-semibold mb-4 text-center lg:text-right"
+            >
+              The problem we’re solving
+            </p>
+            <div
+              class="relative rounded-2xl overflow-hidden border border-white/10 bg-slate-900 shadow-2xl shadow-blue-500/5"
+            >
+              <div class="aspect-video relative w-full bg-black">
+                <iframe
+                  class="absolute inset-0 h-full w-full border-0"
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/GVgtS-1tuBQ"
+                  title="SecurAvatars: Proof of Liveness App"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  loading="lazy"
+                  allowfullscreen
+                ></iframe>
+                <button
+                  type="button"
+                  class="absolute top-3 right-3 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-slate-950/85 text-white shadow-lg backdrop-blur-sm hover:bg-slate-800 hover:border-white/40 transition-colors cursor-pointer"
+                  data-open-dialog="video-dialog-hero"
+                  aria-haspopup="dialog"
+                  aria-controls="video-dialog-hero"
+                  aria-label="About this video"
+                >
+                  <span
+                    class="material-symbols-outlined text-[22px]"
+                    data-icon="info"
+                    aria-hidden="true"
+                    >info</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-14 w-full max-w-7xl mx-auto sm:mt-16 lg:mt-20">
+          <a
+            href="#survey"
+            class="group mx-auto flex max-w-xl items-center justify-center gap-2 rounded-lg px-2 py-1 text-center font-body text-sm font-medium leading-snug text-slate-400 transition-colors hover:text-cyan-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 lg:max-w-none"
+          >
+            <span
+              class="material-symbols-outlined shrink-0 text-lg leading-none text-slate-500 transition-colors group-hover:text-cyan-400"
+              data-icon="arrow_downward"
+              aria-hidden="true"
+              >arrow_downward</span
+            >
+            Take the survey
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Problem & Solution Section -->
+    <section
+      id="problem-solution"
+      class="py-32 bg-slate-950 relative overflow-hidden scroll-mt-28"
+    >
+      <div class="container mx-auto px-8">
+        <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <div class="space-y-8 relative">
+            <div
+              class="absolute -left-12 top-0 w-1 h-full bg-prism-gradient opacity-20"
+            ></div>
+            <div
+              id="problem"
+              class="p-10 bg-slate-900/50 border border-white/5 rounded-2xl relative overflow-hidden group prism-glow scroll-mt-28"
+            >
+              <div
+                class="absolute top-0 left-0 w-full h-1 bg-prism-gradient opacity-0 group-hover:opacity-100 transition-opacity"
+              ></div>
+              <span
+                class="material-symbols-outlined text-red-500 mb-6 text-5xl"
+                data-icon="security_update_warning"
+                >security_update_warning</span
+              >
+              <h3
+                class="font-headline text-3xl font-bold mb-4 tracking-tight text-white"
+              >
+                The problem
+              </h3>
+              <p class="text-slate-400 leading-[1.7] font-light text-pretty">
+                In today’s apps—from location check-ins and product reviews to
+                video dating and gig platforms—it is incredibly easy for
+                accounts to be hijacked or controlled by bots and deepfakes.
+              </p>
+            </div>
+            <div
+              id="solution"
+              class="p-10 bg-prism-gradient/5 border border-white/10 rounded-2xl relative overflow-hidden prism-glow scroll-mt-28"
+            >
+              <div
+                class="absolute inset-0 bg-prism-gradient opacity-[0.03]"
+              ></div>
+              <span
+                class="material-symbols-outlined text-prism-text mb-6 text-5xl"
+                data-icon="verified_user"
+                >verified_user</span
+              >
+              <h3
+                class="font-headline text-3xl font-bold mb-4 tracking-tight text-white"
+              >
+                The solution
+              </h3>
+              <p class="text-slate-400 leading-[1.7] font-light text-pretty">
+                Our revolutionary app links your true physical
+                self to your digital self—in real time. Our patented process lets
+                your existing devices (smartphone, smartwatch, smart ring,
+                etc.) continuously verify that you are real, actively engaged,
+                and physically present.
+              </p>
+            </div>
+          </div>
+          <div class="relative">
+            <div
+              class="absolute inset-0 bg-prism-gradient opacity-10 blur-[80px] animate-prism-pulse"
+            ></div>
+            <div
+              class="relative aspect-square rounded-3xl overflow-hidden border border-white/10"
+            >
+              <div class="absolute inset-0 bg-slate-900/40 z-10"></div>
+              <img
+                class="w-full h-full object-cover opacity-25 mix-blend-screen"
+                alt="Futuristic digital human silhouette overlaid with blue biometric data points and glowing scanning lines in a dark tech environment"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIUfVMuaNN8v4ZVirFBC9BiV6UNeSLupZyNJl07N4FBMbPukacyC-aDZ21S97Ja1mFrgTtvXr0PKm7RLyXQMMekADzqHc6_j9LnK9nG2pO5V5Z6Sx23WFs6yNpt-DLcj9C1fdbeIn5xS90u6TYSGHo52nMftI51s4OMgnr1_J_TIVwn_u1Y_72i0oWqUD1cFnB2H-UXSCIXOexfVizQZtUFwyjk7fdhzUNTtQXT_FsmI8ksnxwEqTIbf8ClmpOPA8feCalG7y-Ilu2"
+              />
+              <div
+                class="absolute inset-0 z-20 flex flex-col items-center justify-center p-12 text-center"
+              >
+                <div
+                  class="relative mb-8 flex h-52 w-52 items-center justify-center"
+                >
+                  <div
+                    class="absolute inset-0 rounded-full border-2 border-white/20"
+                  ></div>
+                  <div
+                    class="absolute inset-0 rounded-full border-2 border-prism-text animate-ping opacity-20"
+                  ></div>
+                  <img
+                    src="assets/sa_logo_round.png"
+                    alt="SecurAvatars"
+                    class="relative z-10 h-[7.5rem] w-[7.5rem] object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]"
+                    width="120"
+                    height="120"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <span class="proof-of-human-mark text-base tracking-widest"
+                    >Proof of Liveness</span
+                  >
+                  <p class="text-white/60 font-light text-sm text-pretty max-w-[220px]">
+                    Linked to your real body—not a bot, simulation, or deepfake.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent z-10"
+              ></div>
+              <div
+                class="absolute top-0 left-0 w-full h-[2px] bg-prism-gradient shadow-[0_0_15px_#3b82f6] animate-scan z-20"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Key Features Section -->
+    <section class="py-32 bg-slate-950 scroll-mt-28" id="features">
+      <div class="container mx-auto px-8">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8"
+        >
+          <div class="max-w-2xl">
+            <h2
+              class="font-headline text-5xl md:text-6xl font-black tracking-tight md:tracking-tighter leading-[1.05] mb-6 text-balance"
+            >
+              Key <br /><span class="prism-text">features</span>
+            </h2>
+          </div>
+          <div
+            class="h-[2px] flex-grow bg-white/5 ml-8 mb-4 hidden lg:block"
+          ></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-12">
+          <!-- Feature 1 -->
+          <div
+            class="group relative p-12 bg-slate-900 border border-white/5 rounded-3xl transition-all hover:bg-slate-800/50 hover:border-blue-500/30 overflow-hidden"
+          >
+            <div
+              class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"
+            >
+              <span
+                class="material-symbols-outlined text-9xl"
+                data-icon="monitoring"
+                >monitoring</span
+              >
+            </div>
+            <span
+              class="material-symbols-outlined text-blue-500 text-5xl mb-8 block"
+              data-icon="monitoring"
+              >monitoring</span
+            >
+            <h4 class="font-headline text-2xl font-bold mb-6 tracking-tight text-white">
+              Dynamic, real-time animations
+            </h4>
+            <p class="text-slate-400 font-light leading-[1.65] text-pretty">
+              By running in place or waving your arms or breathing faster, you
+              can change your heart rate to prove it’s really you—not a bot, a
+              simulation or a deepfake.
+            </p>
+          </div>
+          <!-- Feature 2 -->
+          <div
+            class="group relative p-12 bg-slate-900 border border-white/5 rounded-3xl transition-all hover:bg-slate-800/50 hover:border-purple-500/30 overflow-hidden"
+          >
+            <div
+              class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"
+            >
+              <span
+                class="material-symbols-outlined text-9xl"
+                data-icon="vital_signs"
+                >vital_signs</span
+              >
+            </div>
+            <span
+              class="material-symbols-outlined text-purple-500 text-5xl mb-8 block"
+              data-icon="vital_signs"
+              >vital_signs</span
+            >
+            <h4 class="font-headline text-2xl font-bold mb-6 tracking-tight text-white">
+              Continuous security &amp;
+              <span class="proof-of-human-mark">Proof of Liveness</span>
+            </h4>
+            <p class="text-slate-400 font-light leading-[1.65] text-pretty">
+              Once you verify yourself in a session, your avatar stops animating
+              if you step away, fall asleep or disconnect.
+            </p>
+          </div>
+          <!-- Feature 3 -->
+          <div
+            class="group relative p-12 bg-slate-900 border border-white/5 rounded-3xl transition-all hover:bg-slate-800/50 hover:border-pink-500/30 overflow-hidden"
+          >
+            <div
+              class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"
+            >
+              <span
+                class="material-symbols-outlined text-9xl"
+                data-icon="lock_person"
+                >lock_person</span
+              >
+            </div>
+            <span
+              class="material-symbols-outlined text-pink-500 text-5xl mb-8 block"
+              data-icon="lock_person"
+              >lock_person</span
+            >
+            <h4 class="font-headline text-2xl font-bold mb-6 tracking-tight text-white">
+              Total user control
+            </h4>
+            <p class="text-slate-400 font-light leading-[1.65] text-pretty">
+              You control the entire process. Nobody else. Just you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Early adopters Section -->
+    <section class="py-32 bg-slate-950 relative scroll-mt-28" id="users">
+      <div class="container mx-auto px-8">
+        <div class="text-center max-w-3xl mx-auto mb-20">
+          <p
+            class="font-label text-prism-text font-semibold uppercase tracking-[0.35em] text-sm mb-4"
+          >
+            Users
+          </p>
+          <h2
+            class="font-headline text-5xl font-black tracking-tight text-balance text-white"
+          >
+            Who we’re looking for
+          </h2>
+          <p
+            class="text-slate-400 font-light text-lg leading-relaxed mt-8 text-pretty max-w-3xl mx-auto"
+          >
+            We are seeking early adopters who post location updates or reviews,
+            use video on dating apps, or rely on on-site proof for gig work—to
+            try SecurAvatars™.
+          </p>
+        </div>
+        <div class="use-case-grid grid md:grid-cols-3 gap-8">
+          <!-- Scenario 1 -->
+          <div
+            class="group relative bg-slate-900 rounded-3xl overflow-hidden border border-white/5 transition-all hover:border-white/20"
+          >
+            <div class="h-80 relative overflow-hidden">
+              <img
+                class="use-case-preview w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-700"
+                alt="Social profile and feed showing location details and a post with a verification badge—example of trustworthy check-ins and reviews"
+                src="assets/use-case-location-reviews.gif"
+                loading="lazy"
+                decoding="async"
+              />
+              <div
+                class="absolute top-6 left-6 inline-flex p-[2px] rounded bg-prism-gradient"
+              >
+                <span
+                  class="block px-3 py-1 rounded-[2px] bg-slate-950 text-white text-xs font-black uppercase tracking-widest"
+                  >Location &amp; reviews</span
+                >
+              </div>
+            </div>
+            <div class="p-10 relative z-10">
+              <h4
+                class="font-headline text-2xl font-bold mb-4 tracking-tight text-white"
+              >
+                Check-ins &amp; reviews
+              </h4>
+              <p class="text-slate-400 font-light text-sm md:text-base leading-relaxed mb-6 text-pretty">
+                Show you really were there—<em class="text-slate-300 not-italic"
+                  >“I really am having a gelato in Rome!”</em
+                >—so friends and followers can trust your updates and product
+                reviews.
+              </p>
+              <div
+                class="flex items-center gap-2 text-prism-text text-sm font-black uppercase tracking-widest"
+              >
+                <span
+                  class="material-symbols-outlined text-sm"
+                  data-icon="rate_review"
+                  >rate_review</span
+                >
+                Social posts · local discovery
+              </div>
+            </div>
+          </div>
+          <!-- Scenario 2 -->
+          <div
+            class="group relative bg-slate-900 rounded-3xl overflow-hidden border border-white/5 transition-all hover:border-white/20"
+          >
+            <div class="h-80 relative overflow-hidden">
+              <img
+                class="use-case-preview w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-700"
+                alt="Dating app video selfie verification: step-by-step flow to confirm you match your photos with profile badge pending review"
+                src="assets/use-case-dating-video.gif"
+                loading="lazy"
+                decoding="async"
+              />
+              <div
+                class="absolute top-6 left-6 inline-flex p-[2px] rounded bg-prism-gradient"
+              >
+                <span
+                  class="block px-3 py-1 rounded-[2px] bg-slate-950 text-white text-xs font-black uppercase tracking-widest"
+                  >Dating · video chat</span
+                >
+              </div>
+            </div>
+            <div class="p-10 relative z-10">
+              <h4
+                class="font-headline text-2xl font-bold mb-4 tracking-tight text-white"
+              >
+                Video dates you can trust
+              </h4>
+              <p class="text-slate-400 font-light text-sm md:text-base leading-relaxed mb-6 text-pretty">
+                On dating sites, live video should mean something—<em
+                  class="text-slate-300 not-italic"
+                  >“I’m a real person and not an AI scammer!”</em
+                > Help us prove presence during calls, not just pixels on a
+                screen.
+              </p>
+              <div
+                class="flex items-center gap-2 text-prism-text text-sm font-black uppercase tracking-widest"
+              >
+                <span
+                  class="material-symbols-outlined text-sm"
+                  data-icon="videocam"
+                  >videocam</span
+                >
+                Dating apps · live verification
+              </div>
+            </div>
+          </div>
+          <!-- Scenario 3 -->
+          <div
+            class="group relative bg-slate-900 rounded-3xl overflow-hidden border border-white/5 transition-all hover:border-white/20"
+          >
+            <div class="h-80 relative overflow-hidden">
+              <img
+                class="use-case-preview w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-700"
+                alt="Live map order tracking with courier profile, route, ETA, and delivery timeline—example of gig work location confirmation"
+                src="assets/use-case-gig-work.gif"
+                loading="lazy"
+                decoding="async"
+              />
+              <div
+                class="absolute top-6 left-6 inline-flex p-[2px] rounded bg-prism-gradient"
+              >
+                <span
+                  class="block px-3 py-1 rounded-[2px] bg-slate-950 text-white text-xs font-black uppercase tracking-widest"
+                  >Gig work</span
+                >
+              </div>
+            </div>
+            <div class="p-10 relative z-10">
+              <h4
+                class="font-headline text-2xl font-bold mb-4 tracking-tight text-white"
+              >
+                On-site confirmation
+              </h4>
+              <p class="text-slate-400 font-light text-sm md:text-base leading-relaxed mb-6 text-pretty">
+                Dog walking, deliveries, home services—clients want to know
+                <em class="text-slate-300 not-italic"
+                  >“this is really me walking your dog at 10&nbsp;am.”</em
+                >
+                Tie check-ins to a living, present worker.
+              </p>
+              <div
+                class="flex items-center gap-2 text-prism-text text-sm font-black uppercase tracking-widest"
+              >
+                <span
+                  class="material-symbols-outlined text-sm"
+                  data-icon="pets"
+                  >pets</span
+                >
+                Gig platforms · field workers
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Compatible Devices Section -->
+    <section
+      class="py-32 bg-slate-950 border-y border-white/5 scroll-mt-28"
+      id="devices"
+    >
+      <div class="container mx-auto px-8 max-w-3xl text-center">
+        <h2
+          class="font-headline text-5xl md:text-6xl font-black mb-8 tracking-tight text-white text-balance"
+        >
+          Devices
+        </h2>
+        <p
+          class="text-slate-300 font-light text-lg md:text-xl leading-relaxed text-pretty mb-10"
+        >
+          The app uses what you already carry and wear to show you’re real and
+          present. For this MVP, you need a
+          <strong class="text-white font-semibold not-italic"
+            >phone paired with a compatible wearable</strong
+          >
+          so biometrics can reach the app—a phone alone isn’t enough. Tap a tag
+          for platform requirements.
+        </p>
+        <div
+          class="flex w-full max-w-xl mx-auto flex-col gap-3 sm:flex-row sm:items-stretch"
+          role="group"
+          aria-label="Devices by platform"
+        >
+          <button
+            type="button"
+            class="device-tag inline-flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-2xl border border-white/15 bg-slate-900/80 px-4 py-3 sm:px-5 font-headline text-sm font-black uppercase tracking-widest text-white hover:border-blue-500/50 hover:bg-slate-800 transition-colors cursor-pointer"
+            data-open-dialog="device-dialog-android"
+            aria-haspopup="dialog"
+            aria-controls="device-dialog-android"
+          >
+            <span class="inline-flex items-center gap-2">
+              <span
+                class="material-symbols-outlined text-lg text-blue-400"
+                data-icon="android"
+                aria-hidden="true"
+                >android</span
+              >
+              Android
+            </span>
+            <span
+              class="text-xs font-normal normal-case tracking-normal text-blue-200/90"
+              >7.0+</span
+            >
+          </button>
+          <button
+            type="button"
+            class="device-tag inline-flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-2xl border border-white/15 bg-slate-900/80 px-4 py-3 sm:px-5 font-headline text-sm font-black uppercase tracking-widest text-white hover:border-white/40 hover:bg-slate-800 transition-colors cursor-pointer"
+            data-open-dialog="device-dialog-ios"
+            aria-haspopup="dialog"
+            aria-controls="device-dialog-ios"
+          >
+            <span class="inline-flex items-center gap-2">
+              <span
+                class="material-symbols-outlined text-lg text-slate-300"
+                data-icon="phone_iphone"
+                aria-hidden="true"
+                >phone_iphone</span
+              >
+              iOS
+            </span>
+            <span
+              class="text-xs font-normal normal-case tracking-normal text-slate-300/90"
+              >18.2+</span
+            >
+          </button>
+          <button
+            type="button"
+            class="device-tag inline-flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-2xl border border-white/15 bg-slate-900/80 px-4 py-3 sm:px-5 font-headline text-sm font-black uppercase tracking-widest text-white hover:border-purple-500/50 hover:bg-slate-800 transition-colors cursor-pointer"
+            data-open-dialog="device-dialog-wearable"
+            aria-haspopup="dialog"
+            aria-controls="device-dialog-wearable"
+          >
+            <span class="inline-flex items-center gap-2">
+              <span
+                class="material-symbols-outlined text-lg text-purple-400"
+                data-icon="watch"
+                aria-hidden="true"
+                >watch</span
+              >
+              Wearable
+            </span>
+            <span
+              class="text-sm font-medium normal-case tracking-wide text-purple-200/80"
+              >Click to view</span
+            >
+          </button>
+        </div>
+      </div>
+      <dialog
+        id="device-dialog-android"
+        class="device-dialog rounded-2xl border border-white/10 bg-slate-900 p-0 text-left text-slate-300 shadow-2xl max-w-lg w-[calc(100vw-2rem)]"
+        aria-labelledby="device-dialog-android-title"
+      >
+        <div class="p-8 pt-10">
+          <h3
+            id="device-dialog-android-title"
+            class="font-headline text-lg font-black uppercase tracking-widest text-white mb-4 flex items-center gap-2"
+          >
+            <span
+              class="material-symbols-outlined text-blue-400"
+              data-icon="android"
+              aria-hidden="true"
+              >android</span
+            >
+            Android
+          </h3>
+          <p class="text-sm font-light leading-relaxed mb-4">
+            SecurAvatars for Android runs on
+            <strong class="text-slate-200 font-semibold"
+              >Android 7.0 (Nougat) and newer</strong
+            >
+            — so most phones from the last several years are supported. If your
+            device can install current apps from Google Play, you’re likely
+            good to go.
+          </p>
+          <p class="text-sm font-light leading-relaxed text-slate-400">
+            Pair your phone with a compatible wearable so heart-rate data can
+            reach the app; see <strong class="text-slate-300 font-semibold">Wearable</strong> for supported bands and watches.
+          </p>
+          <form method="dialog" class="mt-8">
+            <button
+              type="submit"
+              class="w-full rounded-xl border border-white/15 bg-slate-800 py-3 font-headline text-sm font-black uppercase tracking-widest text-white hover:bg-slate-700 transition-colors"
+            >
+              Close
+            </button>
+          </form>
+        </div>
+      </dialog>
+      <dialog
+        id="device-dialog-ios"
+        class="device-dialog rounded-2xl border border-white/10 bg-slate-900 p-0 text-left text-slate-300 shadow-2xl max-w-lg w-[calc(100vw-2rem)]"
+        aria-labelledby="device-dialog-ios-title"
+      >
+        <div class="p-8 pt-10">
+          <h3
+            id="device-dialog-ios-title"
+            class="font-headline text-lg font-black uppercase tracking-widest text-white mb-4 flex items-center gap-2"
+          >
+            <span
+              class="material-symbols-outlined text-slate-300"
+              data-icon="phone_iphone"
+              aria-hidden="true"
+              >phone_iphone</span
+            >
+            iOS
+          </h3>
+          <p class="text-sm font-light leading-relaxed mb-4">
+            You’ll need an iPhone running
+            <strong class="text-slate-200 font-semibold"
+              >iOS 18.2 or later</strong
+            >
+            . Update to the latest iOS your model supports if you’re unsure—then
+            install SecurAvatars from the App Store when it’s available.
+          </p>
+          <p class="text-sm font-light leading-relaxed text-slate-400">
+            Like on Android, a
+            <strong class="text-slate-300 font-semibold">paired wearable</strong>
+            is part of the MVP: some watches need a bridge app, which we list
+            under <strong class="text-slate-300 font-semibold">Wearable</strong>.
+          </p>
+          <form method="dialog" class="mt-8">
+            <button
+              type="submit"
+              class="w-full rounded-xl border border-white/15 bg-slate-800 py-3 font-headline text-sm font-black uppercase tracking-widest text-white hover:bg-slate-700 transition-colors"
+            >
+              Close
+            </button>
+          </form>
+        </div>
+      </dialog>
+      <dialog
+        id="device-dialog-wearable"
+        class="device-dialog rounded-2xl border border-white/10 bg-slate-900 p-0 text-left text-slate-300 shadow-2xl max-w-2xl w-[calc(100vw-2rem)] max-h-[90vh]"
+        aria-labelledby="device-dialog-wearable-title"
+      >
+        <div class="flex max-h-[90vh] flex-col">
+          <div class="overflow-y-auto px-8 pt-10 pb-4">
+            <h3
+              id="device-dialog-wearable-title"
+              class="font-headline text-lg font-black uppercase tracking-widest text-white mb-4 flex items-center gap-2"
+            >
+              <span
+                class="material-symbols-outlined text-purple-400"
+                data-icon="watch"
+                aria-hidden="true"
+                >watch</span
+              >
+              Wearable
+            </h3>
+            <p class="text-sm font-light leading-relaxed mb-6">
+              Use a band or watch paired with your phone that supports
+              <strong class="text-slate-200 font-semibold"
+                >Heart Rate Profile broadcast over Bluetooth Low Energy</strong
+              >
+              (or otherwise matches our integrations). Exact behavior varies by
+              vendor.
+            </p>
+            <p
+              class="font-headline text-sm font-black uppercase tracking-[0.2em] text-slate-500 mb-3"
+            >
+              Compatible devices
+            </p>
+            <ul class="space-y-4 text-sm font-light leading-relaxed pb-2">
+              <li
+                class="flex gap-2 items-start rounded-xl border border-cyan-500/35 bg-cyan-500/[0.08] px-3 py-2.5 -mx-1"
+              >
+                <span class="text-cyan-400 shrink-0" aria-hidden="true">·</span>
+                <span class="font-semibold text-slate-100 tracking-tight"
+                  >Xiaomi Smart Band 10
+                  <em class="text-cyan-200/90 not-italic font-medium"
+                    >(recommended)</em
+                  ></span
+                >
+              </li>
+              <li class="flex gap-2 items-start">
+                <span class="text-prism-text shrink-0" aria-hidden="true">·</span>
+                <div class="min-w-0 space-y-1.5">
+                  <div class="text-slate-300 font-normal">
+                    Apple Watch Series 10 / Ultra 3
+                    <em class="text-slate-500 not-italic font-normal">
+                      (with bridge app)</em
+                    >
+                  </div>
+                  <p class="text-sm font-light leading-relaxed text-slate-400">
+                    Use HeartCast on iPhone and Apple Watch, allow Health access,
+                    then tap &quot;Start&quot; on the phone—SecurAvatars then sees
+                    live HR over Bluetooth like a standard chest strap.
+                  </p>
+                </div>
+              </li>
+              <li class="flex gap-2 items-start">
+                <span class="text-prism-text shrink-0" aria-hidden="true">·</span>
+                <div class="min-w-0 space-y-1.5">
+                  <div class="text-slate-300 font-normal">
+                    Samsung Galaxy Watch 7 / Ultra
+                    <em class="text-slate-500 not-italic font-normal">
+                      (with bridge app)</em
+                    >
+                  </div>
+                  <p class="text-sm font-light leading-relaxed text-slate-400">
+                    On the watch, install Heart for Bluetooth from Play, open it,
+                    tap start, allow body-sensor permission—it broadcasts BLE
+                    heart rate your phone (and SecurAvatars) can pick up.
+                  </p>
+                </div>
+              </li>
+              <li class="flex gap-2 items-start">
+                <span class="text-prism-text shrink-0" aria-hidden="true">·</span>
+                <div class="min-w-0 space-y-1.5">
+                  <div class="text-slate-300 font-normal">
+                    Google Pixel Watch 3 / 4
+                    <em class="text-slate-500 not-italic font-normal">
+                      (with bridge app)</em
+                    >
+                  </div>
+                  <p class="text-sm font-light leading-relaxed text-slate-400">
+                    Prefer Heart for Bluetooth on the watch and start
+                    broadcasting—or use Connected Fitness in quick settings
+                    (heart with curved lines) to share HR with compatible phone
+                    apps.
+                  </p>
+                </div>
+              </li>
+              <li class="flex gap-2 items-start">
+                <span class="text-prism-text shrink-0" aria-hidden="true">·</span>
+                <span>Fitbit Charge 6</span>
+              </li>
+              <li class="flex gap-2 items-start">
+                <span class="text-prism-text shrink-0" aria-hidden="true">·</span>
+                <span>Garmin HRM-Pro and other Garmin products</span>
+              </li>
+              <li class="flex gap-2 items-start">
+                <span class="text-prism-text shrink-0" aria-hidden="true">·</span>
+                <span>Polar H10 and other Polar products</span>
+              </li>
+              <li class="flex gap-2 items-start">
+                <span class="text-prism-text shrink-0" aria-hidden="true">·</span>
+                <span
+                  >Other sport bands with Heart Rate Profile broadcast over
+                  BLE</span
+                >
+              </li>
+            </ul>
+          </div>
+          <form
+            method="dialog"
+            class="shrink-0 border-t border-white/10 px-8 py-5 bg-slate-900 rounded-b-2xl"
+          >
+            <button
+              type="submit"
+              class="w-full rounded-xl border border-white/15 bg-slate-800 py-3 font-headline text-sm font-black uppercase tracking-widest text-white hover:bg-slate-700 transition-colors"
+            >
+              Close
+            </button>
+          </form>
+        </div>
+      </dialog>
+    </section>
+    <!-- Technical Demos Section -->
+    <section class="py-32 bg-slate-950 scroll-mt-28" id="install">
+      <div class="container mx-auto max-w-6xl px-8">
+        <header class="w-full mb-10 text-center md:text-left">
+          <h2
+            class="font-headline text-4xl md:text-5xl font-black tracking-tight leading-[1.1] text-balance text-white w-full mb-4"
+          >
+            See it <span class="prism-text">in action</span>
+          </h2>
+          <div
+            class="h-px w-full max-w-none bg-gradient-to-r from-transparent via-white/20 to-transparent md:from-white/15 md:via-white/10 md:to-transparent mb-6"
+          ></div>
+          <p
+            class="text-slate-500 font-light text-base uppercase tracking-[0.2em] md:tracking-widest"
+          >
+            Install &amp; use the build
+          </p>
+        </header>
+        <div class="w-full grid gap-10 items-start md:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]">
+          <div class="w-full">
+            <div
+              class="group relative rounded-3xl overflow-hidden border border-white/10 bg-slate-900 shadow-xl shadow-black/20 md:max-w-md md:ml-0 md:mr-auto mx-auto"
+            >
+              <div class="aspect-[9/16] relative w-full bg-black">
+              <iframe
+                class="absolute inset-0 h-full w-full border-0"
+                width="390"
+                height="867"
+                src="https://www.youtube.com/embed/pwFf7tCwHCM"
+                title="SecurAvatars trial app"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                loading="lazy"
+                allowfullscreen
+              ></iframe>
+              <button
+                type="button"
+                class="absolute top-3 right-3 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-slate-950/85 text-white shadow-lg backdrop-blur-sm hover:bg-slate-800 hover:border-white/40 transition-colors cursor-pointer"
+                data-open-dialog="video-dialog-install"
+                aria-haspopup="dialog"
+                aria-controls="video-dialog-install"
+                aria-label="About this video"
+              >
+                <span
+                  class="material-symbols-outlined text-[22px]"
+                  data-icon="info"
+                  aria-hidden="true"
+                  >info</span
+                >
+              </button>
+              </div>
+              <div class="p-8">
+                <p class="text-slate-400 text-base font-light leading-[1.65] text-pretty">
+                  Follow along to install the build, connect your wearable, and
+                  walk through a typical session—from download to
+                  <span class="proof-of-human-mark">Proof of Liveness</span> in
+                  the app.
+                </p>
+              </div>
+            </div>
+          </div>
+          <aside
+            class="rounded-3xl border border-white/10 bg-slate-900/60 p-8 shadow-[0_0_40px_-12px_rgba(59,130,246,0.18)]"
+            aria-label="Offline-friendly steps"
+          >
+            <p
+              class="font-headline text-sm font-black uppercase tracking-[0.22em] text-slate-300 mb-4"
+            >
+              Steps
+            </p>
+            <ol class="space-y-3 text-slate-300 font-light leading-relaxed">
+              <li class="flex gap-3">
+                <span class="text-prism-text font-semibold tabular-nums">1.</span>
+                <span>Download the app</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-prism-text font-semibold tabular-nums">2.</span>
+                <span>Allow nearby device syncing</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-prism-text font-semibold tabular-nums">3.</span>
+                <span>Select your device, then connect</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-prism-text font-semibold tabular-nums">4.</span>
+                <span>
+                  See your real-time heartbeat on your phone. Change your heartbeat by
+                  running in place, waving your arms, holding your breath, etc.
+                </span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-prism-text font-semibold tabular-nums">5.</span>
+                <span>Disconnect to end syncing</span>
+              </li>
+            </ol>
+            <p class="mt-5 text-xs text-slate-500 font-light leading-relaxed">
+              Some viewers may be in areas with poor Wi‑Fi—these steps mirror what’s shown in the demo.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+    <dialog
+      id="video-dialog-hero"
+      class="video-info-dialog device-dialog rounded-2xl border border-white/10 bg-slate-900 p-0 text-left text-slate-300 shadow-2xl max-w-lg w-[calc(100vw-2rem)]"
+      aria-labelledby="video-dialog-hero-title"
+    >
+      <div class="p-8 pt-10">
+        <h3
+          id="video-dialog-hero-title"
+          class="font-headline text-lg font-black uppercase tracking-widest text-white mb-6 flex items-center gap-2"
+        >
+          <span
+            class="material-symbols-outlined text-blue-400"
+            data-icon="info"
+            aria-hidden="true"
+            >info</span
+          >
+          About this video
+        </h3>
+        <dl class="space-y-5 text-sm font-light leading-relaxed">
+          <div>
+            <dt class="font-headline text-xs font-black uppercase tracking-[0.2em] text-slate-500 mb-1.5">
+              What it’s about
+            </dt>
+            <dd class="text-slate-300">
+              Why digital identities are easy to fake today, and how SecurAvatars
+              ties your real-time body signals to your avatar so others can
+              trust you’re present—not a bot or deepfake.
+            </dd>
+          </div>
+          <div>
+            <dt class="font-headline text-xs font-black uppercase tracking-[0.2em] text-slate-500 mb-1.5">
+              Description
+            </dt>
+            <dd class="text-slate-400">
+              A short overview of the problem (hijacked accounts and synthetic
+              presence in social posts, dating video, and gig check-ins) and our
+              approach: continuous
+              <span class="proof-of-human-mark">Proof of Liveness</span> using
+              devices you already wear.
+            </dd>
+          </div>
+          <div>
+            <dt class="font-headline text-xs font-black uppercase tracking-[0.2em] text-slate-500 mb-1.5">
+              Length
+            </dt>
+            <dd class="text-slate-300">Approximately 6 minutes</dd>
+          </div>
+        </dl>
+        <form method="dialog" class="mt-8">
+          <button
+            type="submit"
+            class="w-full rounded-xl border border-white/15 bg-slate-800 py-3 font-headline text-sm font-black uppercase tracking-widest text-white hover:bg-slate-700 transition-colors"
+          >
+            Close
+          </button>
+        </form>
+      </div>
+    </dialog>
+    <dialog
+      id="video-dialog-install"
+      class="video-info-dialog device-dialog rounded-2xl border border-white/10 bg-slate-900 p-0 text-left text-slate-300 shadow-2xl max-w-lg w-[calc(100vw-2rem)]"
+      aria-labelledby="video-dialog-install-title"
+    >
+      <div class="p-8 pt-10">
+        <h3
+          id="video-dialog-install-title"
+          class="font-headline text-lg font-black uppercase tracking-widest text-white mb-6 flex items-center gap-2"
+        >
+          <span
+            class="material-symbols-outlined text-emerald-400"
+            data-icon="info"
+            aria-hidden="true"
+            >info</span
+          >
+          About this video
+        </h3>
+        <dl class="space-y-5 text-sm font-light leading-relaxed">
+          <div>
+            <dt class="font-headline text-xs font-black uppercase tracking-[0.2em] text-slate-500 mb-1.5">
+              What it’s about
+            </dt>
+            <dd class="text-slate-300">
+              How to get the SecurAvatars app onto your phone, pair your
+              wearable, and use the app end-to-end.
+            </dd>
+          </div>
+          <div>
+            <dt class="font-headline text-xs font-black uppercase tracking-[0.2em] text-slate-500 mb-1.5">
+              Description
+            </dt>
+            <dd class="text-slate-400">
+              A practical walkthrough: where to download, permissions and
+              Bluetooth, pairing your band or watch, and what you’ll see during
+              setup and a normal session.
+            </dd>
+          </div>
+          <div>
+            <dt class="font-headline text-xs font-black uppercase tracking-[0.2em] text-slate-500 mb-1.5">
+              Length
+            </dt>
+            <dd class="text-slate-300">Approximately 1 minutes</dd>
+          </div>
+        </dl>
+        <form method="dialog" class="mt-8">
+          <button
+            type="submit"
+            class="w-full rounded-xl border border-white/15 bg-slate-800 py-3 font-headline text-sm font-black uppercase tracking-widest text-white hover:bg-slate-700 transition-colors"
+          >
+            Close
+          </button>
+        </form>
+      </div>
+    </dialog>
+    <!-- Download & Survey Section -->
+    <section
+      class="py-32 lg:py-36 bg-slate-950 relative overflow-hidden scroll-mt-28"
+      id="download"
+    >
+      <div class="absolute inset-0 bg-prism-gradient opacity-[0.03]"></div>
+      <div class="container mx-auto px-8 relative z-10 text-center max-w-4xl">
+        <h2
+          class="font-headline text-6xl md:text-7xl font-black tracking-tight md:tracking-tighter mb-8 leading-[1.02] text-balance text-white"
+        >
+          Ready to bridge the gap <br /><span class="prism-text"
+            >between your physical and virtual self?</span
+          >
+        </h2>
+        <p class="text-xl text-slate-400 mb-10 font-light max-w-2xl mx-auto leading-[1.65] text-pretty">
+          Download SecurAvatars™ today, try it out, and submit the short survey
+          (also below). Tell us what you like and what you want. We envision
+          future features such as skin color changes, winking/blinking, pulsating
+          auras and other fun animations based on your feedback.
+        </p>
+        <p
+          class="text-lg sm:text-xl text-white font-medium mb-8 max-w-2xl mx-auto leading-[1.65] text-pretty"
+        >
+          Download the SecurAvatars™ App today
+        </p>
+        <div
+          class="flex flex-col md:flex-row items-center justify-center gap-6 mb-20"
+        >
+          <a
+            class="w-full md:w-auto group relative flex items-center justify-center gap-4 bg-white text-slate-950 py-6 px-12 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-prism-gradient hover:text-white transition-all"
+            href="https://drive.google.com/file/d/1s6K3odG02wkHr-zV7ImE1Jt0sBf6VBLF/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download SecurAvatars for Android (APK)"
+          >
+            <span class="material-symbols-outlined" data-icon="android"
+              >android</span
+            >
+            Download for Android
+          </a>
+          <div
+            class="w-full md:w-auto flex items-center justify-center gap-4 bg-slate-700/60 text-slate-400 py-6 px-12 rounded-2xl font-black uppercase tracking-widest text-sm cursor-not-allowed pointer-events-none border border-white/5"
+            role="status"
+            aria-disabled="true"
+            aria-label="iOS version coming soon"
+          >
+            <span class="material-symbols-outlined" data-icon="apple">ios</span>
+            iOS Version <span class="italic">Coming Soon</span>
+          </div>
+        </div>
+        <div
+          id="survey"
+          class="relative max-w-xl mx-auto scroll-mt-28 overflow-hidden rounded-3xl border border-white/10 bg-slate-900/60 p-1 shadow-[0_0_40px_-12px_rgba(59,130,246,0.25)]"
+        >
+          <div
+            class="rounded-[1.35rem] bg-slate-950/90 px-6 py-8 sm:px-8 sm:py-10 backdrop-blur-sm"
+          >
+            <p
+              class="text-cyan-200 text-base sm:text-lg font-medium leading-relaxed text-pretty mb-6 text-center drop-shadow-[0_0_24px_rgba(34,211,238,0.35)]"
+            >
+              Beta feedback survey — confidential, ~6 minutes. Your answers
+              shape what we build next.
+            </p>
+            <a
+              class="group relative flex w-full items-stretch justify-center overflow-hidden rounded-2xl p-[2px] bg-prism-gradient transition-transform hover:scale-[1.02] active:scale-[0.99]"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdQ5Fo7nbLubyCGQiEcfDEQyctN8A4K4pkJoxckSqtxLbTkvg/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span
+                class="flex w-full flex-col items-center justify-center gap-2 rounded-[14px] bg-slate-950 px-6 py-5 text-center sm:flex-row sm:gap-4"
+              >
+                <span
+                  class="material-symbols-outlined text-2xl text-cyan-400"
+                  data-icon="assignment_add"
+                  aria-hidden="true"
+                  >assignment_add</span
+                >
+                <span class="flex flex-col items-center sm:items-start gap-0.5">
+                  <span
+                    class="font-headline font-black text-sm uppercase tracking-[0.2em] text-white group-hover:text-cyan-100 transition-colors"
+                    >Take the survey</span
+                  >
+                  <span
+                    class="text-xs font-normal normal-case tracking-normal text-slate-500"
+                    >Google Form · opens in a new tab</span
+                  >
+                </span>
+                <span
+                  class="material-symbols-outlined text-prism-text hidden sm:inline text-xl group-hover:translate-x-1 transition-transform"
+                  data-icon="open_in_new"
+                  aria-hidden="true"
+                  >open_in_new</span
+                >
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="w-full border-t border-white/5 bg-slate-950">
+      <div
+        class="mx-auto flex max-w-7xl flex-col items-center gap-6 px-8 py-12 text-center sm:py-14"
+      >
+        <a
+          href="#"
+          class="flex items-center gap-3 transition-opacity hover:opacity-90"
+          aria-label="SecurAvatars home"
+        >
+          <img
+            alt=""
+            class="h-9 w-9 rounded-xl object-cover ring-1 ring-white/10"
+            src="assets/sa_logo_round.png"
+            width="36"
+            height="36"
+          />
+          <span
+            class="font-headline text-base font-semibold tracking-tight text-slate-100"
+            >SecurAvatars™</span
+          >
+        </a>
+        <p
+          class="max-w-2xl font-label text-sm tracking-wide text-slate-500 leading-relaxed normal-case"
+        >
+          © 2026 SecurAvatars Inc. SecurAvatars™ is a commercial product and
+          trademark of SuitesTech Inc.
+        </p>
+        <button
+          type="button"
+          class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-slate-900/80 px-6 py-2.5 font-label text-xs font-semibold uppercase tracking-widest text-slate-300 transition-colors hover:border-pink-500/40 hover:bg-slate-800 hover:text-pink-300 cursor-pointer"
+          data-open-dialog="contact-dialog"
+          aria-haspopup="dialog"
+          aria-controls="contact-dialog"
+        >
+          Contact
+        </button>
+      </div>
+    </footer>
+    <dialog
+      id="contact-dialog"
+      class="device-dialog rounded-2xl border border-white/10 bg-slate-900 p-0 text-left text-slate-300 shadow-2xl max-w-lg w-[calc(100vw-2rem)]"
+      aria-labelledby="contact-dialog-title"
+    >
+      <div class="p-8 pt-10">
+        <h3
+          id="contact-dialog-title"
+          class="font-headline text-lg font-black uppercase tracking-widest text-white mb-6 flex items-center gap-2"
+        >
+          <span
+            class="material-symbols-outlined text-pink-400"
+            data-icon="mail"
+            aria-hidden="true"
+            >mail</span
+          >
+          Contact
+        </h3>
+        <p class="text-sm font-light text-slate-400 mb-3">
+          Email us—we’ll get back to you as soon as we can.
+        </p>
+        <p class="mb-8">
+          <a
+            class="break-all text-lg font-medium text-cyan-300 hover:text-cyan-200 underline decoration-cyan-500/40 underline-offset-4"
+            href="mailto:shirley@suitestech.com"
+            >shirley@suitestech.com</a
+          >
+        </p>
+        <form method="dialog">
+          <button
+            type="submit"
+            class="w-full rounded-xl border border-white/15 bg-slate-800 py-3 font-headline text-sm font-black uppercase tracking-widest text-white hover:bg-slate-700 transition-colors"
+          >
+            Close
+          </button>
+        </form>
+      </div>
+    </dialog>
+    <script>
+      (function () {
+        document.querySelectorAll("[data-open-dialog]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var id = btn.getAttribute("data-open-dialog");
+            var dialog = id && document.getElementById(id);
+            if (dialog && typeof dialog.showModal === "function") {
+              dialog.showModal();
+            }
+          });
+        });
+
+        var scrollSections = [
+          { id: "problem-solution", nav: "solution" },
+          { id: "features", nav: "features" },
+          { id: "users", nav: "users" },
+          { id: "devices", nav: "users" },
+          { id: "install", nav: "download" },
+          { id: "download", nav: "download" },
+        ];
+
+        var navToggle = document.getElementById("nav-menu-toggle");
+        var navPanel = document.getElementById("nav-mobile-panel");
+        var iconOpen = navToggle && navToggle.querySelector(".nav-icon-open");
+        var iconClose = navToggle && navToggle.querySelector(".nav-icon-close");
+
+        function setMobileNavOpen(open) {
+          if (!navPanel || !navToggle) return;
+          navPanel.classList.toggle("hidden", !open);
+          navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+          navToggle.setAttribute(
+            "aria-label",
+            open ? "Close menu" : "Open menu",
+          );
+          if (iconOpen && iconClose) {
+            iconOpen.classList.toggle("hidden", open);
+            iconClose.classList.toggle("hidden", !open);
+          }
+        }
+
+        if (navToggle && navPanel) {
+          navToggle.addEventListener("click", function () {
+            var open = navPanel.classList.contains("hidden");
+            setMobileNavOpen(open);
+          });
+        }
+
+        document.querySelectorAll("#nav-mobile-panel a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            setMobileNavOpen(false);
+          });
+        });
+        var navLinks = document.querySelectorAll(".nav-link[data-nav-target]");
+
+        function setActiveNav(id) {
+          navLinks.forEach(function (link) {
+            var t = link.getAttribute("data-nav-target");
+            link.classList.toggle("is-active", t === id);
+          });
+        }
+
+        function syncNavFromScroll() {
+          var offset = 110;
+          var chosen = null;
+          for (var i = scrollSections.length - 1; i >= 0; i--) {
+            var sec = scrollSections[i];
+            var el = document.getElementById(sec.id);
+            if (el) {
+              var top = el.getBoundingClientRect().top;
+              if (top <= offset) {
+                chosen = sec.nav;
+                break;
+              }
+            }
+          }
+          if (chosen === null) {
+            navLinks.forEach(function (link) {
+              link.classList.remove("is-active");
+            });
+          } else {
+            setActiveNav(chosen);
+          }
+        }
+
+        window.addEventListener("scroll", syncNavFromScroll, { passive: true });
+        window.addEventListener("resize", function () {
+          if (window.matchMedia("(min-width: 768px)").matches) {
+            setMobileNavOpen(false);
+          }
+          syncNavFromScroll();
+        });
+        window.addEventListener("load", syncNavFromScroll);
+
+        document.addEventListener("keydown", function (e) {
+          if (
+            e.key === "Escape" &&
+            navPanel &&
+            !navPanel.classList.contains("hidden")
+          ) {
+            setMobileNavOpen(false);
+          }
+        });
+
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", function () {
+            var t = link.getAttribute("data-nav-target");
+            if (t) {
+              setActiveNav(t);
+            }
+          });
+        });
+
+        if (window.location.hash) {
+          var h = window.location.hash.slice(1);
+          if (h === "problem" || h === "solution") {
+            setActiveNav("solution");
+          } else {
+            for (var j = 0; j < scrollSections.length; j++) {
+              if (scrollSections[j].id === h) {
+                setActiveNav(scrollSections[j].nav);
+                break;
+              }
+            }
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
