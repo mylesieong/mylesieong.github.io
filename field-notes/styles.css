@@ -1,0 +1,1032 @@
+/* Vancouver Field Notes — standalone page styles. */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Geist:wght@400;500;600;700&display=swap");
+
+:root {
+  --paper: #faf6f0;
+  --paper-alt: #f3ece2;
+  --surface: #ffffff;
+  --ink: #2b241d;
+  --ink-soft: rgba(43, 36, 29, 0.72);
+  --ink-faint: rgba(43, 36, 29, 0.5);
+  --line: rgba(43, 36, 29, 0.12);
+  --line-soft: rgba(43, 36, 29, 0.07);
+
+  --espresso: #7a4a24;
+  --espresso-soft: rgba(122, 74, 36, 0.09);
+  --gold: #b07d1a;
+  --gold-soft: rgba(176, 125, 26, 0.12);
+  --sea: #2f6b73;
+  --sea-soft: rgba(47, 107, 115, 0.1);
+
+  --radius: 14px;
+  --radius-sm: 9px;
+  --max-w: 1080px;
+  --shadow: 0 1px 2px rgba(43, 36, 29, 0.05),
+    0 8px 24px -12px rgba(43, 36, 29, 0.18);
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14110e;
+    --paper-alt: #1b1713;
+    --surface: #201b16;
+    --ink: #ece4d9;
+    --ink-soft: rgba(236, 228, 217, 0.72);
+    --ink-faint: rgba(236, 228, 217, 0.48);
+    --line: rgba(236, 228, 217, 0.14);
+    --line-soft: rgba(236, 228, 217, 0.08);
+
+    --espresso: #d8a373;
+    --espresso-soft: rgba(216, 163, 115, 0.12);
+    --gold: #e0b451;
+    --gold-soft: rgba(224, 180, 81, 0.14);
+    --sea: #7cc3cb;
+    --sea-soft: rgba(124, 195, 203, 0.12);
+
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--espresso);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.fn-container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.fn-narrow {
+  max-width: 640px;
+}
+
+.fn-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.fn-skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  padding: 10px 16px;
+  background: var(--surface);
+  z-index: 100;
+}
+
+.fn-skip:focus {
+  left: 8px;
+  top: 8px;
+}
+
+/* ── Top bar ─────────────────────────────────────────────────── */
+
+.fn-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.fn-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 56px;
+}
+
+.fn-back {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.fn-back:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.fn-nav {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.fn-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.fn-nav a {
+  font-size: 14px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.fn-nav a:hover {
+  color: var(--espresso);
+  text-decoration: none;
+}
+
+/* ── Hero ────────────────────────────────────────────────────── */
+
+.fn-hero {
+  padding: 72px 0 56px;
+  background: linear-gradient(
+    180deg,
+    var(--paper-alt) 0%,
+    var(--paper) 100%
+  );
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.fn-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 20px;
+}
+
+.fn-title {
+  font-size: clamp(44px, 9vw, 82px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.fn-byline {
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--espresso);
+}
+
+.fn-lead {
+  margin-top: 14px;
+  font-size: 19px;
+  color: var(--ink-soft);
+  max-width: 34em;
+}
+
+.fn-disclaimer {
+  margin-top: 28px;
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  background: var(--espresso-soft);
+}
+
+.fn-hero-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.fn-kicker {
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.fn-tick-list li,
+.fn-ask-list li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.fn-tick-list li::before {
+  content: "·";
+  position: absolute;
+  left: 6px;
+  color: var(--espresso);
+  font-weight: 700;
+}
+
+.fn-ask-list li::before {
+  content: "?";
+  position: absolute;
+  left: 4px;
+  color: var(--sea);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* ── Stats ───────────────────────────────────────────────────── */
+
+.fn-stats {
+  margin: 44px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.fn-stat {
+  background: var(--paper);
+  padding: 18px 20px;
+}
+
+.fn-stat dt {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.fn-stat dd {
+  margin: 4px 0 0;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ── Legend band ─────────────────────────────────────────────── */
+
+.fn-legend-band {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--surface);
+}
+
+.fn-legend-title {
+  font-size: 15px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.fn-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.fn-legend li {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+/* ── Sections ────────────────────────────────────────────────── */
+
+.fn-section {
+  padding: 68px 0;
+}
+
+.fn-section-alt {
+  background: var(--paper-alt);
+  border-block: 1px solid var(--line-soft);
+}
+
+.fn-section-head {
+  margin-bottom: 32px;
+}
+
+.fn-section-head h2 {
+  font-size: clamp(26px, 4vw, 34px);
+}
+
+.fn-section-sub {
+  margin-top: 8px;
+  color: var(--ink-soft);
+  max-width: 44em;
+}
+
+/* ── Champion cards ──────────────────────────────────────────── */
+
+/* Four champions sit as a balanced 2×2 rather than 3 + an orphan. */
+.fn-champ-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 18px;
+}
+
+.fn-champ {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fn-champ::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  border-radius: var(--radius) 0 0 var(--radius);
+  background: linear-gradient(180deg, var(--gold), transparent);
+}
+
+.fn-champ-award {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.fn-champ h3 {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.fn-champ-place {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--espresso);
+  margin-top: -8px;
+}
+
+.fn-champ-where {
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin-top: -10px;
+}
+
+.fn-champ-why {
+  font-size: 15px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.fn-champ-highlights li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 3px;
+}
+
+.fn-champ-highlights li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+
+.fn-champ-link {
+  margin-top: auto;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ── Timeline ────────────────────────────────────────────────── */
+
+.fn-timeline {
+  position: relative;
+  padding-left: 34px;
+}
+
+.fn-timeline::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 8px;
+  bottom: 28px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--espresso), var(--line));
+  opacity: 0.45;
+}
+
+.fn-tl-item {
+  position: relative;
+  padding-bottom: 26px;
+}
+
+.fn-tl-dot {
+  position: absolute;
+  left: -34px;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--espresso);
+  color: var(--espresso);
+  font-size: 11px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.fn-tl-item h3 {
+  font-size: 19px;
+}
+
+.fn-tl-item h3 a {
+  color: inherit;
+}
+
+.fn-tl-note {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin-top: 2px;
+}
+
+.fn-tl-end .fn-tl-dot {
+  border-style: dashed;
+  color: var(--ink-faint);
+  border-color: var(--line);
+}
+
+.fn-tl-end p {
+  color: var(--ink-faint);
+  font-style: italic;
+  padding-top: 2px;
+}
+
+/* ── Toolbar ─────────────────────────────────────────────────── */
+
+.fn-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.fn-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fn-chip {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.fn-chip:hover {
+  border-color: var(--espresso);
+  color: var(--ink);
+}
+
+.fn-chip[aria-pressed="true"] {
+  background: var(--espresso);
+  border-color: var(--espresso);
+  color: var(--paper);
+}
+
+@media (prefers-color-scheme: dark) {
+  .fn-chip[aria-pressed="true"] {
+    color: #1a1512;
+  }
+}
+
+.fn-search input {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 8px 14px;
+  min-width: 240px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.fn-search input:focus {
+  outline: 2px solid var(--espresso);
+  outline-offset: 1px;
+}
+
+.fn-result-count {
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin-bottom: 20px;
+}
+
+/* ── Place cards ─────────────────────────────────────────────── */
+
+.fn-notes-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Each place is a full-width row: identity on the left, notes on the right. */
+.fn-place {
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr);
+  gap: 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  box-shadow: var(--shadow);
+}
+
+.fn-place[data-award="true"] {
+  border-color: color-mix(in srgb, var(--gold) 45%, var(--line));
+}
+
+.fn-place-main {
+  align-self: start;
+}
+
+.fn-place-body {
+  min-width: 0;
+}
+
+.fn-place-head {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+}
+
+.fn-place h3 {
+  font-size: 21px;
+}
+
+.fn-place-status {
+  font-size: 11px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.fn-place-meta {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+.fn-place-meta span::after {
+  content: "·";
+  margin-left: 8px;
+  opacity: 0.5;
+}
+
+.fn-place-meta span:last-child::after {
+  content: "";
+}
+
+.fn-place-badge {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.fn-place-body > :first-child {
+  margin-top: 0;
+}
+
+.fn-impression {
+  margin-top: 16px;
+  padding-left: 14px;
+  border-left: 2px solid var(--espresso);
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.fn-tags {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.fn-tag {
+  font-size: 12px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--espresso-soft);
+  color: var(--ink-soft);
+  border: 1px solid var(--line-soft);
+}
+
+/* Expandable notes */
+
+.fn-details {
+  margin-top: 16px;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 12px;
+}
+
+.fn-details summary {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--espresso);
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fn-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.fn-details summary::after {
+  content: "↓";
+  font-size: 11px;
+  transition: transform 0.2s ease;
+}
+
+.fn-details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.fn-details summary:hover {
+  text-decoration: underline;
+}
+
+.fn-note-section {
+  margin-top: 16px;
+}
+
+.fn-note-section h4 {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 6px;
+}
+
+.fn-note-section p {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.fn-note-section ul {
+  margin-bottom: 8px;
+}
+
+.fn-note-section ul li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-bottom: 2px;
+}
+
+.fn-note-section ul li::before {
+  content: "•";
+  position: absolute;
+  left: 2px;
+  color: var(--espresso);
+}
+
+.fn-note-label {
+  font-size: 12px !important;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink) !important;
+  margin-bottom: 4px !important;
+}
+
+.fn-note-aside {
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--sea-soft);
+  border-left: 2px solid var(--sea);
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.fn-empty {
+  text-align: center;
+  padding: 48px 0;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+/* ── Neighborhoods ───────────────────────────────────────────── */
+
+.fn-hood-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.fn-hood {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.fn-hood-emoji {
+  font-size: 26px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.fn-hood h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.fn-hood li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.fn-hood li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--sea);
+  font-size: 13px;
+}
+
+.fn-hood-outro {
+  margin-top: 20px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+/* ── Wishlist ────────────────────────────────────────────────── */
+
+.fn-wish-group {
+  margin-bottom: 40px;
+}
+
+.fn-wish-group h3 {
+  font-size: 20px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.fn-wish-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.fn-wish {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+}
+
+.fn-wish h4 {
+  font-size: 17px;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.fn-wish h4::before {
+  content: "🟡";
+  font-size: 11px;
+}
+
+.fn-wish-note {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.fn-wish .fn-tags {
+  margin-top: 10px;
+}
+
+.fn-wish .fn-tag {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--ink-faint);
+}
+
+/* ── Future ──────────────────────────────────────────────────── */
+
+.fn-future-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.fn-future {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.fn-future h3 {
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+
+.fn-future p {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+/* ── Philosophy ──────────────────────────────────────────────── */
+
+.fn-philosophy {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.fn-philosophy .fn-narrow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fn-phil-lead {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 32px);
+  color: var(--ink);
+}
+
+.fn-philosophy p {
+  color: var(--ink-soft);
+}
+
+.fn-phil-coda {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink) !important;
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+
+.fn-footer {
+  padding: 32px 0;
+  border-top: 1px solid var(--line-soft);
+  background: var(--paper-alt);
+  font-size: 14px;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+.fn-footer p + p {
+  margin-top: 6px;
+}
+
+.fn-noscript {
+  padding: 24px;
+  margin: 24px auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+
+/* Rows collapse to a single stacked column before the columns get cramped. */
+@media (max-width: 820px) {
+  .fn-place {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .fn-hero {
+    padding: 48px 0 40px;
+  }
+
+  .fn-section {
+    padding: 48px 0;
+  }
+
+  .fn-topbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .fn-search input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .fn-search {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+}

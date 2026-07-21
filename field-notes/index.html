@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vancouver Field Notes — Sai × Jay</title>
+    <meta
+      name="description"
+      content="A personal exploration journal of Vancouver coffee, food, drinks, and neighborhoods. Not a ranking — a record of places, tastes, and small moments."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="fn-skip" href="#notes">Skip to field notes</a>
+
+    <header class="fn-topbar">
+      <div class="fn-container fn-topbar-inner">
+        <a class="fn-back" href="../index.html">
+          <span aria-hidden="true">←</span> Myles Ieong
+        </a>
+        <nav class="fn-nav" aria-label="Sections">
+          <a href="#champions">Champions</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#notes">Field Notes</a>
+          <a href="#neighborhoods">Neighborhoods</a>
+          <a href="#wishlist">Wishlist</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ── Hero ───────────────────────────────────────────────── -->
+      <section class="fn-hero">
+        <div class="fn-container">
+          <p class="fn-eyebrow">Vancouver · ongoing</p>
+          <h1 class="fn-title">Vancouver<br />Field Notes</h1>
+          <p class="fn-byline">Sai <span aria-hidden="true">×</span> Jay</p>
+          <p class="fn-lead">
+            Two friends exploring Vancouver through coffee, food, drinks, and
+            neighborhoods.
+          </p>
+
+          <p class="fn-disclaimer">This is not a ranking website.</p>
+
+          <div class="fn-hero-grid">
+            <div class="fn-hero-block">
+              <h2 class="fn-kicker">It is a personal exploration journal</h2>
+              <ul class="fn-tick-list">
+                <li>Places we visited</li>
+                <li>Things we tasted</li>
+                <li>Neighborhoods we discovered</li>
+                <li>Small moments we remembered</li>
+              </ul>
+            </div>
+            <div class="fn-hero-block">
+              <h2 class="fn-kicker">
+                The goal is not to find the “best” place
+              </h2>
+              <ul class="fn-ask-list">
+                <li>What makes a place memorable?</li>
+                <li>What kind of experience does it create?</li>
+                <li>What makes us want to come back?</li>
+              </ul>
+            </div>
+          </div>
+
+          <dl class="fn-stats" id="stats">
+            <!-- rendered by app.js -->
+          </dl>
+        </div>
+      </section>
+
+      <!-- ── Legend ─────────────────────────────────────────────── -->
+      <section class="fn-legend-band">
+        <div class="fn-container">
+          <h2 class="fn-legend-title">🗺️ Exploration Map</h2>
+          <ul class="fn-legend" id="legend"><!-- rendered by app.js --></ul>
+        </div>
+      </section>
+
+      <!-- ── Champions ──────────────────────────────────────────── -->
+      <section class="fn-section" id="champions">
+        <div class="fn-container">
+          <header class="fn-section-head">
+            <h2><span aria-hidden="true">🏆</span> Current Champions</h2>
+            <p class="fn-section-sub">
+              Not scores. Just the place that currently holds each memory.
+              Champions can change.
+            </p>
+          </header>
+          <div class="fn-champ-grid" id="champions-grid">
+            <!-- rendered by app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Timeline ───────────────────────────────────────────── -->
+      <section class="fn-section fn-section-alt" id="timeline">
+        <div class="fn-container">
+          <header class="fn-section-head">
+            <h2><span aria-hidden="true">📍</span> Exploration Timeline</h2>
+            <p class="fn-section-sub">How the journey unfolded, in order.</p>
+          </header>
+          <ol class="fn-timeline" id="timeline-list">
+            <!-- rendered by app.js -->
+          </ol>
+        </div>
+      </section>
+
+      <!-- ── Field notes ────────────────────────────────────────── -->
+      <section class="fn-section" id="notes">
+        <div class="fn-container">
+          <header class="fn-section-head">
+            <h2><span aria-hidden="true">☕</span> Field Notes</h2>
+            <p class="fn-section-sub">
+              Every place we've been, with what we actually thought.
+            </p>
+          </header>
+
+          <div class="fn-toolbar">
+            <div
+              class="fn-filters"
+              id="filters"
+              role="group"
+              aria-label="Filter places"
+            >
+              <!-- rendered by app.js -->
+            </div>
+            <div class="fn-search">
+              <label class="fn-visually-hidden" for="search"
+                >Search field notes</label
+              >
+              <input
+                type="search"
+                id="search"
+                placeholder="Search a place, flavor, or tag…"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <p class="fn-result-count" id="result-count" aria-live="polite"></p>
+
+          <div class="fn-notes-grid" id="notes-grid">
+            <!-- rendered by app.js -->
+          </div>
+
+          <p class="fn-empty" id="notes-empty" hidden>
+            No places match that yet. The exploration continues.
+          </p>
+        </div>
+      </section>
+
+      <!-- ── Neighborhoods ──────────────────────────────────────── -->
+      <section class="fn-section fn-section-alt" id="neighborhoods">
+        <div class="fn-container">
+          <header class="fn-section-head">
+            <h2><span aria-hidden="true">🌆</span> Neighborhood Notes</h2>
+            <p class="fn-section-sub" id="hood-intro"></p>
+          </header>
+          <div class="fn-hood-grid" id="hood-grid">
+            <!-- rendered by app.js -->
+          </div>
+          <p class="fn-hood-outro" id="hood-outro"></p>
+        </div>
+      </section>
+
+      <!-- ── Wishlist ───────────────────────────────────────────── -->
+      <section class="fn-section" id="wishlist">
+        <div class="fn-container">
+          <header class="fn-section-head">
+            <h2><span aria-hidden="true">🟡</span> Wishlist / Next Adventures</h2>
+            <p class="fn-section-sub">
+              Places we haven't been yet, and what we're hoping to find there.
+            </p>
+          </header>
+          <div id="wishlist-groups"><!-- rendered by app.js --></div>
+        </div>
+      </section>
+
+      <!-- ── Future ─────────────────────────────────────────────── -->
+      <section class="fn-section fn-section-alt" id="future">
+        <div class="fn-container">
+          <header class="fn-section-head">
+            <h2><span aria-hidden="true">🌱</span> Future Features</h2>
+            <p class="fn-section-sub">Where this journal is headed.</p>
+          </header>
+          <div class="fn-future-grid" id="future-grid">
+            <!-- rendered by app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Philosophy ─────────────────────────────────────────── -->
+      <section class="fn-philosophy" id="philosophy">
+        <div class="fn-container fn-narrow">
+          <h2 class="fn-kicker">The Philosophy</h2>
+          <p class="fn-phil-lead">This website is not a guidebook.</p>
+          <p>
+            It is a record of how two friends experience Vancouver — through
+            coffee, food, drinks, neighborhoods, and small moments.
+          </p>
+          <p class="fn-phil-coda">
+            The city changes.<br />
+            The list grows.<br />
+            The champions can change.<br />
+            <strong>The exploration continues.</strong>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="fn-footer">
+      <div class="fn-container">
+        <p>Vancouver Field Notes — kept by Sai × Jay.</p>
+        <p>
+          <a href="../index.html">Back to mylesieong.github.io</a>
+        </p>
+      </div>
+    </footer>
+
+    <noscript>
+      <div class="fn-container fn-noscript">
+        <p>
+          <strong>This journal needs JavaScript to render its entries.</strong>
+          The full content lives in
+          <code>data.js</code> in this folder if you'd rather read the source.
+        </p>
+      </div>
+    </noscript>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
