@@ -16,7 +16,7 @@
   <main>
     <h1>Privacy Policy — Tacet</h1>
 
-    <p><strong>Last updated: 12 August 2026</strong></p>
+    <p><strong>Last updated: 13 August 2026</strong></p>
 
     <p>Tacet is a breathing app. This policy explains what the app collects, what it does not, and
     what choices you have. It is written to be read, not to be survived.</p>
@@ -29,7 +29,7 @@
       <li><strong>Your practice stays on your phone.</strong> Your streak, your completed sessions, your reminder time and your settings are stored on the device and are never uploaded to us.</li>
       <li><strong>We collect anonymous usage statistics</strong> through Google Analytics for Firebase, to understand how the app is used in aggregate. This does not include anything you did, said or typed that identifies you — the app has no such information to send.</li>
       <li><strong>There is no in-app switch for this.</strong> Usage statistics are collected for the whole time the app is installed. §5 sets out what you can do about it: device-level controls, deleting the app, and writing to us.</li>
-      <li><strong>We do not sell your data, and we do not run advertising.</strong></li>
+      <li><strong>We do not sell your data, and we do not run advertising.</strong> On Android, the analytics SDK does collect your device's resettable Advertising ID as part of its standard behaviour (§4). We do not use it to target ads, build an advertising profile, or share it with advertisers, and you can reset or delete it in your device settings (§5).</li>
     </ul>
 
     <h2>2. Who we are</h2>
@@ -81,6 +81,11 @@
       version, app version, language, and country or region derived from IP address. Google
       processes your IP address to derive that region; Firebase Analytics does not store the IP
       address itself.</li>
+      <li><strong>On Android, your device's Advertising ID.</strong> This is a resettable identifier
+      provided by Google Play services. Firebase Analytics collects it as part of its standard
+      behaviour, and we have not turned that behaviour off. We use it only to group the usage events
+      described above — never to target advertising, never to build a profile of you, and never in
+      combination with data from any other source. It is not collected on iOS.</li>
     </ul>
 
     <h3>What is never collected</h3>
@@ -88,7 +93,9 @@
       <li>Your name, email address, phone number, or any account identifier — the app holds none.</li>
       <li>Your precise location. Tacet never requests location permission.</li>
       <li>Your contacts, calendar, photos, microphone or camera. Tacet requests none of these permissions.</li>
-      <li>Advertising identifiers. The app does not use the Advertising ID, does not run ads, and does not build advertising profiles.</li>
+      <li>Advertising. Tacet contains no ads, no ad SDKs, and no ad network integrations. We do not
+      build advertising profiles and we share nothing with advertisers or data brokers. The
+      Advertising ID described above is collected by the analytics SDK and used only for analytics.</li>
       <li>The content of your practice in any personally identifying form. That you completed a two-minute session is collected; who you are is not.</li>
     </ul>
 
@@ -115,10 +122,13 @@
     us about, and delete it, within 30 days — see the paragraph below on what we need in order to
     identify it.</p>
 
-    <p><strong>At the device level:</strong> on iOS you can turn off <em>Settings ▸ Privacy &amp; Security ▸ Analytics &amp;
-    Improvements ▸ Share iPhone Analytics</em>, and on Android <em>Settings ▸ Google ▸ Ads ▸ Delete
-    advertising ID</em>. These affect other apps too, and neither one stops Tacet's own collection —
-    only removing the app does that.</p>
+    <p><strong>At the device level:</strong> on Android, <em>Settings ▸ Google ▸ Ads</em> lets you
+    <strong>reset</strong> your Advertising ID, which severs the link to everything collected under
+    the old one, or <strong>delete</strong> it, after which Tacet receives no Advertising ID at all.
+    On iOS you can turn off <em>Settings ▸ Privacy &amp; Security ▸ Analytics &amp; Improvements ▸
+    Share iPhone Analytics</em>. These settings affect every app on the device, not just Tacet. Note
+    that neither stops the rest of the collection described in §4 — the usage events and the
+    app-instance identifier continue either way. Only removing the app does that.</p>
 
     <p><strong>Deleting what has already been collected:</strong> because analytics data is tied to a random
     app-instance identifier and not to you, we cannot look up "your" data on request. Deleting and
