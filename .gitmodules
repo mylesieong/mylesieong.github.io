@@ -1,0 +1,3 @@
+[submodule "products/pool-billiards-self-trainer"]
+	path = products/pool-billiards-self-trainer
+	url = https://github.com/mylesieong/PoolBilliardsSelfTrainerWebsite.git
