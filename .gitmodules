@@ -1,3 +1,18 @@
 [submodule "products/pool-billiards-self-trainer"]
 	path = products/pool-billiards-self-trainer
 	url = https://github.com/mylesieong/PoolBilliardsSelfTrainerWebsite.git
+[submodule "products/runout-rank"]
+	path = products/runout-rank
+	url = https://github.com/mylesieong/RunoutRankWebsite.git
+[submodule "products/flexi"]
+	path = products/flexi
+	url = https://github.com/mylesieong/FlexiWebsite.git
+[submodule "products/bible-project"]
+	path = products/bible-project
+	url = https://github.com/mylesieong/BibleReaderWebsite.git
+[submodule "products/tacet"]
+	path = products/tacet
+	url = https://github.com/mylesieong/TacetWebsite.git
+[submodule "products/snooker-self-trainer"]
+	path = products/snooker-self-trainer
+	url = https://github.com/mylesieong/SnookerSelfTrainerWebsite.git

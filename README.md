@@ -11,6 +11,34 @@ This is my personal website hosted on GitHub Pages. The site is built using stat
 - `assets/` - CSS, images, and other static assets
 - `README.md` - This file
 
+### Product sites are submodules
+
+Each shipped product's site lives in its own repository and is mounted here as a
+git submodule, so the product page and the hub can be released independently:
+
+| Path | Repository |
+| --- | --- |
+| `products/pool-billiards-self-trainer/` | `PoolBilliardsSelfTrainerWebsite` |
+| `products/runout-rank/` | `RunoutRankWebsite` |
+| `products/flexi/` | `FlexiWebsite` |
+| `products/bible-project/` | `BibleReaderWebsite` |
+| `products/tacet/` | `TacetWebsite` |
+| `products/snooker-self-trainer/` | `SnookerSelfTrainerWebsite` |
+
+Clone with `git clone --recurse-submodules`, or run `git submodule update --init`
+in an existing checkout. The submodules use read-only HTTPS URLs so GitHub Pages
+can fetch them at build time.
+
+Each of those sites is served from a sub-path, never the origin root, and each
+keeps a `privacy-policy.html` at the top of its mount because that exact URL is
+printed in the App Store and Google Play listings. To move a product site
+forward, commit in its own repository, then update the pointer here:
+
+```bash
+git submodule update --remote products/<name>
+git commit -am "Update the <name> site"
+```
+
 ## Preview
 
 To preview this site locally, you have several options:
