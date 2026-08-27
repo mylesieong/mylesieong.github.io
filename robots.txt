@@ -1,0 +1,14 @@
+# Only the robots.txt at the origin root is honoured, so every sitemap on this
+# domain -- including the ones inside each product submodule -- is listed here.
+User-agent: *
+Allow: /
+Disallow: /products/flexi/src/
+Disallow: /products/bible-project/_data/
+
+Sitemap: https://mylesieong.github.io/sitemap.xml
+Sitemap: https://mylesieong.github.io/products/bible-project/sitemap.xml
+Sitemap: https://mylesieong.github.io/products/flexi/sitemap.xml
+Sitemap: https://mylesieong.github.io/products/pool-billiards-self-trainer/sitemap.xml
+Sitemap: https://mylesieong.github.io/products/runout-rank/sitemap.xml
+Sitemap: https://mylesieong.github.io/products/snooker-self-trainer/sitemap.xml
+Sitemap: https://mylesieong.github.io/products/tacet/sitemap.xml

@@ -1,82 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Calmly News - Myles Ieong</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../assets/css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calmly News — ten stories a day, then the feed locks</title>
+  <meta name="description" content="A free news app with a hard ten-story daily cap, emotional language stripped from summaries, and keyword filters you control. iOS and Android.">
+  <link rel="canonical" href="https://mylesieong.github.io/products/calmly-news/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sai vs. Reality">
+  <meta property="og:title" content="Calmly News — ten stories a day, then the feed locks">
+  <meta property="og:description" content="A free news app with a hard ten-story daily cap, emotional language stripped from summaries, and keyword filters you control. iOS and Android.">
+  <meta property="og:url" content="https://mylesieong.github.io/products/calmly-news/">
+  <meta property="og:image" content="https://mylesieong.github.io/assets/og/calmly-news.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calmly News — ten stories a day, then the feed locks">
+  <meta name="twitter:description" content="A free news app with a hard ten-story daily cap, emotional language stripped from summaries, and keyword filters you control. iOS and Android.">
+  <meta name="twitter:image" content="https://mylesieong.github.io/assets/og/calmly-news.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/icons/favicon-512.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://mylesieong.github.io/products/calmly-news/#app",
+  "name": "Calmly News",
+  "url": "https://mylesieong.github.io/products/calmly-news/",
+  "applicationCategory": "NewsApplication",
+  "applicationSubCategory": "News reader",
+  "operatingSystem": "iOS 15.0 or later, Android 8.0 or later",
+  "description": "A news app with a ten-story daily cap, emotional language stripped from summaries, keyword filters and a reset step after heavy stories.",
+  "inLanguage": "en",
+  "image": "https://mylesieong.github.io/assets/images/calmly_news_logo.png",
+  "screenshot": ["https://mylesieong.github.io/assets/images/calmly_news_1.jpg", "https://mylesieong.github.io/assets/images/calmly_news_2.jpg", "https://mylesieong.github.io/assets/images/calmly_news_3.jpg", "https://mylesieong.github.io/assets/images/calmly_news_4.jpg"],
+  "installUrl": "https://apps.apple.com/us/app/calmly-news/id6756495260",
+  "downloadUrl": "https://play.google.com/store/apps/details?id=com.municornio.app.specialnewsapp",
+  "author": { "@id": "https://mylesieong.github.io/about/#person" },
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What happens when I finish the ten stories?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The feed locks for the rest of the day. There is no &ldquo;load more.&rdquo; That is the entire mechanism &mdash; the app is finished with you before you are finished with it." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it hide bad news?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. It removes the adjectives written to make a story land harder, not the story. A plane crash still reads as a plane crash. You can also filter specific topics or keywords, which does hide those, but that is a choice you make rather than something the app does on your behalf." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, on both iOS and Android." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this a mental health app?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No, and it should not be used as one. It is a news reader with a cap and a filter. If news is affecting you in a way that a shorter feed does not fix, that is a conversation for a professional, not an app." }
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://mylesieong.github.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://mylesieong.github.io/products/"},
+      {"@type": "ListItem", "position": 3, "name": "Calmly News", "item": "https://mylesieong.github.io/products/calmly-news/"}
+  ]
+}
+</script>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="../../index.html">Home</a>
-      <a href="../index.html">Products</a>
-      <a href="../../case-studies/index.html">Case Studies</a>
-    </nav>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">Sai <span class="brand-vs">vs.</span> Reality</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="/products/" aria-current="page">Products</a>
+        <a href="/killed/">Killed</a>
+        <a href="/about/">About</a>
+      </nav>
+    </div>
   </header>
-  <main>
-    <div class="product-header">
-      <h1>Calmly News</h1>
-      <img src="../../assets/images/calmly_news_logo.png" alt="Calmly News Logo" class="product-logo">
+  <nav class="crumbs wrap" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/products/">Products</a></li>
+      <li><span aria-current="page">Calmly News</span></li>
+    </ol>
+  </nav>
+  <main id="main" class="wrap">
+    <div class="hero">
+      <h1>Calmly News <span class="status status-live">Live</span></h1>
+      <p class="lede lede-wide">Ten stories a day, with the drama adjectives stripped out. Then the feed locks.</p>
     </div>
 
-    <h2>Overview</h2>
-    <p>Most news apps are designed to keep you addicted. We built Calmly News to do the opposite: keep you informed, and then help you get off your phone.</p>
-    
-    <p>We call it a "cooling system" for your digital life. It's not about ignoring the world; it's about engaging with it without burning out.</p>
-    
-    <p><strong>How it works:</strong></p>
-    <ul>
-      <li><strong>Just the facts</strong>: We use AI to strip away the "drama adjectives" and emotional language. You get the actual news, not the clickbait designed to make you angry or scared.</li>
-      <li><strong>The Rule of 10</strong>: You don't need an endless feed. We limit you to the 10 most important stories of the day. Once you read them, the feed locks. You're done.</li>
-      <li><strong>Mental Reset</strong>: Some news is just heavy. We've built in simple tools—like breathing exercises—to help you decompress immediately after reading a difficult story.</li>
-      <li><strong>Filter your triggers</strong>: You decide what you see. Easily block specific topics or keywords that you aren't in the headspace to handle right now.</li>
-    </ul>
-    
-    <p>Mental health isn't about hiding from the truth. It's about having the emotional capacity to handle it.</p>
-
-    <h2>Key Features</h2>
-    <ul>
-      <li><strong>AI-Powered Content Filtering</strong>: Strip away emotional language and drama adjectives to get just the facts.</li>
-      <li><strong>The Rule of 10</strong>: Limited to the 10 most important stories per day. Once read, the feed locks—no endless scrolling.</li>
-      <li><strong>Mental Reset Tools</strong>: Built-in breathing exercises and decompression tools for difficult stories.</li>
-      <li><strong>Customizable Filters</strong>: Block specific topics or keywords that you're not ready to handle.</li>
-      <li><strong>Mindful Consumption</strong>: Designed to keep you informed without addiction or burnout.</li>
-    </ul>
-
-    <h2>App Screenshots</h2>
-    <div class="screenshot">
-      <img src="../../assets/images/calmly_news.jpg" alt="Calmly News Main" style="width:200px; margin-right:10px;" />
-      <img src="../../assets/images/calmly_news_1.jpg" alt="Calmly News Screenshot 1" style="width:200px; margin-right:10px;" />
-      <img src="../../assets/images/calmly_news_2.jpg" alt="Calmly News Screenshot 2" style="width:200px; margin-right:10px;" />
-      <img src="../../assets/images/calmly_news_3.jpg" alt="Calmly News Screenshot 3" style="width:200px; margin-right:10px;" />
-      <img src="../../assets/images/calmly_news_4.jpg" alt="Calmly News Screenshot 4" style="width:200px; margin-right:10px;" />
+    <div class="answer">
+      <p>Every other news app is built to be bottomless, because time-in-app is the metric it is optimised against. Calmly News is built to end. Ten stories, chosen for the day, written without the language engineered to make you angry or afraid &mdash; and then nothing, until tomorrow.</p>
     </div>
 
-    <h2>App Store Links</h2>
-    <ul>
-      <li>
-        <a href="https://calmly.news/" target="_blank" rel="noopener" class="store-link">
-          <svg class="globe-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-          Visit Website
-        </a>
-      </li>
-      <li>
-        <a href="https://play.google.com/store/apps/details?id=com.municornio.app.specialnewsapp" target="_blank" rel="noopener" class="store-link">
-          <img src="../../assets/images/google-play-badge.png" alt="Get it on Google Play" class="store-badge">
-        </a>
-      </li>
-      <li>
-        <a href="https://apps.apple.com/us/app/calmly-news/id6756495260" target="_blank" rel="noopener" class="store-link">
-          <img src="../../assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge">
-        </a>
-      </li>
+    <ul class="stores">
+      <li><a class="btn" href="https://apps.apple.com/us/app/calmly-news/id6756495260">Download on the App Store</a></li>
+      <li><a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.municornio.app.specialnewsapp">Get it on Google Play</a></li>
     </ul>
 
-    <p><a href="../../index.html">← Back to Home</a></p>
+    <h2>What it actually does</h2>
+    <ul>
+      <li><strong>A hard cap of ten.</strong> Not a suggestion, a recommended-reading section, or a wellbeing nudge. When you have read the ten, the feed stops serving.</li>
+      <li><strong>Summaries with the emotional loading removed.</strong> The adjectives that exist to make a headline hit harder are stripped; the facts of the story are not.</li>
+      <li><strong>Filters you set.</strong> Block a topic or a keyword you do not have the capacity for this week. It stays blocked until you unblock it.</li>
+      <li><strong>A reset after heavy stories.</strong> Some news is simply heavy. There are short breathing exercises built in for immediately afterwards, rather than a link to a different app.</li>
+    </ul>
+
+    <div class="shots">
+      <figure><img src="/assets/images/calmly_news_1.jpg" alt="The daily feed, capped at ten stories" width="1242" height="2688" loading="lazy" decoding="async"><figcaption>The daily feed, capped at ten stories</figcaption></figure>
+      <figure><img src="/assets/images/calmly_news_2.jpg" alt="A story with the emotional language stripped out" width="1242" height="2688" loading="lazy" decoding="async"><figcaption>A story with the emotional language stripped out</figcaption></figure>
+      <figure><img src="/assets/images/calmly_news_3.jpg" alt="Topic and keyword filters" width="1242" height="2688" loading="lazy" decoding="async"><figcaption>Topic and keyword filters</figcaption></figure>
+      <figure><img src="/assets/images/calmly_news_4.jpg" alt="The reset tools after a heavy story" width="1242" height="2688" loading="lazy" decoding="async"><figcaption>The reset tools after a heavy story</figcaption></figure>
+    </div>
+
+    <h2>What it is not</h2>
+    <p>It is not a way to avoid knowing things, and it is not a mental health tool. Mental health is not about hiding from the truth; it is about having the capacity to handle it. A ten-story cap protects your capacity. It does not do anything else, and I would rather say that here than imply otherwise.</p>
+
+    <h2>Questions</h2>
+    <dl class="faq">
+      <dt>What happens when I finish the ten stories?</dt>
+      <dd>The feed locks for the rest of the day. There is no &ldquo;load more.&rdquo; That is the entire mechanism &mdash; the app is finished with you before you are finished with it.</dd>
+      <dt>Does it hide bad news?</dt>
+      <dd>No. It removes the adjectives written to make a story land harder, not the story. A plane crash still reads as a plane crash. You can also filter specific topics or keywords, which does hide those, but that is a choice you make rather than something the app does on your behalf.</dd>
+      <dt>Is it free?</dt>
+      <dd>Yes, on both iOS and Android.</dd>
+      <dt>Is this a mental health app?</dt>
+      <dd>No, and it should not be used as one. It is a news reader with a cap and a filter. If news is affecting you in a way that a shorter feed does not fix, that is a conversation for a professional, not an app.</dd>
+    </dl>
   </main>
-  <footer>
-    <p>&copy; 2025 Myles Ieong</p>
+  <footer class="site-footer">
+    <div class="wrap">
+      <ul class="footer-links">
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/killed/">Killed products</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/sai-studio/">Sai Studio</a></li>
+        <li><a href="/field-notes/">Field notes</a></li>
+      </ul>
+      <p class="footer-motto">Sai vs. Reality &mdash; Building in public. Failing with documentation.</p>
+      <p>@saivsreality &middot; <a href="https://github.com/mylesieong">github.com/mylesieong</a> &middot; <a href="mailto:myles.ieong@gmail.com">myles.ieong@gmail.com</a></p>
+      <p class="footer-motto">Apps published by Municornio Ltd.</p>
+    </div>
   </footer>
 </body>
 </html>

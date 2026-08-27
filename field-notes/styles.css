@@ -1,6 +1,5 @@
 /* Vancouver Field Notes — standalone page styles. */
 
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Geist:wght@400;500;600;700&display=swap");
 
 :root {
   --paper: #faf6f0;
@@ -8,7 +7,7 @@
   --surface: #ffffff;
   --ink: #2b241d;
   --ink-soft: rgba(43, 36, 29, 0.72);
-  --ink-faint: rgba(43, 36, 29, 0.5);
+  --ink-faint: rgba(43, 36, 29, 0.62);
   --line: rgba(43, 36, 29, 0.12);
   --line-soft: rgba(43, 36, 29, 0.07);
 
@@ -36,7 +35,7 @@
     --surface: #201b16;
     --ink: #ece4d9;
     --ink-soft: rgba(236, 228, 217, 0.72);
-    --ink-faint: rgba(236, 228, 217, 0.48);
+    --ink-faint: rgba(236, 228, 217, 0.55);
     --line: rgba(236, 228, 217, 0.14);
     --line-soft: rgba(236, 228, 217, 0.08);
 

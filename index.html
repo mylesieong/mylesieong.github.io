@@ -1,129 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Myles Ieong</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sai vs. Reality — building in public, failing with documentation</title>
+  <meta name="description" content="I ship small software products across unrelated categories and publish what happens, including the ones that failed. Pool training, breathing, Bible reading, news, and the post-mortems.">
+  <link rel="canonical" href="https://mylesieong.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sai vs. Reality">
+  <meta property="og:title" content="Sai vs. Reality — building in public, failing with documentation">
+  <meta property="og:description" content="I ship small software products across unrelated categories and publish what happens, including the ones that failed. Pool training, breathing, Bible reading, news, and the post-mortems.">
+  <meta property="og:url" content="https://mylesieong.github.io/">
+  <meta property="og:image" content="https://mylesieong.github.io/assets/og/home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sai vs. Reality — building in public, failing with documentation">
+  <meta name="twitter:description" content="I ship small software products across unrelated categories and publish what happens, including the ones that failed. Pool training, breathing, Bible reading, news, and the post-mortems.">
+  <meta name="twitter:image" content="https://mylesieong.github.io/assets/og/home.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/icons/favicon-512.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://mylesieong.github.io/#website",
+  "name": "Sai vs. Reality",
+  "alternateName": "@saivsreality",
+  "url": "https://mylesieong.github.io/",
+  "description": "Building in public. Failing with documentation.",
+  "inLanguage": "en",
+  "publisher": { "@id": "https://mylesieong.github.io/about/#person" }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Products",
+  "itemListOrder": "https://schema.org/ItemListUnordered",
+  "numberOfItems": 11,
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Runout Rank", "url": "https://mylesieong.github.io/products/runout-rank/"},
+    {"@type": "ListItem", "position": 2, "name": "Pool & Billiards Self-Trainer", "url": "https://mylesieong.github.io/products/pool-billiards-self-trainer/"},
+    {"@type": "ListItem", "position": 3, "name": "Snooker Self-Trainer", "url": "https://mylesieong.github.io/products/snooker-self-trainer/"},
+    {"@type": "ListItem", "position": 4, "name": "Bible Project", "url": "https://mylesieong.github.io/products/bible-project/"},
+    {"@type": "ListItem", "position": 5, "name": "Flexi", "url": "https://mylesieong.github.io/products/flexi/"},
+    {"@type": "ListItem", "position": 6, "name": "Tacet", "url": "https://mylesieong.github.io/products/tacet/"},
+    {"@type": "ListItem", "position": 7, "name": "Calmly News", "url": "https://mylesieong.github.io/products/calmly-news/"},
+    {"@type": "ListItem", "position": 8, "name": "Sai Studio", "url": "https://mylesieong.github.io/sai-studio/"},
+    {"@type": "ListItem", "position": 9, "name": "Chatengage", "url": "https://mylesieong.github.io/chatengage/"},
+    {"@type": "ListItem", "position": 10, "name": "Harness Survey", "url": "https://mylesieong.github.io/products/harness-survey/"},
+    {"@type": "ListItem", "position": 11, "name": "Founder's Note", "url": "https://mylesieong.github.io/founders-note/"}
+  ]
+}
+</script>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="products/index.html">Products</a>
-      <a href="case-studies/index.html">Case Studies</a>
-      <a href="sai-studio/index.html">Sai Studio</a>
-      <a href="founders-note/index.html">Founder's Note</a>
-      <a href="field-notes/index.html">Field Notes</a>
-    </nav>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">Sai <span class="brand-vs">vs.</span> Reality</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="/products/">Products</a>
+        <a href="/killed/">Killed</a>
+        <a href="/about/">About</a>
+      </nav>
+    </div>
   </header>
-  <main>
-    <h1 style="text-align:center;">Welcome to my portfolio</h1>
-
-    <h2>Products</h2>
-
-    <div class="card-grid">
-      <div class="product-card">
-        <img src="assets/images/flexi_logo.png" alt="Flexi Logo" class="product-card-logo">
-        <h3>Flexi: Stretching, Flexibility</h3>
-        <p>Flexibility at your fingertips. Tailored stretching plans for every stage of your wellness journey—whether at home, at work, or on the go.</p>
-        <p><a href="products/flexi/index.html">View Details →</a></p>
-      </div>
-
-      <div class="product-card">
-        <img src="assets/images/logo_bible.webp" alt="Bible Project Logo" class="product-card-logo">
-        <h3>Bible Project</h3>
-        <p>An innovative Bible reader app with AI-powered verse explanations and smooth UX.</p>
-        <p><a href="products/bible-project/index.html">View Details →</a></p>
-      </div>
-
-      <div class="product-card">
-        <img src="assets/images/calmly_news_logo.png" alt="Calmly News Logo" class="product-card-logo">
-        <h3>Calmly News</h3>
-        <p>A calmer way to know the world. Stay informed without the addiction—AI-powered news app designed to help you get off your phone.</p>
-        <p><a href="products/calmly-news/index.html">View Details →</a></p>
-      </div>
-
-      <div class="product-card">
-        <img src="assets/images/logo_pool%26biiliards.png" alt="Pool & Billiards Self-Trainer Logo" class="product-card-logo">
-        <h3>Pool & Billiards Self-Trainer</h3>
-        <p>A comprehensive pool and billiards training assistant app built on proven architecture.</p>
-        <p><a href="products/pool-billiards-self-trainer/index.html">View Details →</a></p>
-      </div>
+  
+  <main id="main" class="wrap">
+    <div class="hero">
+      <h1>Sai vs. Reality</h1>
+      <p class="tagline">Building in public. Failing with documentation.</p>
+      <p class="lede lede-wide">I ship software into unrelated categories &mdash; pool practice, breathing, Bible reading, news &mdash; and Reality tells me which ones were wrong. Those stay published too, with the evidence.</p>
     </div>
 
-    <h2>Case Studies</h2>
-
-    <div class="card-grid">
-      <div class="case-card">
-        <h3>Follow the breadcrumb: micro innovation on a proven genre</h3>
-        <p>Building a better Bible reader with AI-powered explanations, smooth UX, and structured weekly workflow.</p>
-        <p><a href="case-studies/bible-project/index.html">Read Case Study →</a></p>
-      </div>
-
-      <div class="case-card">
-        <h3>Build a production level social network in 4 weeks</h3>
-        <p>Ongoing social network development for a vertical community using a 4-week structured methodology.</p>
-        <p><a href="case-studies/web3-social-network/index.html">Read Case Study →</a></p>
-      </div>
-    </div>
-
-    <h2>Sai Studio</h2>
-
-    <div class="case-card">
-      <h3>Sai Studio — IT & MVP services</h3>
-      <p>Your first stone to a working MVP. We help non-technical founders turn ideas into tangible products in 1–2 weeks. Strategy consultation, MVP build, and beta support.</p>
-      <p><a href="sai-studio/index.html">Visit Sai Studio →</a></p>
-    </div>
-
-    <h2>Founder's Note</h2>
-
-    <div class="case-card">
-      <h3>Founder's Note — Your startup, in the room.</h3>
-      <p>A context-first workspace where notes, documents, tasks, and progress feed one agent with full company memory — for meetings, outreach, and reports.</p>
-      <p><a href="founders-note/index.html">Visit Founder's Note →</a></p>
-    </div>
-
-    <h2>Chatengage</h2>
-
-    <div class="case-card">
-      <h3>Chatengage — Send a package. Start the conversation.</h3>
-      <p>Share documents, video, or a landing page with a chatbot that guides stakeholders, answers questions, and captures feedback in real time.</p>
-      <p><a href="chatengage/index.html">Visit Chatengage →</a></p>
-    </div>
-
-    <h2>Field Notes</h2>
-
-    <div class="case-card">
-      <h3>Vancouver Field Notes — Sai × Jay</h3>
-      <p>A personal exploration journal of Vancouver coffee, food, drinks, and neighborhoods. Not a ranking — a record of places visited, things tasted, and small moments remembered.</p>
-      <p><a href="field-notes/index.html">Read Field Notes →</a></p>
-    </div>
-
-    <h2>Partnerships</h2>
-
-    <div class="case-card">
-      <h3>Unicornio Macau Ltd</h3>
-      <p>Strategic partnership to co-publish innovative apps and solutions, combining technical expertise with business development capabilities.</p>
-      <p><a href="partners/unicornio-macau/index.html">Learn More →</a></p>
-    </div>
-
-    <h2>About Me</h2>
-
-    <p>I'm Myles Ieong, a passionate developer interested in technology and innovation. I believe in technology's power to solve real-world problems.</p>
-
-    <h2 id="contact">Contact</h2>
-
-    <ul>
-      <li>GitHub: <a href="https://github.com/mylesieong">@mylesieong</a></li>
-      <li>Email: <a href="mailto:myles.ieong@gmail.com">myles.ieong@gmail.com</a></li>
+    <h2 id="products">Products</h2>
+    <p class="section-note">Every one of them, with what it actually is and where it actually stands.</p>
+    <ul class="product-list">
+      <li>
+        <a class="product-row" href="/products/runout-rank/">
+          <img src="/assets/icons/runout-rank.png" alt="" class="product-icon" width="96" height="96" loading="lazy" decoding="async">
+          <span class="product-body">
+            <span class="product-name">Runout Rank</span><span class="status status-live">Live</span>
+            <span class="product-line">A pool rating from ten generated table layouts instead of 200 league games.</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="product-row" href="/products/pool-billiards-self-trainer/">
+          <img src="/assets/icons/pool-billiards-self-trainer.png" alt="" class="product-icon" width="96" height="96" loading="lazy" decoding="async">
+          <span class="product-body">
+            <span class="product-name">Pool &amp; Billiards Self-Trainer</span><span class="status status-live">Live</span>
+            <span class="product-line">Drills, skill exams and match tracking for practising pool on your own.</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="product-row" href="/products/snooker-self-trainer/">
+          <img src="/assets/icons/snooker-self-trainer.png" alt="" class="product-icon" width="96" height="96" loading="lazy" decoding="async">
+          <span class="product-body">
+            <span class="product-name">Snooker Self-Trainer</span><span class="status status-live">Live</span>
+            <span class="product-line">The same structure as the pool trainer, rebuilt for a twelve-foot table.</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="product-row" href="/products/bible-project/">
+          <img src="/assets/icons/bible-project.png" alt="" class="product-icon" width="96" height="96" loading="lazy" decoding="async">
+          <span class="product-body">
+            <span class="product-name">Bible Project</span><span class="status status-live">Live</span>
+            <span class="product-line">KJV and ESV offline, with an AI that answers when you have a question.</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="product-row" href="/products/flexi/">
+          <img src="/assets/icons/flexi.png" alt="" class="product-icon" width="96" height="96" loading="lazy" decoding="async">
+          <span class="product-body">
+            <span class="product-name">Flexi</span><span class="status status-live">Live</span>
+            <span class="product-line">Timed, illustrated stretching plans with voice guidance. Built for a habit, not a workout.</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="product-row" href="/products/tacet/">
+          <img src="/assets/icons/tacet.png" alt="" class="product-icon" width="96" height="96" loading="lazy" decoding="async">
+          <span class="product-body">
+            <span class="product-name">Tacet</span><span class="status status-live">Live</span>
+            <span class="product-line">Breathing paced by vibration with the screen off, so nobody in the room notices.</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="product-row" href="/products/calmly-news/">
+          <img src="/assets/icons/calmly-news.png" alt="" class="product-icon" width="96" height="96" loading="lazy" decoding="async">
+          <span class="product-body">
+            <span class="product-name">Calmly News</span><span class="status status-live">Live</span>
+            <span class="product-line">Ten stories a day, stripped of drama adjectives. Then the feed locks.</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="product-row" href="/sai-studio/">
+          <span class="product-icon product-icon-letter" aria-hidden="true">S</span>
+          <span class="product-body">
+            <span class="product-name">Sai Studio</span><span class="status status-live">Live</span>
+            <span class="product-line">MVP builds for non-technical founders. The consulting arm that pays for the rest of this.</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="product-row" href="/chatengage/">
+          <span class="product-icon product-icon-letter" aria-hidden="true">C</span>
+          <span class="product-body">
+            <span class="product-name">Chatengage</span><span class="status status-building">Building</span>
+            <span class="product-line">Send documents as one package with a bot that answers questions about them.</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="product-row" href="/products/harness-survey/">
+          <span class="product-icon product-icon-letter" aria-hidden="true">H</span>
+          <span class="product-body">
+            <span class="product-name">Harness Survey</span><span class="status status-live">Live</span>
+            <span class="product-line">A survey that reads each answer and writes the follow-up question itself.</span>
+          </span>
+        </a>
+      </li>
     </ul>
 
-    <p><em>Last updated: June 2026</em></p>
+    <h2 id="killed">Killed</h2>
+    <p class="section-note">Products Reality closed. They keep their URL and gain a post-mortem: what I believed, what I built, what the evidence said, what I would do differently.</p>
+    <ul class="product-list">
+      <li>
+        <a class="product-row" href="/founders-note/">
+          <span class="product-icon product-icon-letter" aria-hidden="true">F</span>
+          <span class="product-body">
+            <span class="product-name">Founder's Note</span><span class="status status-killed">Killed</span>
+            <span class="product-line">A workspace built around one agent holding the whole company in memory. Killed during ideation.</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+    <p><a href="/killed/">All post-mortems &rarr;</a></p>
+
+
+    <h2 id="about">Why any of this</h2>
+    <p>Build less. Learn faster. Kill sooner. Try again.</p>
+    <p>I'm not trying to become successful. I'm trying to become less stupid. Building a lot of small things across unrelated categories is the cheapest way I have found to be wrong quickly and in public. <a href="/about/">More about how this works &rarr;</a></p>
   </main>
-  <footer>
-    <p>&copy; 2025 Myles Ieong</p>
+  <footer class="site-footer">
+    <div class="wrap">
+      <ul class="footer-links">
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/killed/">Killed products</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/sai-studio/">Sai Studio</a></li>
+        <li><a href="/field-notes/">Field notes</a></li>
+      </ul>
+      <p class="footer-motto">Sai vs. Reality &mdash; Building in public. Failing with documentation.</p>
+      <p>@saivsreality &middot; <a href="https://github.com/mylesieong">github.com/mylesieong</a> &middot; <a href="mailto:myles.ieong@gmail.com">myles.ieong@gmail.com</a></p>
+      <p class="footer-motto">Apps published by Municornio Ltd.</p>
+    </div>
   </footer>
 </body>
 </html>
-

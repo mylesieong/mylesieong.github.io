@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Sai Studio — Your Day Zero Technical Partner. CTO-level strategy and 7-day build for $499. No equity. 100% IP ownership. Book your free call.">
-<title>Sai Studio — Day Zero Technical Partner</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<title>Sai Studio — MVP builds for founders without a technical co-founder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- svr:font-async --><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
 <style>
     :root {
         --bg: #fafbfc;
         --fg: #0f172a;
         --fg-muted: #475569;
         --accent: #0ea5e9;
+    --accent-aa: #0369a1;      /* AA variant of --accent on light backgrounds */
+    --accent-aa-dark: #7dd3fc; /* AA variant of --accent on dark backgrounds */
         --accent-deep: #0284c7;
         --accent-light: #e0f2fe;
         --surface: #ffffff;
@@ -29,7 +34,8 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-    .key { font-weight: 600; color: var(--accent); }
+    .key { font-weight: 600; color: var(--accent-aa); }
+    footer .key { color: var(--accent-aa-dark); }
 
     /* Nav */
     nav {
@@ -109,7 +115,7 @@
     }
     .pain-points-item:last-child { margin-bottom: 0; }
     .pain-points-item .icon { font-size: 1.5rem; flex-shrink: 0; }
-    .pain-points-item h4 { font-size: 1rem; font-weight: 600; color: var(--fg); margin-bottom: 4px; }
+    .pain-points-item h3 { font-size: 1rem; font-weight: 600; color: var(--fg); margin-bottom: 4px; }
     .pain-points-item p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; margin: 0; }
 
     /* Growth Phase */
@@ -125,7 +131,7 @@
     }
     .growth-phase-item:last-child { margin-bottom: 0; }
     .growth-phase-item .icon { font-size: 1.5rem; flex-shrink: 0; }
-    .growth-phase-item h4 { font-size: 1rem; font-weight: 600; color: var(--fg); margin-bottom: 4px; }
+    .growth-phase-item h3 { font-size: 1rem; font-weight: 600; color: var(--fg); margin-bottom: 4px; }
     .growth-phase-item p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; margin: 0; }
 
     /* Portfolio */
@@ -161,10 +167,10 @@
         flex-shrink: 0;
     }
     .portfolio-card-content { flex: 1; min-width: 0; }
-    .portfolio-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
+    .portfolio-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
     .portfolio-card p { font-size: 0.9rem; color: var(--fg-muted); line-height: 1.55; margin: 0 0 12px; }
     .portfolio-card .portfolio-link-text {
-        font-size: 0.9rem; font-weight: 600; color: var(--accent);
+        font-size: 0.9rem; font-weight: 600; color: var(--accent-aa);
         display: inline-flex; align-items: center; gap: 4px;
     }
     .portfolio-card:hover .portfolio-link-text { color: var(--accent-deep); }
@@ -194,10 +200,10 @@
         border-left-color: var(--accent-deep);
         box-shadow: 0 4px 20px rgba(14,165,233,0.12);
     }
-    .case-study-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--fg); margin-bottom: 12px; line-height: 1.35; }
+    .case-study-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--fg); margin-bottom: 12px; line-height: 1.35; }
     .case-study-card p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; margin: 0 0 16px; }
     .case-study-card .case-study-link {
-        font-size: 0.9rem; font-weight: 600; color: var(--accent);
+        font-size: 0.9rem; font-weight: 600; color: var(--accent-aa);
         display: inline-flex; align-items: center; gap: 4px;
     }
     .case-study-card:hover .case-study-link { color: var(--accent-deep); }
@@ -277,7 +283,7 @@
         font-weight: 800;
         border-radius: 12px;
     }
-    .step-content h4 {
+    .step-content h3 {
         font-size: 1.1rem;
         font-weight: 700;
         color: var(--fg);
@@ -315,7 +321,7 @@
     .pricing-card:hover {
         box-shadow: 0 8px 30px rgba(0,0,0,0.08);
     }
-    .pricing-card h4 {
+    .pricing-card h3 {
         font-size: 1.05rem;
         font-weight: 700;
         color: var(--fg);
@@ -390,7 +396,7 @@
         box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     }
     .pricing-card-side .price { color: var(--accent-deep); font-size: 1.35rem; }
-    .pricing-card-side h4 { font-weight: 600; }
+    .pricing-card-side h3 { font-weight: 600; }
     .pricing-card .price-note { font-size: 0.9rem; color: var(--fg-muted); margin-bottom: 8px; }
     /* Gray checkmarks for side cards (differentiate from MVP Build) */
     .pricing-bullets-gray { list-style: none; padding: 0; margin: 12px 0 0; }
@@ -432,7 +438,7 @@
         padding: 28px 32px; box-shadow: var(--shadow-lg);
         position: relative;
     }
-    .popup-panel h4 { font-size: 1.1rem; color: var(--fg); margin-bottom: 12px; }
+    .popup-panel h3 { font-size: 1.1rem; color: var(--fg); margin-bottom: 12px; }
     .popup-panel p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; margin: 0; }
     .popup-panel ul { margin: 12px 0 0; padding-left: 20px; font-size: 0.95rem; color: var(--fg-muted); line-height: 1.7; }
     .popup-close {
@@ -472,7 +478,7 @@
     }
     .popup-panel-content h2 { font-size: 1.25rem; margin: 0 0 16px; color: var(--fg); }
     .popup-panel-content h3 { font-size: 1.1rem; margin: 20px 0 10px; color: var(--fg); }
-    .popup-panel-content h4 { font-size: 1rem; margin: 16px 0 8px; color: var(--fg); font-weight: 600; }
+    .popup-panel-content h3 { font-size: 1rem; margin: 16px 0 8px; color: var(--fg); font-weight: 600; }
     .popup-panel-content p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.65; margin: 0 0 12px; }
     .popup-panel-content ul, .popup-panel-content ol { margin: 0 0 16px; padding-left: 24px; font-size: 0.95rem; color: var(--fg-muted); line-height: 1.65; }
     .popup-panel-content li { margin-bottom: 6px; }
@@ -581,14 +587,14 @@
     .faq-category { margin-bottom: 40px; }
     .faq-category:last-child { margin-bottom: 0; }
     .faq-category-title {
-        font-size: 1.1rem; font-weight: 700; color: var(--accent);
+        font-size: 1.1rem; font-weight: 700; color: var(--accent-aa);
         margin-bottom: 16px; padding-bottom: 8px;
         border-bottom: 2px solid var(--accent-light);
     }
     .faq-list { max-width: 640px; margin: 0 auto; }
     .faq-item { padding: 20px 0; border-bottom: 1px solid var(--border); }
     .faq-item:last-child { border-bottom: none; }
-    .faq-item h4 { font-size: 1rem; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
+    .faq-item h3 { font-size: 1rem; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
     .faq-item p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.7; margin: 0; }
 
     /* Footer */
@@ -694,12 +700,79 @@
         }
     }
 </style>
+<!-- svr:head:start -->
+<meta name="description" content="CTO-level strategy and a fixed-scope first build, without giving away equity. Case studies from four-week builds, and what the process actually involves.">
+<link rel="canonical" href="https://mylesieong.github.io/sai-studio/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sai vs. Reality">
+<meta property="og:title" content="Sai Studio — MVP builds for founders without a technical co-founder">
+<meta property="og:description" content="CTO-level strategy and a fixed-scope first build, without giving away equity. Case studies from four-week builds, and what the process actually involves.">
+<meta property="og:url" content="https://mylesieong.github.io/sai-studio/">
+<meta property="og:image" content="https://mylesieong.github.io/assets/og/sai-studio.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sai Studio — MVP builds for founders without a technical co-founder">
+<meta name="twitter:description" content="CTO-level strategy and a fixed-scope first build, without giving away equity. Case studies from four-week builds, and what the process actually involves.">
+<meta name="twitter:image" content="https://mylesieong.github.io/assets/og/sai-studio.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/assets/icons/favicon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://mylesieong.github.io/sai-studio/#service",
+  "name": "Sai Studio",
+  "url": "https://mylesieong.github.io/sai-studio/",
+  "serviceType": "MVP development for non-technical founders",
+  "description": "CTO-level strategy and a fixed-scope first build for founders who do not have a technical co-founder, without taking equity.",
+  "provider": { "@id": "https://mylesieong.github.io/about/#person" },
+  "areaServed": "Worldwide",
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://mylesieong.github.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://mylesieong.github.io/products/"},
+      {"@type": "ListItem", "position": 3, "name": "Sai Studio", "item": "https://mylesieong.github.io/sai-studio/"}
+  ]
+}
+</script>
+<!-- svr:head:end -->
 </head>
-<body>
+<body><!-- svr:body:start -->
+<header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">Sai <span class="brand-vs">vs.</span> Reality</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="/products/">Products</a>
+        <a href="/killed/">Killed</a>
+        <a href="/about/">About</a>
+      </nav>
+    </div>
+  </header>
+<nav class="crumbs wrap" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/products/">Products</a></li>
+      <li><span aria-current="page">Sai Studio</span></li>
+    </ol>
+  </nav>
+<!-- svr:body:end -->
+<!-- svr:main:open -->
+<main id="main">
+
+
 
 <nav>
     <div class="container">
-        <a href="#" class="logo"><img src="assets/images/sai-headshot.png" alt="Sai Studio">Sai Studio</a>
+        <a href="/sai-studio/" class="logo"><img src="assets/images/sai-headshot.png" alt="Sai Studio" width="800" height="800" loading="lazy" decoding="async">Sai Studio</a>
         <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
             <span class="nav-toggle-inner"><span></span></span>
         </button>
@@ -733,21 +806,21 @@
             <div class="pain-points-item">
                 <span class="icon">📉</span>
                 <div>
-                    <h4>Equity is too expensive for an MVP</h4>
+                    <h3>Equity is too expensive for an MVP</h3>
                     <p>Founders often recruit a co-founder too early, losing <span class="key">half their company</span> before they even have users.</p>
                 </div>
             </div>
             <div class="pain-points-item">
                 <span class="icon">🏢</span>
                 <div>
-                    <h4>Agencies love "Bloat"</h4>
+                    <h3>Agencies love "Bloat"</h3>
                     <p>Typical shops quote <span class="key">$10k–$50k</span> because they profit from complexity. I profit from your speed.</p>
                 </div>
             </div>
             <div class="pain-points-item">
                 <span class="icon">⚡</span>
                 <div>
-                    <h4>Execution without Strategy fails</h4>
+                    <h3>Execution without Strategy fails</h3>
                     <p>You don't just need "someone who codes"; you need someone who understands market validation and investor timelines.</p>
                 </div>
             </div>
@@ -763,7 +836,7 @@
             <div class="step roadmap-step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h4>The Blueprint Session — $49 <button type="button" class="popup-trigger" data-popup="blueprint-deliverable" aria-label="The Blueprint Deliverable">i</button></h4>
+                    <h3>The Blueprint Session — $49 <button type="button" class="popup-trigger" data-popup="blueprint-deliverable" aria-label="The Blueprint Deliverable">i</button></h3>
                     <p>90-minute strategic deep dive.</p>
                     <ul class="pricing-bullets-gray" style="margin-top:12px">
                         <li>Define the "Single Core Value Loop."</li>
@@ -776,7 +849,7 @@
             <div class="step roadmap-step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h4>The MVP Build — $499 <button type="button" class="popup-trigger" data-popup="why-stack" aria-label="Why this stack?">i</button></h4>
+                    <h3>The MVP Build — $499 <button type="button" class="popup-trigger" data-popup="why-stack" aria-label="Why this stack?">i</button></h3>
                     <p>7-day high-velocity execution.</p>
                     <ul class="pricing-bullets-gray" style="margin-top:12px">
                         <li>Native-grade architecture — I recommend the best-fitting stack for your domain (e.g. Kotlin Multiplatform for mobile, React/Next.js for web).</li>
@@ -797,21 +870,21 @@
             <div class="growth-phase-item">
                 <span class="icon">🔄</span>
                 <div>
-                    <h4>Phase 2 Iteration</h4>
+                    <h3>Phase 2 Iteration</h3>
                     <p>Adding features based on real user feedback.</p>
                 </div>
             </div>
             <div class="growth-phase-item">
                 <span class="icon">🚀</span>
                 <div>
-                    <h4>Launch Support</h4>
+                    <h3>Launch Support</h3>
                     <p>App Store, Play Store, web deployment, and backend management.</p>
                 </div>
             </div>
             <div class="growth-phase-item">
                 <span class="icon">📊</span>
                 <div>
-                    <h4>CTO Retainer</h4>
+                    <h3>CTO Retainer</h3>
                     <p>Ongoing technical advisory as you prepare for fundraising.</p>
                 </div>
             </div>
@@ -825,33 +898,33 @@
         <p class="portfolio-intro">See what I've shipped—from AI-powered apps to training tools.</p>
         <div class="portfolio-grid">
             <div class="portfolio-card" data-popup="product-flexi" role="button" tabindex="0">
-                <img src="assets/images/flexi_logo.png" alt="Flexi: Stretching, Flexibility" class="portfolio-card-logo">
+                <img src="assets/images/flexi_logo.png" alt="Flexi: Stretching, Flexibility" class="portfolio-card-logo" width="1024" height="1024" loading="lazy" decoding="async">
                 <div class="portfolio-card-content">
-                    <h4>Flexi: Stretching, Flexibility</h4>
+                    <h3>Flexi: Stretching, Flexibility</h3>
                     <p>Flexibility at your fingertips. Tailored stretching plans for every stage of your wellness journey—whether at home, at work, or on the go.</p>
                     <span class="portfolio-link-text">View details →</span>
                 </div>
             </div>
             <div class="portfolio-card" data-popup="product-bible" role="button" tabindex="0">
-                <img src="assets/images/logo_bible.webp" alt="Bible Project" class="portfolio-card-logo">
+                <img src="assets/images/logo_bible.webp" alt="Bible Project" class="portfolio-card-logo" width="240" height="240" loading="lazy" decoding="async">
                 <div class="portfolio-card-content">
-                    <h4>Bible Project</h4>
+                    <h3>Bible Project</h3>
                     <p>An innovative Bible reader app with AI-powered verse explanations and smooth UX.</p>
                     <span class="portfolio-link-text">View details →</span>
                 </div>
             </div>
             <div class="portfolio-card" data-popup="product-calmly" role="button" tabindex="0">
-                <img src="assets/images/calmly_news_logo.png" alt="Calmly News" class="portfolio-card-logo">
+                <img src="assets/images/calmly_news_logo.png" alt="Calmly News" class="portfolio-card-logo" width="1024" height="1024" loading="lazy" decoding="async">
                 <div class="portfolio-card-content">
-                    <h4>Calmly News</h4>
+                    <h3>Calmly News</h3>
                     <p>A calmer way to know the world. Stay informed without the addiction—AI-powered news app designed to help you get off your phone.</p>
                     <span class="portfolio-link-text">View details →</span>
                 </div>
             </div>
             <div class="portfolio-card" data-popup="product-pool" role="button" tabindex="0">
-                <img src="assets/images/logo_pool%26biiliards.png" alt="Pool & Billiards Self-Trainer" class="portfolio-card-logo">
+                <img src="assets/images/logo_pool%26biiliards.png" alt="Pool & Billiards Self-Trainer" class="portfolio-card-logo" width="1024" height="1024" loading="lazy" decoding="async">
                 <div class="portfolio-card-content">
-                    <h4>Pool & Billiards Self-Trainer</h4>
+                    <h3>Pool & Billiards Self-Trainer</h3>
                     <p>A comprehensive pool and billiards training assistant app built on proven architecture.</p>
                     <span class="portfolio-link-text">View details →</span>
                 </div>
@@ -866,12 +939,12 @@
         <p class="case-studies-intro">How I've delivered production-ready products in structured sprints.</p>
         <div class="case-studies-grid">
             <div class="case-study-card" data-popup="case-study-bible" role="button" tabindex="0">
-                <h4>Follow the Breadcrumb: Micro innovation on a proven genre</h4>
+                <h3>Follow the Breadcrumb: Micro innovation on a proven genre</h3>
                 <p>Building a better Bible reader with AI-powered explanations, smooth UX, and structured weekly workflow.</p>
                 <span class="case-study-link">Read case study →</span>
             </div>
             <div class="case-study-card" data-popup="case-study-web3" role="button" tabindex="0">
-                <h4>Build a production level social network in 4 weeks</h4>
+                <h3>Build a production level social network in 4 weeks</h3>
                 <p>Ongoing social network development for a vertical community using a 4-week structured methodology.</p>
                 <span class="case-study-link">Read case study →</span>
             </div>
@@ -882,7 +955,7 @@
 <section id="credibility">
     <div class="container">
         <div class="bio-section">
-            <img src="assets/images/sai-headshot.png" alt="Sai — founder of Sai Studio" class="bio-photo">
+            <img src="assets/images/sai-headshot.png" alt="Sai — founder of Sai Studio" class="bio-photo" width="800" height="800" loading="lazy" decoding="async">
             <div class="bio-content">
                 <h2>Sai — Technical Expert & Day Zero Partner</h2>
                 <p>10+ years in software. I've published apps, scaled products in weeks, and served as <span class="key">technical advisor for two</span> early-stage startups. I've seen founders burn capital on overbuilt MVPs and others stall waiting for the "perfect" technical co-founder. I started Sai Studio because Day Zero shouldn't require giving away equity or betting $50k on an unvalidated idea. I don't just "build features"—I build businesses.</p>
@@ -909,39 +982,39 @@
                 <h3 class="faq-category-title">Strategic & Risk Management</h3>
                 <div class="faq-list">
                     <div class="faq-item">
-                        <h4>Who owns the IP?</h4>
+                        <h3>Who owns the IP?</h3>
                         <p>You do. 100% of the code and intellectual property are assigned to your company upon sign-off.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>Why is this better than a technical co-founder?</h4>
+                        <h3>Why is this better than a technical co-founder?</h3>
                         <p>It isn't "better," it's smarter for Day Zero. Prove your idea works first. It's easier to recruit an elite co-founder when you already have a product and users.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>What if I bring in a technical co-founder?</h4>
+                        <h3>What if I bring in a technical co-founder?</h3>
                         <p>No conflict. You own the code. Any developer can continue work—the repo is yours.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>What if you and I work well together?</h4>
+                        <h3>What if you and I work well together?</h3>
                         <p>I offer long-term partnership possibilities. If the venture shows traction, I'm open to discussing ongoing Fractional CTO support or a formal transition into your team.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>Why only $499?</h4>
+                        <h3>Why only $499?</h3>
                         <p>Because I focus on one journey. Most MVPs are expensive because they are built on guesses. By being surgical about scope, I keep your costs low and your speed high.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>What if you pivot before generating revenue?</h4>
+                        <h3>What if you pivot before generating revenue?</h3>
                         <p>Pivot-friendly. Extending the product = phased build. New product from scratch = new MVP package (cash only).</p>
                     </div>
                     <div class="faq-item">
-                        <h4>Is $499 realistic for a complex build like a mortgage or medical tool?</h4>
+                        <h3>Is $499 realistic for a complex build like a mortgage or medical tool?</h3>
                         <p>At $499, I'm not building a finished enterprise platform; I'm building your Single Core Value Loop. For a mortgage tool, that might be a secure borrower document vault or a validated qualification engine. I strip away the "noise" (compliance heavy-lifting, deep lender APIs) to prove your users actually want the solution. This de-risks your idea before you spend $50k on a full-scale build.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>Do you have "Skin in the Game" if there is no equity involved?</h4>
+                        <h3>Do you have "Skin in the Game" if there is no equity involved?</h3>
                         <p>My incentive is your traction. If my 7-day build helps you land your first 100 users or an angel check, I become your primary candidate for a Fractional CTO retainer or a long-term partnership. I profit from your success because a successful "Day Seven" leads to a "Year One" partnership. My business model relies on turning $499 validations into long-term strategic roles.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>Am I on my own after Day 7? What about bugs?</h4>
+                        <h3>Am I on my own after Day 7? What about bugs?</h3>
                         <p>I don't "ship and dip." Every build includes a 30-day Stability Warranty. If a user finds a bug in your core workflow on Day 10, I fix it for free.</p>
                     </div>
                 </div>
@@ -950,11 +1023,11 @@
                 <h3 class="faq-category-title">Technical & Future-Proofing</h3>
                 <div class="faq-list">
                     <div class="faq-item">
-                        <h4>Will a future Co-Founder or CTO have to scrap your "7-day rush job"?</h4>
+                        <h3>Will a future Co-Founder or CTO have to scrap your "7-day rush job"?</h3>
                         <p>I build "Investor-Grade Scaffolding." With 10+ years of experience, I don't write "disposable" code. I use industry-standard architecture and Clean Architecture principles. When your future CTO joins, they won't find a mess—they'll find a production-ready foundation that is easy to audit and scale.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>What if the MVP feels "too thin" without heavy integrations?</h4>
+                        <h3>What if the MVP feels "too thin" without heavy integrations?</h3>
                         <p>A "thin" product that solves a real pain point is a Startup. A "thick" product with 50 features and no users is a Failure. I use the Blueprint Session to ensure the 3–5 screens I build are the most impactful ones. If you need a heavy integration (like a Plaid or Encompass API) to prove your concept, I can scope that as a separate, high-priority milestone post-launch.</p>
                     </div>
                 </div>
@@ -963,27 +1036,27 @@
                 <h3 class="faq-category-title">Delivery & Scope</h3>
                 <div class="faq-list">
                     <div class="faq-item">
-                        <h4>Can I take just the Blueprint session without the build?</h4>
+                        <h3>Can I take just the Blueprint session without the build?</h3>
                         <p>Yes. The Blueprint session is fully standalone. You can use it with me, another developer, or build it yourself. Even taking just the Blueprint helps you clarify your scope and bring clarity to your product direction—no commitment to the MVP Build required.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>What defines the scope of the MVP?</h4>
+                        <h3>What defines the scope of the MVP?</h3>
                         <p>Core user journeys plus an essential support feature that fits your needs. I use Material 3 for UI where applicable. For more comprehensive builds, I add a full design phase and curated feature set.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>What if my idea is complex?</h4>
+                        <h3>What if my idea is complex?</h3>
                         <p>I ship the smallest viable version in 1 week to get you to market. Scope is not carried on after MVP unless you choose to move up to the next package. Then I expand in phases based on real user feedback.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>What's not included in 7 days?</h4>
+                        <h3>What's not included in 7 days?</h3>
                         <p>Beyond core features: heavy custom design, third-party integrations, complex backend logic. I phase these post-launch.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>Is there a maintenance period?</h4>
+                        <h3>Is there a maintenance period?</h3>
                         <p>The $499 build is for validation and includes a 30-day Stability Warranty. Post-launch maintenance and feature expansions are handled through custom milestones or monthly retainers.</p>
                     </div>
                     <div class="faq-item">
-                        <h4>How are new features priced?</h4>
+                        <h3>How are new features priced?</h3>
                         <p>I estimate complexity and quote per feature. Rates are transparent and at market level—you keep building with someone who already knows your codebase.</p>
                     </div>
                 </div>
@@ -992,6 +1065,18 @@
     </div>
 </section>
 
+<!-- svr:tail:start -->
+  <div class="wrap">
+    <h2>Case studies</h2>
+    <p>Full write-ups of builds delivered through Sai Studio.</p>
+    <ul class="subpages">
+      <li><a href="/sai-studio/case-studies/bible-project/">Follow the breadcrumb: micro innovation on a proven genre<span class="sub-line">A better Bible reader in four weeks, by adding one thing to a genre that already worked.</span></a></li>
+      <li><a href="/sai-studio/case-studies/web3-social-network/">Build a production level social network in 4 weeks<span class="sub-line">A vertical-community social network, built to production standard on a four-week structure.</span></a></li>
+    </ul>
+  </div>
+<!-- svr:tail:end -->
+</main>
+<!-- svr:main:close -->
 <footer>
     <div class="container">
         <p class="footer-credibility"><span class="key">Cash-only</span>. Equity-free. Founder-aligned.</p>
@@ -1007,7 +1092,7 @@
 <div id="popup-blueprint-deliverable" class="popup-overlay" role="dialog" aria-labelledby="popup-blueprint-deliverable-title">
     <div class="popup-panel">
         <button type="button" class="popup-close" aria-label="Close">&times;</button>
-        <h4 id="popup-blueprint-deliverable-title">The Blueprint Deliverable</h4>
+        <h3 id="popup-blueprint-deliverable-title">The Blueprint Deliverable</h3>
         <p>You receive a clear, actionable document including:</p>
         <ul>
             <li><strong>Prioritized Feature Map</strong> — What to build first, second, and what to cut for Day Zero.</li>
@@ -1019,7 +1104,7 @@
 <div id="popup-why-stack" class="popup-overlay" role="dialog" aria-labelledby="popup-why-stack-title">
     <div class="popup-panel">
         <button type="button" class="popup-close" aria-label="Close">&times;</button>
-        <h4 id="popup-why-stack-title">Why This Stack?</h4>
+        <h3 id="popup-why-stack-title">Why This Stack?</h3>
         <p>I don't mandate a single stack — I recommend the best-fitting solutions for your domain. Your code is fully portable. When you hire a full team later, they won't need to rewrite it. Native-grade architecture that scales with you.</p>
     </div>
 </div>
@@ -1032,16 +1117,16 @@
         </div>
         <div class="popup-scrollable">
             <div class="popup-header">
-                <img src="assets/images/logo_pool%26biiliards.png" alt="Pool & Billiards Self-Trainer">
+                <img src="assets/images/logo_pool%26biiliards.png" alt="Pool & Billiards Self-Trainer" width="1024" height="1024" loading="lazy" decoding="async">
                 <h2 id="popup-product-pool-title">Pool & Billiards Self-Trainer</h2>
             </div>
             <div class="popup-screenshot-strip">
-                <img src="assets/images/resized/pool%26biiliards.jpg" alt="Pool & Billiards Main">
-                <img src="assets/images/resized/pool%26biiliards-1.jpg" alt="Dashboard">
-                <img src="assets/images/resized/pool%26biiliards-2.jpg" alt="Training Plan">
-                <img src="assets/images/resized/pool%26biiliards-3.jpg" alt="Drills">
-                <img src="assets/images/resized/pool%26biiliards-4.jpg" alt="Drill Details">
-                <img src="assets/images/resized/pool%26biiliards-5.jpg" alt="Performance Tracking">
+                <img src="assets/images/resized/pool%26biiliards.jpg" alt="Pool & Billiards Main" width="426" height="923" loading="lazy" decoding="async">
+                <img src="assets/images/resized/pool%26biiliards-1.jpg" alt="Dashboard" width="426" height="923" loading="lazy" decoding="async">
+                <img src="assets/images/resized/pool%26biiliards-2.jpg" alt="Training Plan" width="426" height="923" loading="lazy" decoding="async">
+                <img src="assets/images/resized/pool%26biiliards-3.jpg" alt="Drills" width="426" height="923" loading="lazy" decoding="async">
+                <img src="assets/images/resized/pool%26biiliards-4.jpg" alt="Drill Details" width="426" height="923" loading="lazy" decoding="async">
+                <img src="assets/images/resized/pool%26biiliards-5.jpg" alt="Performance Tracking" width="426" height="923" loading="lazy" decoding="async">
             </div>
             <h3>Overview</h3>
             <p>Whether you're a beginner learning cue basics or a seasoned player refining advanced techniques, Pool & Billiards Self-Trainer is your all-in-one training assistant for 8-ball, 9-ball, straight pool, and beyond.</p>
@@ -1068,8 +1153,8 @@
             </ul>
             <h3>App Store Links</h3>
             <ul>
-                <li><a href="https://play.google.com/store/apps/details?id=com.municornio.app.poolandbilliardsselftrainer" target="_blank" rel="noopener" class="store-link"><img src="assets/images/google-play-badge.png" alt="Get it on Google Play" class="store-badge"></a></li>
-                <li><a href="https://apps.apple.com/us/app/pool-billiards-self-trainer/id6748546651" target="_blank" rel="noopener" class="store-link"><img src="assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge"></a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.municornio.app.poolandbilliardsselftrainer" target="_blank" rel="noopener" class="store-link"><img src="assets/images/google-play-badge.png" alt="Get it on Google Play" class="store-badge" width="366" height="78" loading="lazy" decoding="async"></a></li>
+                <li><a href="https://apps.apple.com/us/app/pool-billiards-self-trainer/id6748546651" target="_blank" rel="noopener" class="store-link"><img src="assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge" width="120" height="40" loading="lazy" decoding="async"></a></li>
             </ul>
         </div>
     </div>
@@ -1082,16 +1167,16 @@
         </div>
         <div class="popup-scrollable">
             <div class="popup-header">
-                <img src="assets/images/logo_bible.webp" alt="Bible Project">
+                <img src="assets/images/logo_bible.webp" alt="Bible Project" width="240" height="240" loading="lazy" decoding="async">
                 <h2 id="popup-product-bible-title">Bible Project: Guided by AI</h2>
             </div>
             <div class="popup-screenshot-strip">
-                <img src="assets/images/bible0.png" alt="Bible Project Screenshot 1">
-                <img src="assets/images/bible1.png" alt="Bible Project Screenshot 2">
-                <img src="assets/images/bible2.png" alt="Bible Project Screenshot 3">
-                <img src="assets/images/bible3.png" alt="Bible Project Screenshot 4">
-                <img src="assets/images/bible4.png" alt="Bible Project Screenshot 5">
-                <img src="assets/images/bible5.png" alt="Bible Project Screenshot 6">
+                <img src="assets/images/bible0.png" alt="Bible Project Screenshot 1" width="1284" height="2778" loading="lazy" decoding="async">
+                <img src="assets/images/bible1.png" alt="Bible Project Screenshot 2" width="1284" height="2778" loading="lazy" decoding="async">
+                <img src="assets/images/bible2.png" alt="Bible Project Screenshot 3" width="1284" height="2778" loading="lazy" decoding="async">
+                <img src="assets/images/bible3.png" alt="Bible Project Screenshot 4" width="1284" height="2778" loading="lazy" decoding="async">
+                <img src="assets/images/bible4.png" alt="Bible Project Screenshot 5" width="1284" height="2778" loading="lazy" decoding="async">
+                <img src="assets/images/bible5.png" alt="Bible Project Screenshot 6" width="1284" height="2778" loading="lazy" decoding="async">
             </div>
             <h3>Overview</h3>
             <p>In today's fast-paced world, finding time for spiritual reflection and connection can be challenging. The Bible Project redefines your journey, merging technology and spirituality to bring you closer to God's word through an AI-enhanced, personalized experience.</p>
@@ -1113,8 +1198,8 @@
             </ul>
             <h3>App Store Links</h3>
             <ul>
-                <li><a href="https://play.google.com/store/apps/details?id=com.municornio.biblereader" target="_blank" rel="noopener" class="store-link"><img src="assets/images/google-play-badge.png" alt="Get it on Google Play" class="store-badge"></a></li>
-                <li><a href="https://apps.apple.com/us/app/bible-project-guided-by-ai/id6480479278" target="_blank" rel="noopener" class="store-link"><img src="assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge"></a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.municornio.biblereader" target="_blank" rel="noopener" class="store-link"><img src="assets/images/google-play-badge.png" alt="Get it on Google Play" class="store-badge" width="366" height="78" loading="lazy" decoding="async"></a></li>
+                <li><a href="https://apps.apple.com/us/app/bible-project-guided-by-ai/id6480479278" target="_blank" rel="noopener" class="store-link"><img src="assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge" width="120" height="40" loading="lazy" decoding="async"></a></li>
             </ul>
         </div>
     </div>
@@ -1127,16 +1212,16 @@
         </div>
         <div class="popup-scrollable">
             <div class="popup-header">
-                <img src="assets/images/flexi_logo.png" alt="Flexi: Stretching, Flexibility">
+                <img src="assets/images/flexi_logo.png" alt="Flexi: Stretching, Flexibility" width="1024" height="1024" loading="lazy" decoding="async">
                 <h2 id="popup-product-flexi-title">Flexi: Stretching, Flexibility</h2>
             </div>
             <div class="popup-screenshot-strip">
-                <img src="assets/images/flexi_0.png" alt="Flexi - Keep Moving Forward With Love And Resilience">
-                <img src="assets/images/flexi_1.png" alt="Flexi Tailored Stretching Plans">
-                <img src="assets/images/flexi_2.png" alt="Flexi Guided Stretching">
-                <img src="assets/images/flexi_3.png" alt="Flexi Progress Tracking">
-                <img src="assets/images/flexi_4.png" alt="Flexi Exercise Library">
-                <img src="assets/images/flexi_5.png" alt="Flexi Goals and Motivation">
+                <img src="assets/images/flexi_0.png" alt="Flexi - Keep Moving Forward With Love And Resilience" width="472" height="1024" loading="lazy" decoding="async">
+                <img src="assets/images/flexi_1.png" alt="Flexi Tailored Stretching Plans" width="472" height="1024" loading="lazy" decoding="async">
+                <img src="assets/images/flexi_2.png" alt="Flexi Guided Stretching" width="472" height="1024" loading="lazy" decoding="async">
+                <img src="assets/images/flexi_3.png" alt="Flexi Progress Tracking" width="472" height="1024" loading="lazy" decoding="async">
+                <img src="assets/images/flexi_4.png" alt="Flexi Exercise Library" width="472" height="1024" loading="lazy" decoding="async">
+                <img src="assets/images/flexi_5.png" alt="Flexi Goals and Motivation" width="472" height="1024" loading="lazy" decoding="async">
             </div>
             <h3>Flexibility at Your Fingertips with Flexi</h3>
             <p>Whether you're a dynamic professional juggling work or a dedicated mom at home, Flexi is here to support every stage of your wellness journey. Our app seamlessly integrates into your lifestyle with targeted stretching plans that cater to your unique needs.</p>
@@ -1164,7 +1249,7 @@
                 <li><strong>Journey Tracking & Daily Reminders:</strong> Detailed dashboard and reminders to maintain your routine.</li>
             </ul>
             <h3>App Store</h3>
-            <p><a href="https://apps.apple.com/us/app/flexi-stretching-flexibility/id6532588635" target="_blank" rel="noopener" class="app-store-link"><img src="assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge"></a></p>
+            <p><a href="https://apps.apple.com/us/app/flexi-stretching-flexibility/id6532588635" target="_blank" rel="noopener" class="app-store-link"><img src="assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge" width="120" height="40" loading="lazy" decoding="async"></a></p>
         </div>
     </div>
 </div>
@@ -1176,15 +1261,15 @@
         </div>
         <div class="popup-scrollable">
             <div class="popup-header">
-                <img src="assets/images/calmly_news_logo.png" alt="Calmly News">
+                <img src="assets/images/calmly_news_logo.png" alt="Calmly News" width="1024" height="1024" loading="lazy" decoding="async">
                 <h2 id="popup-product-calmly-title">Calmly News</h2>
             </div>
             <div class="popup-screenshot-strip">
-                <img src="assets/images/calmly_news.jpg" alt="Calmly News Main">
-                <img src="assets/images/calmly_news_1.jpg" alt="Calmly News Screenshot 1">
-                <img src="assets/images/calmly_news_2.jpg" alt="Calmly News Screenshot 2">
-                <img src="assets/images/calmly_news_3.jpg" alt="Calmly News Screenshot 3">
-                <img src="assets/images/calmly_news_4.jpg" alt="Calmly News Screenshot 4">
+                <img src="assets/images/calmly_news.jpg" alt="Calmly News Main" width="1242" height="2688" loading="lazy" decoding="async">
+                <img src="assets/images/calmly_news_1.jpg" alt="Calmly News Screenshot 1" width="1242" height="2688" loading="lazy" decoding="async">
+                <img src="assets/images/calmly_news_2.jpg" alt="Calmly News Screenshot 2" width="1242" height="2688" loading="lazy" decoding="async">
+                <img src="assets/images/calmly_news_3.jpg" alt="Calmly News Screenshot 3" width="1242" height="2688" loading="lazy" decoding="async">
+                <img src="assets/images/calmly_news_4.jpg" alt="Calmly News Screenshot 4" width="1242" height="2688" loading="lazy" decoding="async">
             </div>
             <h3>Overview</h3>
             <p>Most news apps are designed to keep you addicted. I built Calmly News to do the opposite: keep you informed, and then help you get off your phone.</p>
@@ -1206,8 +1291,8 @@
             <h3>App Store Links</h3>
             <ul>
                 <li><a href="https://calmly.news/" target="_blank" rel="noopener" class="store-link"><svg class="globe-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg> Visit Website</a></li>
-                <li><a href="https://play.google.com/store/apps/details?id=com.municornio.app.specialnewsapp" target="_blank" rel="noopener" class="store-link"><img src="assets/images/google-play-badge.png" alt="Get it on Google Play" class="store-badge"></a></li>
-                <li><a href="https://apps.apple.com/us/app/calmly-news/id6756495260" target="_blank" rel="noopener" class="store-link"><img src="assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge"></a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.municornio.app.specialnewsapp" target="_blank" rel="noopener" class="store-link"><img src="assets/images/google-play-badge.png" alt="Get it on Google Play" class="store-badge" width="366" height="78" loading="lazy" decoding="async"></a></li>
+                <li><a href="https://apps.apple.com/us/app/calmly-news/id6756495260" target="_blank" rel="noopener" class="store-link"><img src="assets/images/app-store-badge.svg" alt="Download on the App Store" class="store-badge" width="120" height="40" loading="lazy" decoding="async"></a></li>
             </ul>
         </div>
     </div>
@@ -1232,20 +1317,20 @@
                 <li><strong>Partner 2:</strong> Product strategy and marketing—handled product requirements, market research, and go-to-market strategies</li>
             </ul>
             <h3>4-Week Development Process</h3>
-            <h4>Week 1: Building the MVP Foundation</h4>
-            <img src="assets/images/Case study week1 bible.png" alt="Week 1: Building the MVP Foundation" class="case-study-img">
+            <h3>Week 1: Building the MVP Foundation</h3>
+            <img src="assets/images/Case study week1 bible.png" alt="Week 1: Building the MVP Foundation" class="case-study-img" width="6004" height="866" loading="lazy" decoding="async">
             <p>Our first week was focused on creating a functional starting point. I developed a minimal Bible reader with core reading functionality, while the UI team worked in parallel to design an exceptional interface. Simultaneously, the product team researched solutions to address the verse explanation challenge.</p>
             <p><strong>Outcome:</strong> A standard Bible reader with minimal but functional UI, with design work progressing in parallel.</p>
-            <h4>Week 2: Innovation & Enhancement</h4>
-            <img src="assets/images/Case study week2 bible.png" alt="Week 2: Innovation & Enhancement" class="case-study-img">
+            <h3>Week 2: Innovation & Enhancement</h3>
+            <img src="assets/images/Case study week2 bible.png" alt="Week 2: Innovation & Enhancement" class="case-study-img" width="6004" height="866" loading="lazy" decoding="async">
             <p>Week two brought significant upgrades. The UI team delivered their polished interface design, which I integrated. More importantly, we implemented our core innovation: an AI-powered solution to explain verses on demand, directly addressing the user pain point we identified.</p>
             <p><strong>Outcome:</strong> A beta product with an upgraded UI and AI-powered verse explanations—already covering basic features and solving a critical user problem.</p>
-            <h4>Week 3: Publication & Refinement</h4>
-            <img src="assets/images/Case study week3 bible.png" alt="Week 3: Publication & Refinement" class="case-study-img">
+            <h3>Week 3: Publication & Refinement</h3>
+            <img src="assets/images/Case study week3 bible.png" alt="Week 3: Publication & Refinement" class="case-study-img" width="6004" height="866" loading="lazy" decoding="async">
             <p>With the basic features complete, servers deployed, and UI finalized, we began the app store publication process early in week three. Understanding that store approval involves auditing and potential back-and-forth, we didn't wait. While the app underwent review, we continued polishing details and fixing bugs to ensure the best possible user experience.</p>
             <p><strong>Outcome:</strong> A published app on both App Store and Play Store that is fully usable and features our core innovation—all within three weeks.</p>
-            <h4>Week 4: Marketing & Monetization</h4>
-            <img src="assets/images/Case study week4 bible.png" alt="Week 4: Marketing & Monetization" class="case-study-img">
+            <h3>Week 4: Marketing & Monetization</h3>
+            <img src="assets/images/Case study week4 bible.png" alt="Week 4: Marketing & Monetization" class="case-study-img" width="6004" height="866" loading="lazy" decoding="async">
             <p>The final week focused on growth and sustainability. The development team integrated third-party analytics tools to track user engagement. The marketing team created assets for advertising campaigns, and the product team worked on collecting real user reviews and feedback to improve search engine optimization.</p>
             <p>We also developed our pricing model and integrated advertisements into the app, establishing a sustainable monetization strategy.</p>
             <p><strong>Outcome:</strong> A complete product with integrated marketing tools, monetization strategy, and analytics—ready for user acquisition and growth.</p>
@@ -1287,16 +1372,16 @@
                 <li><strong>Partner(s):</strong> UI design, marketing, and product management—working collaboratively to deliver a cohesive product</li>
             </ul>
             <h3>4-Week Development Process</h3>
-            <h4>Week 1: Core User Experience First</h4>
+            <h3>Week 1: Core User Experience First</h3>
             <p>Given the backend complexity inherent in social networks, we made a strategic decision: build a working UI/UX application first. This allowed us to establish the major user experience flows before diving into the backend infrastructure. This approach ensures we're building the right features from a user perspective, not just technically feasible ones.</p>
             <p><strong>Outcome:</strong> A functional UI prototype showcasing core user experience flows and design direction.</p>
-            <h4>Week 2: Backend Integration & MVP Completion</h4>
+            <h3>Week 2: Backend Integration & MVP Completion</h3>
             <p>With the user experience defined, week two focused on building out the service side—implementing the backend systems, APIs, and integrations needed to make the app fully functional. We polished features and refined the user experience based on what we learned from week one.</p>
             <p><strong>Outcome:</strong> A fully functional MVP product with polished features and refined user experience, ready for internal team testing.</p>
-            <h4>Week 3: Public Internal Testing Preparation</h4>
+            <h3>Week 3: Public Internal Testing Preparation</h3>
             <p>Week three involved defining a committed scope—a clear set of final tasks that needed completion before launching public internal testing. The development team focused on fixing bugs and adding missing critical features, while the marketing team organized focus groups to ensure we were moving in the same direction with the same goals.</p>
             <p><strong>Outcome:</strong> Product launched into public internal testing phase, with feedback collection mechanisms in place.</p>
-            <h4>Week 4: Publication (Upcoming)</h4>
+            <h3>Week 4: Publication (Upcoming)</h3>
             <p>The product is currently undergoing public internal testing, which requires time to gather meaningful feedback. Once we've collected and analyzed user feedback, we'll resume work for week four, which will focus on publishing the application on both App Store and Play Store based on the insights we've gained.</p>
             <p><strong>Current Status:</strong> Public internal testing in progress—collecting user feedback to inform final adjustments before publication.</p>
             <h3>Flexible Methodology & Key Principles</h3>

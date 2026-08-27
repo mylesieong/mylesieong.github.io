@@ -1,20 +1,19 @@
 /* Chatengage landing page — standalone export from web/components/landing */
 
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Merienda:wght@400;700&display=swap");
 
 :root {
   --text: #37352f;
-  --text-muted: rgba(55, 53, 47, 0.65);
-  --text-faint: rgba(55, 53, 47, 0.45);
+  --text-muted: rgba(55, 53, 47, 0.70);
+  --text-faint: rgba(55, 53, 47, 0.70);
   --border: rgba(55, 53, 47, 0.09);
   --border-strong: rgba(55, 53, 47, 0.16);
   --surface: #f7f6f3;
   --white: #ffffff;
-  --accent: #2383e2;
+  --accent: #1565ad;
   --accent-soft: rgba(35, 131, 226, 0.08);
   --accent-border: rgba(35, 131, 226, 0.15);
   --accent-bg: rgba(35, 131, 226, 0.1);
-  --risk: #d9730d;
+  --risk: #a85807;
   --risk-soft: rgba(217, 115, 13, 0.08);
   --risk-border: rgba(217, 115, 13, 0.2);
   --green: #448361;
