@@ -6,8 +6,8 @@ Disallow: /products/flexi/src/
 Disallow: /products/bible-project/_data/
 
 Sitemap: https://mylesieong.github.io/sitemap.xml
+Sitemap: https://mylesieong.github.io/products/aisleful/sitemap.xml
 Sitemap: https://mylesieong.github.io/products/bible-project/sitemap.xml
-Sitemap: https://mylesieong.github.io/products/canieat/sitemap.xml
 Sitemap: https://mylesieong.github.io/products/flexi/sitemap.xml
 Sitemap: https://mylesieong.github.io/products/pool-billiards-self-trainer/sitemap.xml
 Sitemap: https://mylesieong.github.io/products/runout-rank/sitemap.xml

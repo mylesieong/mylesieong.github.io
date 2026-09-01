@@ -73,10 +73,10 @@ PRODUCTS = [
          path="/sai-studio/",
          icon=None,
          line="MVP builds for non-technical founders. The consulting arm that pays for the rest of this."),
-    dict(slug="canieat", name="CanIEat", status="building", owner="submodule",
-         path="/products/canieat/",
+    dict(slug="aisleful", name="Aisleful", status="building", owner="submodule",
+         path="/products/aisleful/",
          icon=None,
-         line="Does this one thing fit your diet, at your limit? Judgment pages while the scanner gets built."),
+         line="Food judgments that recalculate against the daily limit you actually keep to. Not launched yet."),
     dict(slug="chatengage", name="Chatengage", status="building", owner="hub",
          path="/chatengage/",
          icon=None,
@@ -1359,8 +1359,8 @@ def build_landing_pages():
 # --------------------------------------------------------------------------
 
 PRODUCT_SITEMAPS = [
+    "/products/aisleful/sitemap.xml",
     "/products/bible-project/sitemap.xml",
-    "/products/canieat/sitemap.xml",
     "/products/flexi/sitemap.xml",
     "/products/pool-billiards-self-trainer/sitemap.xml",
     "/products/runout-rank/sitemap.xml",
