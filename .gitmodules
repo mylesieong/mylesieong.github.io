@@ -16,6 +16,6 @@
 [submodule "products/snooker-self-trainer"]
 	path = products/snooker-self-trainer
 	url = https://github.com/mylesieong/SnookerSelfTrainerWebsite.git
-[submodule "products/canieat"]
-	path = products/canieat
-	url = https://github.com/mylesieong/CanIEatWebsite.git
+[submodule "products/aisleful"]
+	path = products/aisleful
+	url = https://github.com/mylesieong/AislefulWebsite.git
