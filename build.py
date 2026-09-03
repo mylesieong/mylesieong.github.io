@@ -21,6 +21,10 @@ SITE = "https://mylesieong.github.io"
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TODAY = date.today().isoformat()
 
+# Google Analytics 4 measurement ID ("G-XXXXXXXXXX"). Empty disables the tag.
+# Overridable per-build with GA_ID= in the environment.
+GA_ID = os.environ.get("GA_ID", "")
+
 BRAND = "Sai vs. Reality"
 TAGLINE = "Building in public. Failing with documentation."
 HANDLE = "@saivsreality"
@@ -65,10 +69,10 @@ PRODUCTS = [
          path="/products/tacet/",
          icon="/assets/icons/tacet.png",
          line="Breathing paced by vibration with the screen off, so nobody in the room notices."),
-    dict(slug="calmly-news", name="Calmly News", status="live", owner="hub",
+    dict(slug="calmly-news", name="Calmly News", status="killed", owner="hub",
          path="/products/calmly-news/",
          icon="/assets/icons/calmly-news.png",
-         line="Ten stories a day, stripped of drama adjectives. Then the feed locks."),
+         line="Ten stories a day, stripped of drama adjectives. Built in three weeks, shipped to almost nobody, killed after seven and a half months."),
     dict(slug="sai-studio", name="Sai Studio", status="live", owner="hub",
          path="/sai-studio/",
          icon=None,
@@ -113,6 +117,21 @@ def status_pill(status):
             % (status, STATUS_LABEL[status]))
 
 
+def analytics():
+    """GA4 tag as head bits. Empty list when GA_ID is unset."""
+    if not GA_ID:
+        return []
+    return [
+        '<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>' % GA_ID,
+        '<script>\n'
+        '    window.dataLayer = window.dataLayer || [];\n'
+        '    function gtag(){dataLayer.push(arguments);}\n'
+        "    gtag('js', new Date());\n"
+        "    gtag('config', '%s');\n"
+        '  </script>' % GA_ID,
+    ]
+
+
 def head(title, desc, path, og_image, extra_ld=None, noindex=False):
     """Build a complete, non-templated <head>."""
     url = SITE + path
@@ -144,6 +163,7 @@ def head(title, desc, path, og_image, extra_ld=None, noindex=False):
         '<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">',
         '<link rel="stylesheet" href="/assets/css/site.css">',
     ]
+    bits += analytics()
     for ld in (extra_ld or []):
         bits.append('<script type="application/ld+json">\n%s\n</script>' % ld.strip())
     return "\n  ".join(bits)
@@ -516,6 +536,70 @@ POSTMORTEMS = {
                     "\u2014 posted it publicly, on social, let a few hundred people ignore it "
                     "or not \u2014 before concluding on my own that it would not work."
     ),
+    "calmly-news": dict(
+        killed_on="31 August 2026",
+        built_it=True,
+        launched="12 January 2026",
+        believed="That news fatigue was a real, documented problem and that people would "
+                 "want a reader which handled it for them. That part I checked: I went "
+                 "looking for other people describing it in their own words, on forums and "
+                 "public threads, before I built anything, because I have shipped features "
+                 "nobody asked for before and I did not want to do it again. Then I found "
+                 "several apps already working in this space, decided the category was "
+                 "therefore proven and lightly educated, looked at what was shipping, "
+                 "judged that I could do better \u2014 and concluded the opportunity was "
+                 "large. The research was sound. The inference I drew from it was not. "
+                 "Existing products told me the problem existed. I read them as telling me "
+                 "there was money in it, and those are different sentences.",
+        built="All of it, in three weeks, with three people. A designer in Vancouver on "
+              "interface and product, me on development and testing, and a third person on "
+              "marketing. Daily scrum, week one for a bare MVP, week two for features, UI "
+              "and positioning, week three to ship. What went out was a website, an iOS "
+              "app, an Android app and our own backend pulling the news. Every story was "
+              "vectorised on arrival, every user wrote their interests out in plain text "
+              "and was vectorised too, and the day's stories came back ranked by relevance "
+              "as a deck of cards you swiped. The news API was free \u2014 I wrote a "
+              "polling schedule that sat exactly on the ceiling of the free tier. The "
+              "domain was $15 a year and the AI calls ran one to two dollars a day. "
+              "Nothing about the build went wrong. Technically, procedurally, on schedule, "
+              "it is the smoothest three weeks I have run, and it is the reason this "
+              "post-mortem exists: doing the wrong thing extremely well is still doing the "
+              "wrong thing.",
+        evidence="Seven and a half months, from 12 January to 31 August 2026. On the App "
+                 "Store: 723 impressions and 18 downloads. On Google Play, live from May: "
+                 "2,400 impressions and 2 installs. Three thousand-odd impressions and 20 "
+                 "downloads in total, fewer than five people who actually used it, and "
+                 "nobody who stayed. The conversion rate was around 2.5%, which is not the "
+                 "problem \u2014 723 is the problem. Seven and a half months of storefront "
+                 "works out at three people a day walking past. Marketing was a handful of "
+                 "Reddit posts and nothing else. There was also no way to make money in the "
+                 "app at all, and not because I decided against charging: making money was "
+                 "never a question I got round to asking, which I think shaped everything "
+                 "downstream of it.",
+        differently="Reverse the order. Put up a landing page, do the SEO, collect a "
+                    "waitlist, and only build once there is evidence I can bring people to "
+                    "a page and hold them there. Whether I can generate and carry traffic "
+                    "is the first thing that gets tested, not the last \u2014 if I cannot "
+                    "get anyone to a landing page, finishing the app changes nothing except "
+                    "how much it cost to find out. I would also check willingness to pay "
+                    "directly, with something like Sensor Tower on the products already in "
+                    "the category, instead of treating their existence as proof of a "
+                    "market. I used to believe good wine needs no bush \u2014 that if the "
+                    "thing is good enough, people find their way down the alley to it. In "
+                    "an alley nobody walks down, the wine does not matter. Mine had three "
+                    "people a day.",
+        myth="That bringing in a domain expert raises your odds. Our marketing lead came "
+             "out of journalism, and it did not help \u2014 for two reasons, both of them "
+             "mine. First, I put someone who should have been on product onto marketing, "
+             "which is an allocation decision I made and got wrong, and the communication "
+             "overhead that followed meant we could not pivot quickly. Second, and this is "
+             "the part worth keeping: the product started from me. The direction and the "
+             "assumptions were already set before they arrived, so the ground had a shape "
+             "by the time their understanding of the industry showed up. Their insight had "
+             "nowhere "
+             "to grow. That is a structural problem, not a personnel one, and it means "
+             "expertise only pays off when the thesis starts with the person who has it."
+    ),
 }
 
 
@@ -527,6 +611,8 @@ def pm_dl(slug):
             ("What I built", pm["built"]),
             ("What the evidence said", pm["evidence"]),
             ("What I would do differently", pm["differently"])]
+    if pm.get("myth"):
+        rows.append(("The myth it broke", pm["myth"]))
     out = []
     for label, val in rows:
         v = esc(val) if val else '<em class="section-note">Not yet written.</em>'
@@ -535,14 +621,28 @@ def pm_dl(slug):
 
 
 def killed_banner(p):
+    """Banner for a killed product, without an outer wrap. Two versions,
+    because a product that was shipped and then killed is a different story
+    from one stopped in ideation, and the page should not blur them."""
     pm = POSTMORTEMS.get(p["slug"]) or {}
+    on = (" on %s" % pm["killed_on"]) if pm.get("killed_on") else ""
     when = (" in %s" % pm["killed_on"]) if pm.get("killed_on") else ""
-    return """  <div class="wrap">
-    <div class="killed-banner">
+    if pm.get("built_it"):
+        launched = (" It launched on %s." % pm["launched"]) if pm.get("launched") else ""
+        return """    <div class="killed-banner">
+      <p><strong>%s is killed.</strong>%s It was shut down%s: the apps are coming off both stores and the domain will not be renewed. This page stays up and keeps its URL &mdash; nothing here is being redirected or deleted.</p>
+      <p>Everything below this banner is the product as it was described while it was live. <a href="#post-mortem">The post-mortem</a> is at the bottom of the page.</p>
+    </div>""" % (p["name"], launched, on)
+    return """    <div class="killed-banner">
       <p><strong>%s is killed, and was never built.</strong> It was stopped during ideation%s. This page stays up and keeps its URL &mdash; nothing here is being redirected or deleted.</p>
       <p>Everything below this banner is the pitch as it stood, including the beta that never opened. <a href="#post-mortem">The post-mortem</a> is at the bottom of the page.</p>
-    </div>
-  </div>""" % (p["name"], when)
+    </div>""" % (p["name"], when)
+
+
+def killed_banner_wrapped(p):
+    """The same banner for the retrofitted hand-built pages, which supply
+    their own wrap."""
+    return '  <div class="wrap">\n%s\n  </div>' % killed_banner(p)
 
 
 # --------------------------------------------------------------------------
@@ -612,6 +712,7 @@ def retrofit(rel, title, desc, og_image, trail, extra_ld=None, banner="",
         '<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">',
         '<link rel="stylesheet" href="/assets/css/site.css">',
     ]
+    headbits += analytics()
     for ld in lds:
         headbits.append('<script type="application/ld+json">\n%s\n</script>' % ld.strip())
     t = _splice(t, HEAD_START, HEAD_END, "\n".join(headbits), r"</head>", before=True)
@@ -779,15 +880,13 @@ def build_harness_survey():
 
 
 # --------------------------------------------------------------------------
-# Calmly News: the product page. It is the only product whose page lives in
-# this repo rather than in its own; the rest are submodules and are not touched.
-# No SEO pages anywhere -- the existing product sites keep the ones they have.
+# Calmly News: the product page, now a post-mortem. It is the only product
+# whose page lives in this repo rather than in its own; the rest are submodules
+# and are not touched. The three SEO branch pages it used to have went with the
+# product -- there is nothing left to send that traffic to.
 # --------------------------------------------------------------------------
 
 CN = BY_SLUG["calmly-news"]
-CN_APPSTORE = "https://apps.apple.com/us/app/calmly-news/id6756495260"
-CN_PLAY = "https://play.google.com/store/apps/details?id=com.municornio.app.specialnewsapp"
-
 CN_SHOTS = [
     ("/assets/images/calmly_news_1.jpg", "The daily feed, capped at ten stories"),
     ("/assets/images/calmly_news_2.jpg", "A story with the emotional language stripped out"),
@@ -817,13 +916,6 @@ def faq_html(pairs):
 
 
 
-def cn_stores():
-    return """    <ul class="stores">
-      <li><a class="btn" href="%s">Download on the App Store</a></li>
-      <li><a class="btn btn-secondary" href="%s">Get it on Google Play</a></li>
-    </ul>""" % (CN_APPSTORE, CN_PLAY)
-
-
 def build_calmly_news():
     trail = [("/", "Home"), ("/products/", "Products"), (CN["path"], "Calmly News")]
 
@@ -836,44 +928,41 @@ def build_calmly_news():
   "applicationCategory": "NewsApplication",
   "applicationSubCategory": "News reader",
   "operatingSystem": "iOS 15.0 or later, Android 8.0 or later",
-  "description": "A news app with a ten-story daily cap, emotional language stripped from summaries, keyword filters and a reset step after heavy stories.",
+  "description": "A discontinued news app with a ten-story daily cap, emotional language stripped from summaries, keyword filters and a reset step after heavy stories. It ran from January to August 2026.",
   "inLanguage": "en",
   "image": "%(site)s/assets/images/calmly_news_logo.png",
   "screenshot": [%(shots)s],
-  "installUrl": "%(appstore)s",
-  "downloadUrl": "%(play)s",
-  "author": { "@id": "%(site)s/about/#person" },
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-}""" % dict(site=SITE, appstore=CN_APPSTORE, play=CN_PLAY,
+  "author": { "@id": "%(site)s/about/#person" }
+}""" % dict(site=SITE,
             shots=", ".join('"%s%s"' % (SITE, s) for s, _ in CN_SHOTS))
 
     faqs = [
-        ("What happens when I finish the ten stories?",
-         "The feed locks for the rest of the day. There is no &ldquo;load more.&rdquo; That is the entire mechanism &mdash; the app is finished with you before you are finished with it."),
-        ("Does it hide bad news?",
-         "No. It removes the adjectives written to make a story land harder, not the story. A plane crash still reads as a plane crash. You can also filter specific topics or keywords, which does hide those, but that is a choice you make rather than something the app does on your behalf."),
-        ("Is it free?",
-         "Yes, on both iOS and Android."),
-        ("Is this a mental health app?",
-         "No, and it should not be used as one. It is a news reader with a cap and a filter. If news is affecting you in a way that a shorter feed does not fix, that is a conversation for a professional, not an app."),
+        ("What happened when you finished the ten stories?",
+         "The feed locked for the rest of the day. There was no &ldquo;load more.&rdquo; That was the entire mechanism &mdash; the app was finished with you before you were finished with it."),
+        ("Did it hide bad news?",
+         "No. It removed the adjectives written to make a story land harder, not the story. A plane crash still read as a plane crash. You could also filter specific topics or keywords, which did hide those, but that was a choice you made rather than something the app did on your behalf."),
+        ("Can I still get it?",
+         "No. It was free on both iOS and Android while it ran, and it has been taken off both stores."),
+        ("Was this a mental health app?",
+         "No, and it should not have been used as one. It was a news reader with a cap and a filter. If news is affecting you in a way that a shorter feed does not fix, that is a conversation for a professional, not an app."),
     ]
 
     shots = "\n".join(
         '      <figure>%s<figcaption>%s</figcaption></figure>' % (img(s, cap), esc(cap))
         for s, cap in CN_SHOTS)
 
-    body = """    <div class="hero">
+    body = """%s
+
+    <div class="hero">
       <h1>Calmly News %s</h1>
       <p class="lede lede-wide">Ten stories a day, with the drama adjectives stripped out. Then the feed locks.</p>
     </div>
 
     <div class="answer">
-      <p>Every other news app is built to be bottomless, because time-in-app is the metric it is optimised against. Calmly News is built to end. Ten stories, chosen for the day, written without the language engineered to make you angry or afraid &mdash; and then nothing, until tomorrow.</p>
+      <p>Every other news app is built to be bottomless, because time-in-app is the metric it is optimised against. Calmly News was built to end. Ten stories, chosen for the day, written without the language engineered to make you angry or afraid &mdash; and then nothing, until tomorrow. Three people built it in three weeks and fewer than five ever used it.</p>
     </div>
 
-%s
-
-    <h2>What it actually does</h2>
+    <h2>What it actually did</h2>
     <ul>
       <li><strong>A hard cap of ten.</strong> Not a suggestion, a recommended-reading section, or a wellbeing nudge. When you have read the ten, the feed stops serving.</li>
       <li><strong>Summaries with the emotional loading removed.</strong> The adjectives that exist to make a headline hit harder are stripped; the facts of the story are not.</li>
@@ -885,172 +974,23 @@ def build_calmly_news():
 %s
     </div>
 
-    <h2>What it is not</h2>
-    <p>It is not a way to avoid knowing things, and it is not a mental health tool. Mental health is not about hiding from the truth; it is about having the capacity to handle it. A ten-story cap protects your capacity. It does not do anything else, and I would rather say that here than imply otherwise.</p>
+    <h2>What it was not</h2>
+    <p>It was not a way to avoid knowing things, and it was not a mental health tool. Mental health is not about hiding from the truth; it is about having the capacity to handle it. A ten-story cap protects your capacity. It does not do anything else, and I would rather say that here than imply otherwise.</p>
 
     <h2>Questions</h2>
 %s
-""" % (status_pill(CN["status"]), cn_stores(), shots, faq_html(faqs))
 
-    page(CN["path"], "Calmly News &mdash; ten stories a day, then the feed locks",
-         "A free news app with a hard ten-story daily cap, emotional language stripped from summaries, and keyword filters you control. iOS and Android.",
+    <h2 id="post-mortem">Post-mortem</h2>
+    <p class="section-note">Killed products keep their URL here and gain this instead of a redirect.</p>
+%s
+    <p><a href="/killed/">Other killed products &rarr;</a></p>
+""" % (killed_banner(CN), status_pill(CN["status"]), shots,
+       faq_html(faqs), pm_dl("calmly-news"))
+
+    page(CN["path"], "Calmly News &mdash; killed, with the post-mortem",
+         "Calmly News capped the day at ten stories with the emotional language stripped out. It is discontinued. The page stays up with the post-mortem: 3,123 impressions, 20 downloads, fewer than five users in seven and a half months.",
          "/assets/og/calmly-news.png", body, trail=trail,
          extra_ld=[app_ld, faq_ld(faqs)], current="/products/")
-
-
-def build_cn_branches(parent_trail):
-    up = ('    <p class="section-note"><a href="/products/calmly-news/">'
-          '&larr; Calmly News</a></p>')
-
-    # ---- best-<category>-app-for-<use-case> ----------------------------
-    faqs_a = [
-        ("Does a news app make anxiety worse or better?",
-         "Either, depending on whether it ends. The mechanism that drives news anxiety is not information, it is the absence of a stopping point &mdash; there is always one more story, so there is never a moment where you have done enough. An app with a finite daily set gives you that moment. An infinite one cannot."),
-        ("Should I just stop reading the news?",
-         "Most people who try this do not last, and the ones who do often trade anxiety for a different discomfort about being uninformed. A daily cap is a smaller change with a much higher chance of surviving contact with a bad week."),
-        ("Is there a news app that removes upsetting stories?",
-         "Some let you filter topics, which is worth setting up honestly for the two or three subjects you genuinely cannot carry right now. Be wary of anything that filters by sentiment across the board &mdash; that is not a calmer news app, it is an inaccurate one."),
-    ]
-    body_a = """    <div class="hero">
-      <h1>The best news app for anxiety is the one that ends</h1>
-      <p class="lede lede-wide">A five-minute test you can run on any news app, including this one.</p>
-    </div>
-
-    <div class="answer">
-      <p>Almost every &ldquo;calm news&rdquo; recommendation is about tone. Tone is the smaller half. The thing that actually drives news anxiety is that the feed has no end, so there is never a point at which you have finished and can put the phone down. Judge a news app on whether it stops.</p>
-    </div>
-
-    <h2>Three things that decide it</h2>
-    <h3>1. Does the feed have a bottom?</h3>
-    <p>Open the app and scroll. If you reach an end, note how long it took. If you do not reach an end, you have your answer: the app has delegated the stopping decision to you, at the exact moment you are least equipped to make it. Infinite scroll is not a neutral design choice, it is the product deciding that your session should be as long as you can bear.</p>
-
-    <h3>2. Is the language doing work the facts are not?</h3>
-    <p>Read five headlines and cross out every adjective and adverb. If the remaining sentence carries the same information, the app is reporting. If it collapses into something much smaller, the adjectives were the product. &ldquo;Officials slam shocking new figures&rdquo; contains one fact and two pieces of theatre.</p>
-
-    <h3>3. Can you turn off a subject without turning off the app?</h3>
-    <p>There are usually two or three subjects a person cannot carry in a given month. An app that lets you filter those by keyword lets you keep reading everything else. An app with no filtering leaves you with one lever: uninstall.</p>
-
-    <h2>What to do if you are not changing apps</h2>
-    <p>The cap matters more than the app. Decide the number of stories before you open anything, count them, and stop at the number even when the next headline is interesting &mdash; especially then. Read once a day rather than in fragments; the fragments are what keep the subject live in your head for sixteen hours. And read on a device you can put in another room.</p>
-    <p>None of that requires software. The reason to use an app that enforces it is that a rule you have to apply yourself, several times a day, while a professionally optimised feed argues with you, is a rule you will lose.</p>
-
-    <h2>Where Calmly News lands on its own test</h2>
-    <p>It ends at ten stories, which is the whole reason it exists. It strips the emotional loading from summaries but not the stories themselves. It filters by topic and keyword. That is the entire pitch, and the three tests above are the ones I would want someone to run on it before believing me.</p>
-    <p>What it does not do: it is not a treatment for anxiety, it has no idea how you are, and it will not soften a genuinely bad piece of news. If a shorter feed does not fix how the news is landing, the answer is not a different app.</p>
-
-%s
-
-    <h2>Questions</h2>
-%s
-
-%s
-""" % (cn_stores(), faq_html(faqs_a), up)
-    t = parent_trail + [(CN_SUBPAGES[0][0], "Best news app for anxiety")]
-    page(CN_SUBPAGES[0][0],
-         "Best news app for anxiety &mdash; judge it on whether the feed ends",
-         "The thing that drives news anxiety is an infinite feed, not tone. Three tests to run on any news app in five minutes, and where Calmly News lands on them.",
-         "/assets/og/cn-anxiety.png", body_a, trail=t,
-         extra_ld=[faq_ld(faqs_a)], current="/products/")
-
-    # ---- how-to-<job> --------------------------------------------------
-    faqs_b = [
-        ("Why is doomscrolling so hard to stop mid-scroll?",
-         "Because the decision to stop has to be made repeatedly, against a feed that reloads faster than you can decide, at a time of day when your judgement is at its worst. It is not a willpower problem in any useful sense &mdash; you are being asked to win the same argument several hundred times."),
-        ("Do screen-time limits work?",
-         "Poorly, on their own. A timer interrupts you at an arbitrary point rather than a finished one, so it produces the feeling of being cut off rather than done, and the standard response is to tap &ldquo;ignore limit.&rdquo; A finite amount of content works better than a finite amount of time because it can actually be completed."),
-        ("Is deleting the app the answer?",
-         "It is the most effective single move and the least durable one. Most people reinstall within a fortnight, usually during exactly the news event that made them delete it. Worth doing as a reset, not as the plan."),
-    ]
-    body_b = """    <div class="hero">
-      <h1>How to stop doomscrolling</h1>
-      <p class="lede lede-wide">Four things that work, and one that everybody tries first.</p>
-    </div>
-
-    <div class="answer">
-      <p>Doomscrolling is not a failure of self-control, it is the predictable result of pairing an infinite feed with a stopping rule that only you enforce. Fix the arrangement rather than your character: give the reading a defined end, a fixed time, and a physical distance.</p>
-    </div>
-
-    <h2>The one everybody tries first</h2>
-    <p>Resolving to scroll less. This fails for a structural reason: the resolution has to be re-applied every few seconds, against a feed designed by people whose job is to make the next item feel worth one more swipe. You are not going to out-discipline a system that gets several hundred attempts per session.</p>
-
-    <h2>1. Read a set, not a stream</h2>
-    <p>Decide the number before you open anything &mdash; ten is a defensible figure for keeping up with the world &mdash; then read that many and stop. The point is not the number, it is that a set can be completed and a stream cannot. Completion is what produces the feeling of having done enough, and that feeling is the only reliable brake there is.</p>
-
-    <h2>2. Once a day, not in fragments</h2>
-    <p>Four two-minute checks are worse than one eight-minute read, even though the total is the same. Each check re-opens the subject and leaves it running in the background until the next one, so a fragmented habit keeps the news live in your head all day. One session has an end you can feel.</p>
-
-    <h2>3. Not in bed</h2>
-    <p>The scroll that does the damage is almost always the last one of the day, when your judgement about whether to stop is at its weakest and there is nothing scheduled afterwards to interrupt you. Charge the phone in another room. This is the single change with the best ratio of effect to effort, and it requires no software at all.</p>
-
-    <h2>4. Cut the notifications, keep the news</h2>
-    <p>Breaking-news alerts are the mechanism that converts a daily habit into an all-day one. Turning every news notification off does not make you less informed on any timescale that matters &mdash; you will find out about it in your session. It only removes the interruptions that start unplanned scrolls.</p>
-
-    <h2>Where an app helps and where it does not</h2>
-    <p>An app can enforce the first rule for you, which is the hard one. A feed that genuinely stops after a set number of stories removes the repeated decision entirely instead of asking you to keep making it. That is what Calmly News does: ten stories, then the feed locks for the day.</p>
-    <p>It cannot do the other three. Reading once a day, staying out of bed with the phone, and killing notifications are habits, and no app installs a habit for you. Anything claiming otherwise is selling the same infinite feed with calmer branding.</p>
-
-%s
-
-    <h2>Questions</h2>
-%s
-
-%s
-""" % (cn_stores(), faq_html(faqs_b), up)
-    t = parent_trail + [(CN_SUBPAGES[1][0], "How to stop doomscrolling")]
-    page(CN_SUBPAGES[1][0],
-         "How to stop doomscrolling &mdash; four things that work",
-         "Doomscrolling is an arrangement problem, not a willpower problem. Read a finite set, once a day, out of the bedroom, without notifications &mdash; and what an app can and cannot enforce.",
-         "/assets/og/cn-doomscrolling.png", body_b, trail=t,
-         extra_ld=[faq_ld(faqs_b)], current="/products/")
-
-    # ---- how-to-<job>, second intent -----------------------------------
-    faqs_c = [
-        ("Is biased language the same as fake news?",
-         "No, and conflating them is a good way to end up trusting nothing. Most emotionally loaded reporting is factually accurate. The adjectives are added to make an accurate story land harder, which is a separate problem from a story being untrue and has a much simpler fix: read past them."),
-        ("Does reading several sources fix it?",
-         "It fixes factual gaps and does very little for emotional loading, because the technique is close to universal across the spectrum. Two outlets that disagree about everything will both describe the thing they dislike using words chosen to provoke."),
-        ("Can software remove bias?",
-         "It can remove a specific, mechanical part of it &mdash; the evaluative adjectives and adverbs around the facts. It cannot fix which stories were chosen, which quotes were used or what was left out, and any product claiming it has solved bias has replaced a visible slant with an invisible one."),
-    ]
-    body_c = """    <div class="hero">
-      <h1>How to read the news without getting angry</h1>
-      <p class="lede lede-wide">The anger is a writing technique before it is a reaction.</p>
-    </div>
-
-    <div class="answer">
-      <p>Most of what makes a news story infuriating is not the event. It is the roughly six words wrapped around the event by someone whose headline is competing against forty others for the same tap. Learn to see those six words and a large share of the anger goes with them.</p>
-    </div>
-
-    <h2>The adjective test</h2>
-    <p>Take any headline that has just annoyed you and remove every adjective and adverb. &ldquo;Officials quietly slip controversial rule into sweeping new package&rdquo; becomes &ldquo;officials added a rule to a package.&rdquo; The second version is what happened. The first version is what happened plus an instruction about how to feel about it, and the instruction was written by someone who does not know you.</p>
-    <p>Do this five times and it becomes automatic. It is the highest-yield reading habit I know of, and it costs nothing.</p>
-
-    <h2>Watch for the verbs of conflict</h2>
-    <p>Slams, blasts, hits out, erupts, sparks fury. These describe almost nothing &mdash; in practice they mean &ldquo;said,&rdquo; or occasionally &ldquo;posted.&rdquo; They exist to convert a statement into a fight, because a fight gets read. When you see one, mentally substitute &ldquo;said&rdquo; and check whether the story survives. Frequently there was no story.</p>
-
-    <h2>Notice what the quote is doing</h2>
-    <p>A quote from a named official is evidence. A quote from an anonymous critic, or a screenshot of a stranger being wrong, is not reporting on an event &mdash; it is an invitation to be angry at a person, selected from millions specifically for being the most provoking available. Nothing is learned from it. This is the category where the anger has the least to show for it.</p>
-
-    <h2>Then change when you read</h2>
-    <p>Anger about an event decays; anger that is refreshed every ninety minutes does not. Reading once, in a defined session, lets the decay happen. Checking repeatedly through the day keeps resetting it, which is why people can feel furious all week about something they only actually learned once.</p>
-
-    <h2>What Calmly News does about it</h2>
-    <p>It runs a version of the adjective test on the summaries automatically, so what arrives is closer to the stripped-down sentence than the theatrical one. It caps the day at ten stories, which handles the refresh problem. And it lets you filter keywords, for the subjects where the honest answer is that you are not in a position to read about it this month.</p>
-    <p>What it does not do: it cannot fix which stories exist, which quotes were selected, or what was omitted. Those are editorial choices and no amount of processing recovers them. Removing the loaded adjectives is a real improvement and a partial one, and I would rather describe it as partial.</p>
-
-%s
-
-    <h2>Questions</h2>
-%s
-
-%s
-""" % (cn_stores(), faq_html(faqs_c), up)
-    t = parent_trail + [(CN_SUBPAGES[2][0], "How to read the news without getting angry")]
-    page(CN_SUBPAGES[2][0],
-         "How to read the news without getting angry &mdash; the adjective test",
-         "Most news anger comes from the words around the facts, not the facts. The adjective test, the verbs of conflict, what a quote is doing, and why reading once a day matters.",
-         "/assets/og/cn-angry.png", body_c, trail=t,
-         extra_ld=[faq_ld(faqs_c)], current="/products/")
 
 
 # --------------------------------------------------------------------------
@@ -1324,7 +1264,7 @@ def build_landing_pages():
              "/assets/og/founders-note.png",
              prods + [("/founders-note/", "Founder's Note")],
              extra_ld=[fn_ld],
-             banner=killed_banner(fn),
+             banner=killed_banner_wrapped(fn),
              tail="""  <div class="wrap">
     <h2 id="post-mortem">Post-mortem</h2>
     <p class="section-note">Killed products keep their URL here and gain this instead of a redirect.</p>
