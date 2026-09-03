@@ -130,4 +130,19 @@ its own `sitemap.xml` is correct and expected; add it to `PRODUCT_SITEMAPS` in
 `build.py` when you mount a new one.
 
 Search Console verification lives at `googlef3c32cf8dc998f2f.html`. Do not
-delete it. There is no analytics script on the site, by choice.
+delete it.
+
+## Analytics
+
+Google Analytics 4 is emitted into every hub page by `build.py`; the
+measurement ID is the `GA_ID` constant near the top. One property covers the
+whole domain, so no cross-domain setup is needed.
+
+**The submodule-owned product sites are not tracked**, by choice. They are
+served from this origin at sub-paths, but their HTML comes from their own
+repositories, so covering them means either a one-line loader committed into
+each product repo or moving this site to a CI build. Neither is worth doing
+until the hub numbers prove useful. Clicks from a hub page into `/products/*`
+therefore look like exits.
+
+Build an untagged copy with `GA_ID= python3 build.py`.

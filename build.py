@@ -21,9 +21,10 @@ SITE = "https://mylesieong.github.io"
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TODAY = date.today().isoformat()
 
-# Google Analytics 4 measurement ID ("G-XXXXXXXXXX"). Empty disables the tag.
-# Overridable per-build with GA_ID= in the environment.
-GA_ID = os.environ.get("GA_ID", "")
+# Google Analytics 4 measurement ID. Hub pages only; the submodule-owned
+# product sites are deliberately untracked. Build with GA_ID= in the
+# environment to override, or GA_ID= (empty) to build an untagged copy.
+GA_ID = os.environ.get("GA_ID", "G-50K1HLXL7L")
 
 BRAND = "Sai vs. Reality"
 TAGLINE = "Building in public. Failing with documentation."
