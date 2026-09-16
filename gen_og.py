@@ -104,7 +104,7 @@ ICON_SRC = [
     ("runout-rank", "/products/runout-rank/assets/img/icon-512.png"),
     ("pool-billiards-self-trainer", "/assets/images/logo_pool&biiliards.png"),
     ("snooker-self-trainer", "/assets/images/logo_snooker.png"),
-    ("bible-project", "/assets/images/logo_bible.webp"),
+    ("footlamp", "/assets/images/logo_bible.webp"),
     ("flexi", "/assets/images/flexi_logo.png"),
     ("tacet", "/products/tacet/assets/apple-touch-icon.png"),
     ("calmly-news", "/assets/images/calmly_news_logo.png"),

@@ -7,8 +7,8 @@
 [submodule "products/flexi"]
 	path = products/flexi
 	url = https://github.com/mylesieong/FlexiWebsite.git
-[submodule "products/bible-project"]
-	path = products/bible-project
+[submodule "products/footlamp"]
+	path = products/footlamp
 	url = https://github.com/mylesieong/BibleReaderWebsite.git
 [submodule "products/tacet"]
 	path = products/tacet

@@ -7,7 +7,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 os.chdir(ROOT)
 SKIP_DIRS = ('_site/', '_content/')
 # build inputs served but never linked; excluded from crawl and orphan checks
-TEMPLATES = ('products/flexi/src/', 'products/bible-project/_data/')
+TEMPLATES = ('products/flexi/src/', 'products/footlamp/_data/')
 # files that are intentionally unlinked
 EXEMPT = ('404.html', 'googlef3c32cf8dc998f2f.html', 'privacy-policy.html')
 

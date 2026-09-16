@@ -58,9 +58,9 @@ PRODUCTS = [
          path="/products/snooker-self-trainer/",
          icon="/assets/icons/snooker-self-trainer.png",
          line="The same structure as the pool trainer, rebuilt for a twelve-foot table."),
-    dict(slug="bible-project", name="Bible Project", status="live", owner="submodule",
-         path="/products/bible-project/",
-         icon="/assets/icons/bible-project.png",
+    dict(slug="footlamp", name="Footlamp", status="live", owner="submodule",
+         path="/products/footlamp/",
+         icon="/assets/icons/footlamp.png",
          line="KJV and ESV offline, with an AI that answers when you have a question."),
     dict(slug="flexi", name="Flexi", status="live", owner="submodule",
          path="/products/flexi/",
@@ -1000,7 +1000,7 @@ def build_calmly_news():
 # --------------------------------------------------------------------------
 
 CASE_STUDIES = [
-    dict(slug="bible-project",
+    dict(slug="footlamp",
          title="Follow the breadcrumb: micro innovation on a proven genre",
          blurb="A better Bible reader in four weeks, by adding one thing to a genre that already worked.",
          desc="How a three-person team shipped a Bible reader with AI verse explanations in four weeks, by taking a proven genre and changing one thing about it.",
@@ -1079,15 +1079,25 @@ def build_case_studies():
              body, trail=t, extra_ld=[article_ld], current="")
 
 
+# (old path, new path, one-line note). A path ending in "/" gets an index.html;
+# anything else is written as that file, so a fixed filename like
+# privacy-policy.html can keep answering at its old address.
+CASE_STUDY_NOTE = "Case studies now live under Sai Studio."
+FOOTLAMP_NOTE = "This page now lives under Footlamp."
 REDIRECTS = [
-    ("/case-studies/", "/sai-studio/case-studies/"),
-    ("/case-studies/bible-project/", "/sai-studio/case-studies/bible-project/"),
-    ("/case-studies/web3-social-network/", "/sai-studio/case-studies/web3-social-network/"),
+    ("/case-studies/", "/sai-studio/case-studies/", CASE_STUDY_NOTE),
+    ("/case-studies/bible-project/", "/sai-studio/case-studies/footlamp/", CASE_STUDY_NOTE),
+    ("/case-studies/web3-social-network/", "/sai-studio/case-studies/web3-social-network/", CASE_STUDY_NOTE),
+    ("/sai-studio/case-studies/bible-project/", "/sai-studio/case-studies/footlamp/", FOOTLAMP_NOTE),
+    # The product site moved with the rename. The old privacy-policy URL is
+    # printed in shipped app builds, so it must keep resolving.
+    ("/products/bible-project/", "/products/footlamp/", FOOTLAMP_NOTE),
+    ("/products/bible-project/privacy-policy.html", "/products/footlamp/privacy-policy.html", FOOTLAMP_NOTE),
 ]
 
 
 def build_redirects():
-    for old, new in REDIRECTS:
+    for old, new, note in REDIRECTS:
         doc = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1103,15 +1113,15 @@ def build_redirects():
   <main id="main" class="wrap">
     <div class="hero">
       <h1>This page moved</h1>
-      <p class="lede">Case studies now live under Sai Studio.</p>
+      <p class="lede">%(note)s</p>
       <p><a class="btn" href="%(new)s">Continue &rarr;</a></p>
     </div>
   </main>
   <script>location.replace(%(newjs)s);</script>
 </body>
 </html>
-""" % dict(site=SITE, new=new, newjs='"%s"' % new)
-        rel = old.lstrip("/") + "index.html"
+""" % dict(site=SITE, new=new, newjs='"%s"' % new, note=note)
+        rel = old.lstrip("/") + ("index.html" if old.endswith("/") else "")
         dest = os.path.join(ROOT, rel)
         if not os.path.isdir(os.path.dirname(dest)):
             os.makedirs(os.path.dirname(dest))
@@ -1215,7 +1225,7 @@ def build_landing_pages():
     <h2>Case studies</h2>
     <p>Full write-ups of builds delivered through Sai Studio.</p>
     <ul class="subpages">
-      <li><a href="/sai-studio/case-studies/bible-project/">Follow the breadcrumb: micro innovation on a proven genre<span class="sub-line">A better Bible reader in four weeks, by adding one thing to a genre that already worked.</span></a></li>
+      <li><a href="/sai-studio/case-studies/footlamp/">Follow the breadcrumb: micro innovation on a proven genre<span class="sub-line">A better Bible reader in four weeks, by adding one thing to a genre that already worked.</span></a></li>
       <li><a href="/sai-studio/case-studies/web3-social-network/">Build a production level social network in 4 weeks<span class="sub-line">A vertical-community social network, built to production standard on a four-week structure.</span></a></li>
     </ul>
   </div>""")
@@ -1301,7 +1311,7 @@ def build_landing_pages():
 
 PRODUCT_SITEMAPS = [
     "/products/aisleful/sitemap.xml",
-    "/products/bible-project/sitemap.xml",
+    "/products/footlamp/sitemap.xml",
     "/products/flexi/sitemap.xml",
     "/products/pool-billiards-self-trainer/sitemap.xml",
     "/products/runout-rank/sitemap.xml",
@@ -1351,7 +1361,7 @@ def build_sitemaps():
 User-agent: *
 Allow: /
 Disallow: /products/flexi/src/
-Disallow: /products/bible-project/_data/
+Disallow: /products/footlamp/_data/
 
 Sitemap: %s/sitemap.xml
 %s

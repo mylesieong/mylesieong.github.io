@@ -30,7 +30,7 @@ that is deliberate and scoped to those sites.
 | `_content/` | Hand-written page bodies that `build.py` pulls in. |
 | `sitemap.xml` | Generated sitemap **index**, pointing at every sitemap on the domain. |
 
-Generated files are committed, the same way the Flexi and Bible Project sites
+Generated files are committed, the same way the Flexi and Footlamp sites
 already work. GitHub Pages serves what is in the repo; there is no CI build.
 
 ## Adding a product
@@ -99,7 +99,7 @@ the product page and the hub release independently.
 | `products/pool-billiards-self-trainer/` | `PoolBilliardsSelfTrainerWebsite` |
 | `products/runout-rank/` | `RunoutRankWebsite` |
 | `products/flexi/` | `FlexiWebsite` |
-| `products/bible-project/` | `BibleReaderWebsite` |
+| `products/footlamp/` | `BibleReaderWebsite` |
 | `products/tacet/` | `TacetWebsite` |
 | `products/snooker-self-trainer/` | `SnookerSelfTrainerWebsite` |
 
