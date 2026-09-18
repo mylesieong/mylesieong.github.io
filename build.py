@@ -675,7 +675,10 @@ def _splice(text, start, end, payload, anchor, before=True):
 
 
 def retrofit(rel, title, desc, og_image, trail, extra_ld=None, banner="",
-             tail="", noindex=False, keep_title=False):
+             tail="", noindex=False, keep_title=False, strip=True):
+    """`strip=False` keeps the page's own header as the only one: no brand
+    strip and no breadcrumb trail are injected (the BreadcrumbList JSON-LD
+    still is), so product pages with a full nav of their own stay clean."""
     path = "/" + rel.rsplit("index.html", 1)[0]
     src = os.path.join(ROOT, rel)
     with open(src) as f:
@@ -718,8 +721,12 @@ def retrofit(rel, title, desc, og_image, trail, extra_ld=None, banner="",
         headbits.append('<script type="application/ld+json">\n%s\n</script>' % ld.strip())
     t = _splice(t, HEAD_START, HEAD_END, "\n".join(headbits), r"</head>", before=True)
 
-    strip = header() + ("\n" + crumbs(trail) if trail else "") + ("\n" + banner if banner else "")
-    t = _splice(t, BODY_START, BODY_END, strip, r"<body[^>]*>", before=False)
+    if strip:
+        bits = [header(), crumbs(trail) if trail else "", banner]
+        t = _splice(t, BODY_START, BODY_END, "\n".join(b for b in bits if b), r"<body[^>]*>", before=False)
+    else:
+        # only the banner, and below the page's own header rather than above it
+        t = _splice(t, BODY_START, BODY_END, banner, r"</header>", before=False)
 
     if tail:
         t = _splice(t, TAIL_START, TAIL_END, tail, r"<footer", before=True)
@@ -1220,7 +1227,7 @@ def build_landing_pages():
              "CTO-level strategy and a fixed-scope first build, without giving away equity. Case studies from four-week builds, and what the process actually involves.",
              "/assets/og/sai-studio.png",
              prods + [("/sai-studio/", "Sai Studio")],
-             extra_ld=[service_ld],
+             extra_ld=[service_ld], strip=False,
              tail="""  <div class="wrap">
     <h2>Case studies</h2>
     <p>Full write-ups of builds delivered through Sai Studio.</p>
@@ -1248,7 +1255,7 @@ def build_landing_pages():
              "Bundle documents, video or a landing page into one shareable package with a bot that guides the recipient, answers their questions and captures the feedback. In development.",
              "/assets/og/chatengage.png",
              prods + [("/chatengage/", "Chatengage")],
-             extra_ld=[ce_ld],
+             extra_ld=[ce_ld], strip=False,
              banner="""  <div class="wrap">
     <div class="callout">
       <p><strong>Chatengage is still being built.</strong> %s Everything below is what it is meant to be, written before Reality has had its say. If it turns out to be wrong, that will be published here too.</p>

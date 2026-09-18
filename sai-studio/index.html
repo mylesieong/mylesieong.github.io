@@ -30,7 +30,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
@@ -38,8 +38,8 @@
     footer .key { color: var(--accent-aa-dark); }
 
     /* Nav */
-    nav {
-        position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    .studio-nav {
+        position: sticky; top: 0; z-index: 50;
         background: rgba(255,255,255,0.95);
         -webkit-backdrop-filter: blur(12px);
         backdrop-filter: blur(12px);
@@ -47,24 +47,24 @@
         padding: 16px 24px;
         padding-top: max(16px, env(safe-area-inset-top));
     }
-    nav .container { display: flex; justify-content: space-between; align-items: center; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-    nav .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.125rem; color: var(--fg); letter-spacing: -0.02em; }
-    nav .logo img { height: 36px; width: 36px; border-radius: 50%; object-fit: cover; }
-    nav .nav-links { display: flex; align-items: center; gap: 32px; }
-    nav a { font-size: 0.9rem; font-weight: 500; color: var(--fg-muted); transition: color var(--transition); }
-    nav a:hover { color: var(--accent); }
-    nav a.nav-cta {
+    .studio-nav .container { display: flex; justify-content: space-between; align-items: center; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .studio-nav .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.125rem; color: var(--fg); letter-spacing: -0.02em; }
+    .studio-nav .logo img { height: 36px; width: 36px; border-radius: 50%; object-fit: cover; }
+    .studio-nav .nav-links { display: flex; align-items: center; gap: 32px; }
+    .studio-nav a { font-size: 0.9rem; font-weight: 500; color: var(--fg-muted); transition: color var(--transition); }
+    .studio-nav a:hover { color: var(--accent); }
+    .studio-nav a.nav-cta {
         display: inline-flex; align-items: center;
         background: var(--accent); color: white !important;
         padding: 8px 16px; border-radius: 100px;
         font-weight: 600; line-height: 1;
     }
-    nav a.nav-cta:hover { background: var(--accent-deep); color: white !important; }
+    .studio-nav a.nav-cta:hover { background: var(--accent-deep); color: white !important; }
 
     /* Hero */
-    header {
-        min-height: 90vh; display: flex; align-items: center; justify-content: center;
-        text-align: center; padding: 140px 24px 80px;
+    .studio-hero {
+        min-height: 80vh; display: flex; align-items: center; justify-content: center;
+        text-align: center; padding: 80px 24px 80px;
         background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 40%, #fafbfc 100%);
         position: relative; overflow: hidden;
     }
@@ -73,22 +73,22 @@
         background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(14,165,233,0.08) 0%, transparent 50%);
         pointer-events: none;
     }
-    header .container { position: relative; z-index: 1; }
-    header .badge {
+    .studio-hero .container { position: relative; z-index: 1; }
+    .studio-hero .badge {
         display: inline-block; padding: 8px 16px; margin-bottom: 24px;
         background: var(--accent-light); color: var(--accent-deep);
         font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
         border-radius: 100px;
     }
-    header h1 {
+    .studio-hero h1 {
         font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.03em;
         color: var(--fg); max-width: 800px; margin: 0 auto 24px;
     }
-    header h1 span { color: var(--accent); }
-    header .subline {
+    .studio-hero h1 span { color: var(--accent); }
+    .studio-hero .subline {
         font-size: 1.2rem; color: var(--fg-muted); max-width: 640px; margin: 0 auto 24px; line-height: 1.6;
     }
-    header .hero-micro {
+    .studio-hero .hero-micro {
         font-size: 0.9rem; color: var(--fg-muted); margin-bottom: 32px; font-weight: 500;
     }
     .cta-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
@@ -634,20 +634,20 @@
         transition: opacity var(--transition);
     }
     .nav-toggle-inner::after { bottom: 0; }
-    nav.open .nav-toggle-inner::before {
+    .studio-nav.open .nav-toggle-inner::before {
         transform: translateY(7px) rotate(45deg);
     }
-    nav.open .nav-toggle-inner::after {
+    .studio-nav.open .nav-toggle-inner::after {
         transform: translateY(-7px) rotate(-45deg);
     }
-    nav.open .nav-toggle-inner span {
+    .studio-nav.open .nav-toggle-inner span {
         opacity: 0;
     }
 
     /* Responsive */
     @media (max-width: 768px) {
         .nav-toggle { display: flex; }
-        nav .nav-links {
+        .studio-nav .nav-links {
             display: none;
             position: absolute; top: 100%; left: 0; right: 0;
             background: rgba(255,255,255,0.98); backdrop-filter: blur(12px);
@@ -655,21 +655,21 @@
             padding: 16px; border-bottom: 1px solid var(--border);
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
         }
-        nav.open .nav-links {
+        .studio-nav.open .nav-links {
             display: flex;
         }
-        nav .nav-links a {
+        .studio-nav .nav-links a {
             padding: 14px 0; border-bottom: 1px solid var(--border);
             font-size: 1rem;
         }
-        nav .nav-links a:last-child { border-bottom: none; }
-        nav .nav-links a.nav-cta {
+        .studio-nav .nav-links a:last-child { border-bottom: none; }
+        .studio-nav .nav-links a.nav-cta {
             justify-content: center; text-align: center;
             padding: 16px 24px; margin-top: 8px;
             border-radius: 100px;
         }
-        nav .container { position: relative; }
-        header { padding: 120px 20px 60px; min-height: auto; }
+        .studio-nav .container { position: relative; }
+        .studio-hero { padding: 56px 20px 56px; min-height: auto; }
         section { padding: 48px 0; }
         #credibility { padding-left: 20px; padding-right: 20px; }
         #credibility .container { padding: 24px 20px; }
@@ -754,30 +754,14 @@
 <!-- svr:head:end -->
 </head>
 <body><!-- svr:body:start -->
-<header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="/">Sai <span class="brand-vs">vs.</span> Reality</a>
-      <nav class="site-nav" aria-label="Main">
-        <a href="/products/">Products</a>
-        <a href="/killed/">Killed</a>
-        <a href="/about/">About</a>
-      </nav>
-    </div>
-  </header>
-<nav class="crumbs wrap" aria-label="Breadcrumb">
-    <ol>
-      <li><a href="/">Home</a></li>
-      <li><a href="/products/">Products</a></li>
-      <li><span aria-current="page">Sai Studio</span></li>
-    </ol>
-  </nav>
+
 <!-- svr:body:end -->
 <!-- svr:main:open -->
 <main id="main">
 
 
 
-<nav>
+<nav class="studio-nav">
     <div class="container">
         <a href="/sai-studio/" class="logo"><img src="assets/images/sai-headshot.png" alt="Sai Studio" width="800" height="800" loading="lazy" decoding="async">Sai Studio</a>
         <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -793,7 +777,7 @@
     </div>
 </nav>
 
-<header>
+<header class="studio-hero">
     <div class="container">
         <span class="badge">Your Day Zero Technical Partner</span>
         <h1>Don't give away 40% equity just to build your first version.</h1>
@@ -1414,7 +1398,7 @@
 <script>
 (function() {
     var navToggle = document.querySelector('.nav-toggle');
-    var nav = document.querySelector('nav');
+    var nav = document.querySelector('.studio-nav');
     if (navToggle && nav) {
         navToggle.addEventListener('click', function() {
             nav.classList.toggle('open');
