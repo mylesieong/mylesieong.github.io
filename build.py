@@ -647,7 +647,7 @@ def killed_banner_wrapped(p):
 
 
 # --------------------------------------------------------------------------
-# retrofitting the hand-built landing pages (sai-studio, chatengage,
+# retrofitting the hand-built landing pages (sai-studio, agent-ready, chatengage,
 # founders-note, field-notes). Their design is deliberate and stays; this only
 # adds the head tags, the brand strip and any status banner, between markers,
 # so re-running the build never duplicates anything.
@@ -1235,7 +1235,31 @@ def build_landing_pages():
       <li><a href="/sai-studio/case-studies/footlamp/">Follow the breadcrumb: micro innovation on a proven genre<span class="sub-line">A better Bible reader in four weeks, by adding one thing to a genre that already worked.</span></a></li>
       <li><a href="/sai-studio/case-studies/web3-social-network/">Build a production level social network in 4 weeks<span class="sub-line">A vertical-community social network, built to production standard on a four-week structure.</span></a></li>
     </ul>
+    <h2>Also from Sai Studio</h2>
+    <ul class="subpages">
+      <li><a href="/sai-studio/agent-ready/">Agent-ready businesses<span class="sub-line">Make a website, store, tool or app something ChatGPT, Claude and Gemini can find, book and buy from.</span></a></li>
+    </ul>
   </div>""")
+
+    # ---- Sai Studio: agent-ready service page (hand-built, like the rest)
+    ar_ld = """{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "%(site)s/sai-studio/agent-ready/#service",
+  "name": "Agent-ready businesses",
+  "url": "%(site)s/sai-studio/agent-ready/",
+  "serviceType": "AI agent readiness and MCP server development",
+  "description": "An audit, structured data and a secure MCP server so AI assistants such as ChatGPT, Claude and Gemini can recommend a business and book, order or buy from it directly.",
+  "provider": { "@id": "%(site)s/about/#person" },
+  "areaServed": "Worldwide",
+  "inLanguage": "en"
+}""" % dict(site=SITE)
+    retrofit("sai-studio/agent-ready/index.html",
+             "Agent-ready businesses &mdash; Sai Studio",
+             "Customers are asking AI assistants to find, book and buy for them. An audit, structured data and a secure MCP server make your business something those assistants can recommend and act on.",
+             "/assets/og/sai-studio-agent-ready.png",
+             prods + [("/sai-studio/", "Sai Studio"), ("/sai-studio/agent-ready/", "Agent-ready")],
+             extra_ld=[ar_ld], strip=False)
 
     # ---- Chatengage (building)
     ce_ld = """{
@@ -1402,8 +1426,9 @@ def main():
     build_harness_survey()
     build_case_studies()
     build_landing_pages()
-    for rel in ("sai-studio/index.html", "chatengage/index.html",
-                "founders-note/index.html", "partners/unicornio-macau/index.html"):
+    for rel in ("sai-studio/index.html", "sai-studio/agent-ready/index.html",
+                "chatengage/index.html", "founders-note/index.html",
+                "partners/unicornio-macau/index.html"):
         pin_light(rel)
     ensure_main("sai-studio/index.html")
     for rel in ("sai-studio/index.html", "chatengage/index.html",

@@ -160,6 +160,8 @@ CARDS = [
      "Sai Studio · case study"),
     ("sai-studio.png", "MVP builds for founders without a technical co-founder", None,
      "Sai Studio"),
+    ("sai-studio-agent-ready.png", "Your business, ready for AI agents", None,
+     "Sai Studio · agent-ready businesses"),
     ("chatengage.png", "Send a package. Start the conversation.", None,
      "Chatengage · still being built"),
     ("founders-note.png", "Killed during ideation, before it was built", None,
