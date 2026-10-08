@@ -10,6 +10,8 @@ SKIP_DIRS = ('_site/', '_content/')
 TEMPLATES = ('products/flexi/src/', 'products/footlamp/_data/')
 # files that are intentionally unlinked
 EXEMPT = ('404.html', 'googlef3c32cf8dc998f2f.html', 'privacy-policy.html')
+# submodule sites outside products/ that are intentionally unlinked and not hub pages
+EXTERNAL = ('care-without-barriers/',)
 
 files = [f for f in glob.glob('**/*.html', recursive=True) if not f.startswith(SKIP_DIRS)]
 href = re.compile(r'(?:href|src)="([^"]+)"')
@@ -52,6 +54,7 @@ orph = [f for f in files
         and os.path.normpath(f) not in redirects
         and not f.endswith(EXEMPT)
         and not f.startswith(TEMPLATES)
+        and not f.startswith(EXTERNAL)
         and not re.search(r'/(zh|ko|vi|pt)/', f)]
 print("\norphan pages: %d" % len(orph))
 for f in sorted(orph):
@@ -59,7 +62,7 @@ for f in sorted(orph):
 
 print("\nper-page checks (hub pages only):")
 hub = [f for f in files
-       if not f.startswith('products/')
+       if not f.startswith(('products/',) + EXTERNAL)
        or f.startswith(('products/index', 'products/calmly-news', 'products/harness-survey'))]
 fails = 0
 for f in sorted(hub):
