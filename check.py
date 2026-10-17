@@ -11,7 +11,7 @@ TEMPLATES = ('products/flexi/src/', 'products/footlamp/_data/')
 # files that are intentionally unlinked
 EXEMPT = ('404.html', 'googlef3c32cf8dc998f2f.html', 'privacy-policy.html')
 # submodule sites outside products/ that are intentionally unlinked and not hub pages
-EXTERNAL = ('care-without-barriers/',)
+EXTERNAL = ('care-without-barriers/', 'maison-touch/')
 
 files = [f for f in glob.glob('**/*.html', recursive=True) if not f.startswith(SKIP_DIRS)]
 href = re.compile(r'(?:href|src)="([^"]+)"')

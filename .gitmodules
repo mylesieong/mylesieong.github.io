@@ -22,3 +22,6 @@
 [submodule "care-without-barriers/privacy-policy"]
 	path = care-without-barriers/privacy-policy
 	url = https://github.com/mylesieong/CareWithoutBarriersWebsite.git
+[submodule "maison-touch"]
+	path = maison-touch
+	url = https://github.com/mylesieong/MaisonTouchWebsite.git
